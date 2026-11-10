@@ -13,9 +13,9 @@
     },
 
     "files.eol": "\n",
+    // Las carpetas build/ quedan visibles: ahí aparece el APK (app/build/outputs/apk/debug/app-debug.apk).
     "files.exclude": {
         "**/.gradle": true,
-        "**/build": true,
         "**/.kotlin": true
     },
     "files.watcherExclude": {

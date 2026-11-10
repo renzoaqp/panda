@@ -152,8 +152,29 @@ adb version          # debe mostrar la versión de Android Debug Bridge
 4. En el celular aparece *"¿Permitir depuración USB?"* → marca "Permitir siempre" → **Aceptar**.
 5. En VS Code: *Terminal → Run Task… → Panbu: instalar en el celular*. La app aparece como **Panbu**.
 
-**Opción B — sin cable:** copia `app-debug.apk` al celular (por WhatsApp, Drive o USB), ábrelo y permite
-"Instalar apps desconocidas" cuando lo pida.
+**Opción B — sin cable:**
+1. Envía `app-debug.apk` al celular: por WhatsApp a ti mismo (como **Documento**), por Google Drive, por correo o
+   copiándolo por cable a la carpeta Descargas.
+2. En el celular, toca el archivo. Android dice que no puede instalar apps de esa fuente → **Configuración** →
+   activa **Permitir de esta fuente** → vuelve → **Instalar**.
+3. Si Play Protect avisa "app desconocida", toca **Más detalles → Instalar de todas formas**. Es normal en un APK
+   de prueba que no viene de Play Store.
+4. Para instalar una versión nueva, repite lo mismo: se instala encima y conserva los datos.
+
+### Qué revisar para saber si funciona (APK 0.1)
+
+| Prueba | Resultado esperado |
+|---|---|
+| Abrir la app | Ícono del panda con el nombre "Panbu"; fondo crema; no se cierra sola |
+| Inicio → tocar un estado ("Tranquilo", "Ansioso"…) | El chip queda marcado y abajo dice "Hoy: Tranquilo. Gracias por contármelo." |
+| **Cerrar la app por completo** (desde recientes) y abrirla otra vez | El estado elegido **sigue marcado**. Esto prueba que se guarda en la base de datos |
+| Tocar las 5 pestañas de abajo | Cambia de pantalla y la pestaña activa se marca en lavanda |
+| Engranaje arriba a la derecha en Inicio | Va a Ajustes |
+| Pestaña Panbu → "Conoce a tu Panbu" | Abre "Agregar compra" sin la barra de abajo; la flecha ← o el gesto de volver regresa |
+| Pantallas con "Se construye en la fase…" | Es lo esperado en esta versión |
+
+Si la app se cierra sola, anota qué tocaste. Con el celular conectado por cable, `adb logcat -d > error.txt` guarda
+el registro del error para revisarlo.
 
 ## Paso 8 — Ver las pantallas sin celular
 
