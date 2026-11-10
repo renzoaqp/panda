@@ -1,7 +1,34 @@
-# Manual: trabajar en Panbu con VS Code (Windows)
+# Manual: trabajar en Panbu con VS Code (Windows y Linux)
 
-Paso a paso para dejar una PC con Windows lista para compilar Panbu e instalarlo en un celular, **sin Android
-Studio**. Se hace una sola vez y toma unos 30 minutos, casi todo en descargas.
+Guía única para trabajar en Panbu **sin Android Studio**: preparar la PC, compilar, ver la app (en un celular o en
+el emulador) y el trabajo del día a día. Los pasos 1–10 son para **Windows**. Para **Linux** ver el
+[anexo](#anexo--linux-fedora). La preparación se hace una sola vez y toma unos 30 minutos, casi todo en descargas.
+
+## Referencia rápida
+
+**Tareas de VS Code** (*Terminal → Run Task…*; funcionan igual en Windows y en Linux):
+
+| Tarea | Qué hace |
+|---|---|
+| **Panbu: compilar APK** (`Ctrl+Shift+B`) | Genera `app/build/outputs/apk/debug/app-debug.apk` |
+| **Panbu: abrir emulador** | Abre el celular virtual "Panbu" (antes hay que crearlo una vez, paso 7C) |
+| **Panbu: instalar y abrir** | Compila, instala y abre Panbu en el emulador o en el celular conectado |
+| Panbu: instalar en el celular | Solo instala (celular por USB o emulador) |
+| Panbu: abrir la app | Solo abre Panbu si ya está instalada |
+| Panbu: tests | Corre los tests automáticos (deben pasar todos) |
+| Panbu: capturas de pantalla | Genera un PNG de cada pantalla en `app/build/outputs/roborazzi/` |
+
+**Scripts** (se ejecutan una sola vez, al preparar la PC):
+
+| Script | Sistema | Qué hace | Paso |
+|---|---|---|---|
+| `scripts\setup-windows.ps1` | Windows | Instala el JDK 21 y el Android SDK y configura las variables | 5 |
+| `scripts\setup-emulator-windows.ps1` | Windows | Instala el emulador y crea el celular virtual "Panbu" | 7C |
+| `scripts/setup-emulator.sh` | Linux | Igual que el anterior, en Linux | Anexo |
+| `scripts/gradlew.sh` | Linux | Compila usando el JDK 21 (lo usan las tareas; no hace falta llamarlo a mano) | Anexo |
+
+Para ejecutar un `.ps1` en Windows: `powershell -ExecutionPolicy Bypass -File scripts\<nombre>.ps1`, en la terminal
+de VS Code y desde la carpeta del proyecto.
 
 ## Cómo leer este manual (y toda la documentación)
 
@@ -138,7 +165,12 @@ adb version          # debe mostrar la versión de Android Debug Bridge
 - La primera vez tarda **5–10 minutos**: descarga Gradle y las librerías. Las siguientes, menos de un minuto.
 - **Resultado esperado:** la terminal de VS Code muestra muchas líneas `> Task :app:...` y termina con
   **`BUILD SUCCESSFUL in …`**.
-- El APK queda en `app\build\outputs\apk\debug\app-debug.apk` (unos 11 MB).
+- El APK queda en `app\build\outputs\apk\debug\app-debug.apk` (unos 11 MB). Para encontrarlo:
+  - en el explorador de VS Code (`Ctrl+Shift+E`): `app` → `build` → `outputs` → `apk` → `debug`. Si no ves la
+    carpeta `build`, haz **Pull** (las versiones viejas de la configuración la ocultaban) o
+    `Ctrl+Shift+P` → **Reload Window**;
+  - o abre la carpeta en el Explorador de Windows con: `explorer app\build\outputs\apk\debug`
+- El APK **no se guarda en Git**: cada PC lo genera al compilar.
 - Si termina con `BUILD FAILED` o *"terminated with exit code: 1"*, sube un poco en la terminal hasta
   **`What went wrong:`** y busca ese mensaje en la tabla de problemas del final.
 
@@ -214,6 +246,22 @@ Claude lee automáticamente `CLAUDE.md` (contexto y reglas) y las skills de `.cl
 del plan (`docs/01-plan-de-trabajo.md`).
 
 ---
+
+## Anexo — Linux (Fedora)
+
+En Linux el proyecto se usa igual (mismas tareas de VS Code), con estas diferencias:
+
+| | Linux |
+|---|---|
+| JDK 21 | En `~/.jdks/jdk-21.*` (Temurin). El Java del sistema es el 25, que **no sirve**; `scripts/gradlew.sh` busca el 21 solo |
+| Android SDK | En `~/Android/Sdk`; `local.properties` tiene `sdk.dir` (no va a Git) |
+| Compilar | `Ctrl+Shift+B`, o en la terminal: `./scripts/gradlew.sh assembleDebug` (**no** `./gradlew` directo: usaría Java 25 y falla con `25.0.4.1`) |
+| Emulador | Crear una vez con `./scripts/setup-emulator.sh`; luego la tarea **Panbu: abrir emulador**. Requiere `/dev/kvm` (Fedora lo trae) |
+| Terminal | La de VS Code puede ser PowerShell o bash; los comandos `./scripts/...` funcionan en las dos |
+
+Preparar Linux desde cero: instalar el JDK 21 (por ejemplo, Temurin en `~/.jdks`) y el Android SDK
+command-line tools en `~/Android/Sdk` con `platform-tools`, `platforms;android-36` y `build-tools;35.0.0`
+(ver [docs/03 › Entorno de desarrollo](03-arquitectura.md#entorno-de-desarrollo)).
 
 ## Problemas comunes
 
