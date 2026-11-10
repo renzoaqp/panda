@@ -16,6 +16,23 @@
 
 Cada fase termina con un APK instalable que se le muestra al cliente.
 
+## Vía rápida (prioridad actual: un APK cuanto antes)
+
+Decidido el 2026-11-09: **acelerar**. Las fases de abajo son el inventario completo de trabajo, pero el **orden**
+lo marcan estas versiones cortas. Cada una es un APK que se instala en un celular.
+
+| Versión | Contenido | Fuera por ahora |
+|---|---|---|
+| **APK 0.1** | Esqueleto compilado e instalable: tema, 5 pestañas, registro de estado de ánimo | Todo lo demás |
+| **APK 0.2 — demo funcional** | Ilustraciones propias del panda · Inicio con datos reales (ánimo + tiempo de calma de hoy) · Respira con Panbu + "Necesito un momento de calma" (guardan sesiones) · Metas predefinidas con progreso automático | Cuentas, tienda, tiempo de pantalla |
+| **APK 0.3** | Estadísticas reales (semana) · Mi diario emocional · Recordatorio para dejar el celular · Ajustes básicos · Onboarding con el aviso | Cuentas, tienda, tiempo de pantalla |
+| **APK 0.4** | Cuentas opcionales (Firebase, correo) · Tienda con pedido por WhatsApp · Mensajes positivos y sonidos | Tiempo de pantalla, Bluetooth |
+| Después | Tiempo de pantalla nocturno · pruebas y publicación (Fase 4) · Bluetooth (Fase 5) | — |
+
+Reglas de la vía rápida: los guardrails no se saltan (sobre todo los de salud y datos reales), pero se puede
+dejar para después lo que no se ve en la demo: migraciones (antes de publicar se edita la v1), tema oscuro y
+pulido de accesibilidad avanzada.
+
 **Una tarea está terminada cuando:** compila, los tests pasan, se probó en un celular real, respeta los
 [guardrails](06-guardrails.md) y la documentación quedó actualizada.
 
@@ -174,9 +191,9 @@ Los números no cambian, porque otros documentos y el código los citan ("decisi
 | 8 | Audios relajantes: origen y licencia | Pendiente | Sonidos | Fase 1 |
 | 9 | Textos legales: política de privacidad y términos | Pendiente | Publicación | Fase 4 |
 | 10 | Línea de ayuda a mostrar (verificar que esté vigente) | Pendiente | Ayuda | Fase 1 |
-| 11 | Proveedor de cuentas y formas de iniciar sesión (propuesta: Firebase Authentication con Google y correo) | Pendiente | ADR-0004 | Fase 1 |
-| 12 | ¿La cuenta es obligatoria o se puede usar la app sin cuenta? (recomendado: opcional) | Pendiente | ADR-0004, onboarding | Fase 1 |
-| 13 | ¿Los datos emocionales se sincronizan con la cuenta? (recomendado: no al inicio; después, copia cifrada opcional) | Pendiente | ADR-0002, privacidad | Fase 1 |
+| 11 | Proveedor de cuentas y formas de iniciar sesión | Propuesta: Firebase Authentication **con correo primero** (Google después); los usuarios de prueba se crean en la consola de Firebase. Las cuentas llegan en el APK 0.4 | ADR-0004 | APK 0.4 |
+| 12 | ¿La cuenta es obligatoria o se puede usar la app sin cuenta? | ✅ **Opcional** (2026-11-09) | ADR-0004, onboarding | — |
+| 13 | ¿Los datos emocionales se sincronizan con la cuenta? | ✅ **No, al inicio no** (2026-11-09); más adelante, quizás una copia cifrada opcional | ADR-0002, privacidad | — |
 
 ## Riesgos
 

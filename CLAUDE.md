@@ -8,9 +8,11 @@ noche, respiración, dormir mejor) y comprar el peluche. En la fase final, la ap
 - **Fuente de verdad del producto:** `00info/` (mockup + guía PDF del cliente; **no editar**) y `docs/`.
 - **Plan y estado:** `docs/01-plan-de-trabajo.md`. **Fase actual: 0 (base y diseño).**
 - **Decisiones tomadas (2026-11-09):** solo Android (sin iPhone). No hay ilustrador: **las ilustraciones del
-  panda las creamos nosotros** en vector (la tienda usa fotos reales). **Habrá cuentas de usuario**
-  (ADR-0004; el proveedor y los detalles siguen pendientes). Se trabaja con VS Code + línea de comandos; Android
-  Studio es opcional.
+  panda las creamos nosotros** en vector (la tienda usa fotos reales). **Habrá cuentas opcionales y sin
+  sincronizar datos emocionales** (ADR-0004; proveedor propuesto: Firebase con correo). Se trabaja con VS Code +
+  línea de comandos; Android Studio es opcional.
+- **Prioridad: velocidad.** Seguir la "Vía rápida" del plan (APK 0.1 → 0.2 → 0.3 → 0.4): lo que no sale en el
+  próximo APK espera. Los guardrails de salud y de datos reales no se saltan.
 - **Idioma:** conversación, documentación y textos de la app en **español**. Código (clases, funciones,
   variables) en inglés; comentarios en español.
 

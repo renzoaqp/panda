@@ -150,8 +150,8 @@ No aparece en el mockup; se diseña en la Fase 0.
 - **Cuenta** ([ADR-0004](decisiones/0004-cuentas-de-usuario.md)): con Google o con correo y contraseña. Al crearla
   se explica en una frase qué se guarda en la nube (correo, nombre y foto opcional) y que los datos emocionales
   se quedan en el celular. Se puede cerrar sesión y borrar la cuenta desde Ajustes.
-- **(supuesto, decisión pendiente #12)** La cuenta es opcional: se pide al comprar o al querer conservar el
-  perfil en otro celular. Las funciones de calma nunca la piden.
+- **La cuenta es opcional** (decidido el 2026-11-09): se pide al comprar o al querer conservar el perfil en otro
+  celular. Las funciones de calma nunca la piden. Los datos emocionales no se sincronizan.
 - Los permisos **nunca** se piden al inicio: se piden en el momento en que se usan, con una pantalla previa que
   explica para qué (ver la tabla de permisos en [06-guardrails.md](06-guardrails.md#permisos)).
 

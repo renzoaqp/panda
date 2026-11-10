@@ -1,8 +1,8 @@
 # ADR-0004: Cuentas de usuario
 
-- **Estado:** Aceptada en lo general (habrá cuentas; lo decidió el responsable del proyecto el 2026-11-09).
-  Los detalles son una **propuesta** pendiente de confirmar: proveedor y formas de iniciar sesión (#11), cuenta
-  obligatoria u opcional (#12) y sincronización de datos emocionales (#13).
+- **Estado:** Aceptada (2026-11-09): habrá cuentas, **opcionales** (#12) y **sin sincronizar datos
+  emocionales** (#13). El proveedor sigue como propuesta (#11): Firebase con correo primero. Por la vía rápida,
+  las cuentas llegan en el APK 0.4.
 - **Fecha:** 2026-11-09
 - **Modifica:** ADR-0002 (datos locales primero) y los guardrails 11, 12 y 14.
 
@@ -17,9 +17,10 @@ Al mismo tiempo, Panbu maneja datos emocionales sensibles que hoy se quedan en e
 Google Play exige que toda app que permite crear cuentas permita borrarlas desde la app y desde una página web.
 
 ## Decisión (propuesta en los detalles)
-1. **Proveedor:** Firebase Authentication, con inicio de sesión con Google (Credential Manager) y con correo +
-   contraseña. **No** se incluyen Firebase Analytics, Crashlytics, publicidad ni otros productos que recojan
-   datos.
+1. **Proveedor:** Firebase Authentication. **Primero correo + contraseña** (es lo más rápido: no necesita
+   configurar la huella SHA-1 ni la pantalla de consentimiento de Google); después, inicio de sesión con Google
+   (Credential Manager). **No** se incluyen Firebase Analytics, Crashlytics, publicidad ni otros productos que
+   recojan datos. Para las pruebas, los usuarios (por ejemplo, 3) se crean a mano en la consola de Firebase.
 2. **Cuenta opcional:** la app se puede usar sin cuenta ("Continuar sin cuenta"). La cuenta se pide solo para
    lo que la necesita (comprar, cambiar de celular). "Necesito un momento de calma" y las actividades de calma
    nunca piden iniciar sesión.
@@ -48,3 +49,6 @@ Google Play exige que toda app que permite crear cuentas permita borrarlas desde
 - **Backend propio:** control total, pero mucho más trabajo y más responsabilidad de seguridad.
 - **Cuenta obligatoria:** simplifica el modelo, pero pone una barrera antes del primer momento de calma y obliga
   a dar datos que la app no necesita para funcionar.
+- **3 usuarios de prueba fijos dentro de la app:** es más rápido de programar, pero es un inicio de sesión falso:
+  las contraseñas quedan dentro del APK, nadie puede registrarse y hay que tirarlo después. Se descarta. Los
+  usuarios de prueba se crean en la consola de Firebase, que da el mismo resultado sin trabajo perdido.
