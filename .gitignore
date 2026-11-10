@@ -1,0 +1,24 @@
+# Gradle / Android Studio
+.gradle/
+build/
+.kotlin/
+/local.properties
+/.idea/
+*.iml
+captures/
+.externalNativeBuild/
+.cxx/
+*.apk
+*.aab
+
+# Firma de release: NUNCA al repositorio (docs/06-guardrails.md, regla 17)
+*.jks
+*.keystore
+keystore.properties
+
+# Claude Code (configuración local de cada persona)
+.claude/settings.local.json
+
+# Sistema operativo
+.DS_Store
+Thumbs.db

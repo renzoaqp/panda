@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Todos los textos visibles de la app. Tono: cálido, de tú, frases cortas, sin culpa
+    (ver docs/02-producto.md, "Tono de los textos").
+-->
+<resources>
+    <string name="app_name">Panbu</string>
+    <string name="tagline">Tu calma, siempre contigo</string>
+    <string name="disclaimer">Panbu te acompaña a practicar hábitos de bienestar, pero no sustituye la atención de un profesional de la salud.</string>
+    <string name="placeholder_phase">Se construye en la fase %1$d del plan de trabajo.</string>
+
+    <!-- Accesibilidad -->
+    <string name="cd_back">Volver</string>
+
+    <!-- Navegación -->
+    <string name="nav_home">Inicio</string>
+    <string name="nav_stats">Estadísticas</string>
+    <string name="nav_goals">Metas</string>
+    <string name="nav_panbu">Panbu</string>
+    <string name="nav_settings">Ajustes</string>
+
+    <!-- Estados de ánimo -->
+    <string name="mood_calm">Tranquilo</string>
+    <string name="mood_anxious">Ansioso</string>
+    <string name="mood_sad">Triste</string>
+    <string name="mood_stressed">Estresado</string>
+    <string name="mood_happy">Feliz</string>
+
+    <!-- Inicio -->
+    <string name="home_greeting">Hola 👋</string>
+    <string name="home_how_do_you_feel">¿Cómo te sientes hoy?</string>
+    <string name="home_no_mood_yet">Elige cómo te sientes. Solo tú ves esta información.</string>
+    <string name="home_mood_saved">Hoy: %1$s. Gracias por contármelo.</string>
+    <string name="home_panbu_today">Tu Panbu hoy</string>
+    <string name="home_panbu_today_placeholder">Aquí verás tu tiempo de calma de hoy y podrás entrar al modo calma.</string>
+    <string name="home_goals_today">Tus objetivos de hoy</string>
+    <string name="home_goals_placeholder">Aquí aparecerán tus metas activas con su avance del día.</string>
+
+    <!-- Estadísticas -->
+    <string name="stats_title">Estadísticas</string>
+    <string name="stats_placeholder">Aquí verás tu tiempo de calma, cómo te has sentido y tu tiempo de pantalla por la noche, siempre con tus datos reales.</string>
+
+    <!-- Metas -->
+    <string name="goals_title">Metas</string>
+    <string name="goals_add">Agregar meta</string>
+    <string name="goals_placeholder">Crea metas pequeñas y alcanzables: menos celular por la noche, momentos de calma con Panbu, respiración y dormir mejor.</string>
+    <string name="goals_motivation_title">Pequeños hábitos, grandes cambios</string>
+    <string name="goals_motivation_subtitle">Panbu siempre contigo</string>
+
+    <!-- Panbu, tu espacio de calma -->
+    <string name="calm_title">Tu espacio de calma</string>
+    <string name="calm_need_a_moment">Necesito un momento de calma</string>
+    <string name="calm_breathe_title">Respira con Panbu</string>
+    <string name="calm_breathe_desc">Una guía visual para respirar despacio.</string>
+    <string name="calm_moment_title">Un momento para ti</string>
+    <string name="calm_moment_desc">Pequeñas actividades para relajarte.</string>
+    <string name="calm_messages_title">Mensajes positivos</string>
+    <string name="calm_messages_desc">Frases que te acompañan.</string>
+    <string name="calm_sounds_title">Sonidos relajantes</string>
+    <string name="calm_sounds_desc">Lluvia, naturaleza y música suave.</string>
+    <string name="calm_journal_title">Mi diario emocional</string>
+    <string name="calm_journal_desc">Escribe cómo te sientes. Solo tú puedes leerlo.</string>
+    <string name="calm_rest_title">Acompáñame a descansar</string>
+    <string name="calm_rest_desc">Deja el celular y prepárate para dormir.</string>
+    <string name="calm_get_panbu_title">Conoce a tu Panbu</string>
+    <string name="calm_get_panbu_desc">El peluche que te acompaña en tus momentos de calma.</string>
+
+    <!-- Tienda -->
+    <string name="shop_title">Agregar compra</string>
+    <string name="shop_placeholder">Aquí podrás elegir el color de tu Panbu, sus accesorios y la cantidad, y enviar tu pedido.</string>
+
+    <!-- Ajustes -->
+    <string name="settings_title">Ajustes</string>
+    <string name="settings_profile">Editar perfil</string>
+    <string name="settings_notifications">Notificaciones</string>
+    <string name="settings_rest_schedule">Horario de descanso</string>
+    <string name="settings_reminders">Recordatorios para dejar el celular</string>
+    <string name="settings_sounds">Sonidos de relajación</string>
+    <string name="settings_theme">Tema de la aplicación</string>
+    <string name="settings_privacy">Privacidad y mis datos</string>
+    <string name="settings_help">Ayuda y soporte</string>
+</resources>

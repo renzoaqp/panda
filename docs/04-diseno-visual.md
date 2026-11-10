@@ -1,0 +1,127 @@
+# Diseño visual
+
+Referencias: mockup ([`00info/`](../00info/)) y sección 9 de la guía. En código: `app/src/main/java/com/panbu/app/ui/theme/`.
+
+**Estilo:** botones redondeados, letras fáciles de leer, dibujos de pandas, corazones pequeños, fondos claros,
+barras de progreso e íconos sencillos.
+
+## Colores
+
+Los colores de la guía son la base. Los "del mockup" se midieron sobre la imagen. Las pantallas **no** usan
+códigos de color directamente: usan `MaterialTheme.colorScheme` o `PanbuTheme.extraColors`.
+
+| Token (`PanbuPalette`) | Hex | Origen | Uso | Rol en el tema |
+|---|---|---|---|---|
+| `Cream` | `#F8F5EF` | Guía | Fondo principal | `background` |
+| `Lavender` | `#E8DDF5` | Guía | Fondos suaves, tarjeta de saludo, pestaña activa | `primaryContainer`, `surfaceVariant` |
+| `Rose` | `#F7E6EF` | Guía | Detalles y mensajes amables | `secondaryContainer` |
+| `Sage` | `#A9C8B0` | Guía | Fondos de logro | `tertiaryContainer` |
+| `Purple` | `#7B65AE` | Mockup (botón "Agregar al carrito") | Botones principales, elementos activos | `primary` |
+| `PurpleDeep` | `#6B52A3` | Mockup (ícono de pestaña activa) | Enlaces, íconos destacados | — |
+| `PurpleSoft` | `#9E8BCD` | Mockup (barras) | Barras de progreso y gráficos | `extraColors.progress` |
+| `SageStrong` | `#8DB795` | Mockup (barra 100 %) | Progreso completado | `extraColors.success` |
+| `SageText` | `#4C8165` | Mockup ("↑ 32 %") | Comparaciones positivas | `extraColors.positiveText` |
+| `RoseStrong` | `#E3A6BE` | Derivado de `Rose` | Barra de un límite superado (sin rojo) | `extraColors.overLimit` |
+| `Ink` | `#24212E` | Mockup (títulos) | Texto principal | `onBackground`, `onSurface` |
+| `InkSoft` | `#5F5870` | Mockup `#756E87`, oscurecido | Texto secundario (contraste AA sobre crema y lavanda) | `onSurfaceVariant` |
+| `Card` | `#FFFDFA` | Mockup | Tarjetas | `surface` |
+| `Outline` | `#ECE6F3` | Mockup | Bordes de tarjetas | `outline` |
+| `Track` | `#EDE7F6` | Mockup | Fondo de las barras de progreso | `extraColors.progressTrack` |
+
+### Estados de ánimo (`MoodPalette`)
+
+| Estado | Hex | Nota |
+|---|---|---|
+| Tranquilo | `#B19DE2` | Del mockup |
+| Ansioso | `#A9C4EB` | Ajustado (celeste) para distinguirlo de Tranquilo |
+| Estresado | `#F7C9A5` | Del mockup |
+| Triste | `#F2B8C6` | Ajustado (rosa) para distinguirlo de Tranquilo |
+| Feliz | `#F5DC8C` | Nuevo (la guía lo pide; el mockup no lo muestra) |
+
+En el mockup, Tranquilo, Ansioso y Triste tienen tonos casi iguales. Se ajustaron para que los 5 estados se
+distingan en la dona. Hay que validarlo con el cliente.
+
+### Tema oscuro (borrador)
+
+La guía pide "Cambiar el tema". Paleta inicial (`Night*` en `PanbuPalette`): fondo `#1E1B26`, tarjeta `#2A2635`,
+lavanda `#3B3450`, morado `#C9B8F0`, texto `#EDE8F5`, texto secundario `#B5ADC6`. Hoy la app usa siempre el tema
+claro; el selector de tema se implementa en la Fase 1.
+
+## Tipografía
+
+- **Fuente:** Nunito (Google Fonts, licencia OFL), que es redondeada y amable como el mockup. Pendiente de
+  agregar en `res/font` (hoy se usa la sans-serif del sistema).
+- El logo "Panbu" es una imagen, no un texto con fuente.
+
+| Estilo | Tamaño / interlineado | Peso | Uso |
+|---|---|---|---|
+| `displaySmall` | 32 / 40 | Bold | Números grandes ("2 h 15 min") |
+| `headlineSmall` | 24 / 32 | Bold | Título de pantalla ("Estadísticas") |
+| `titleLarge` | 22 / 28 | Bold | Saludo |
+| `titleMedium` | 18 / 24 | SemiBold | Título de sección ("Tu Panbu hoy") |
+| `titleSmall` | 16 / 22 | SemiBold | Título de tarjeta |
+| `bodyLarge` | 16 / 24 | Regular | Texto principal |
+| `bodyMedium` | 14 / 20 | Regular | Texto de tarjetas |
+| `bodySmall` | 12 / 16 | Regular | Notas |
+| `labelLarge` | 14 / 20 | SemiBold | Botones, chips |
+| `labelSmall` | 11 / 16 | Medium | Barra inferior |
+
+## Formas y espaciado
+
+- Tarjetas: esquinas de **20 dp**, borde de 1 dp `Outline`, sin sombra.
+- Botones principales y chips: forma de píldora (`CircleShape`).
+- Barras de progreso: 8 dp de alto, extremos redondeados.
+- Espaciado (`PanbuSpacing`): 4 · 8 · 12 · 16 · 24 · 32 dp. Margen lateral de pantalla: 16 dp.
+- Área táctil mínima: 48 dp.
+
+## Componentes
+
+| Componente | Estado | Archivo |
+|---|---|---|
+| `PanbuScreen` (pantalla con cabecera y scroll) | Hecho | `ui/components/PanbuScreen.kt` |
+| `PanbuHeader` (logo + nombre + acciones) | Hecho | `ui/components/PanbuHeader.kt` |
+| `ScreenTitle`, `SectionTitle` | Hecho | `ui/components/ScreenTitle.kt` |
+| `PanbuCard` | Hecho | `ui/components/PanbuCard.kt` |
+| `PanbuProgressBar` | Hecho | `ui/components/PanbuProgressBar.kt` |
+| Chip de estado de ánimo | Hecho (en Inicio) | `feature/home/HomeScreen.kt` |
+| Fila de meta (ícono + texto + barra + %) | Pendiente | — |
+| Tarjeta de métrica (número grande + comparación) | Pendiente | — |
+| Selector Semana/Mes/Total | Pendiente | — |
+| Gráfico de barras, gráfico de dona | Pendiente (Fase 2) | — |
+| Animación de respiración | Pendiente (Fase 1) | — |
+
+## Íconos
+
+Íconos de línea redondeada, 24 dp, en `res/drawable/ic_*.xml`. Hay versiones provisionales de: inicio,
+estadísticas, metas, panda, ajustes, volver, agregar y bolsa. Se reemplazarán por los definitivos del diseñador
+(o por Material Symbols Rounded).
+
+## Ilustraciones necesarias
+
+Las imágenes del mockup parecen generadas por IA. Para la app se necesitan archivos propios, con fondo
+transparente (PNG/WebP @3x o vector):
+
+| Ilustración | Dónde |
+|---|---|
+| Logo Panbu en vector (SVG) | Cabecera, ícono de la app, splash |
+| Panda sentado con corazón | Inicio, banner de Metas, tienda |
+| Panda saludando | Onboarding |
+| Panda respirando (2 frames: inflado/desinflado) | Respira con Panbu |
+| Panda dormido | Acompáñame a descansar, modo descanso |
+| Panda dando un abrazo | Estado triste/ansioso |
+| Panda celebrando | Meta cumplida |
+| **Fotos reales** del peluche en Clásico, Rosado y Gris | Tienda |
+| Íconos de accesorios (funda, tarjeta, calor) | Tienda |
+
+## Accesibilidad
+
+- Contraste AA: texto normal 4.5:1, texto grande e íconos 3:1. `InkSoft` se oscureció por esta razón.
+- Todo ícono con acción lleva `contentDescription`; los decorativos van con `null`.
+- Las barras de progreso informan su valor a TalkBack (`progressBarRangeInfo`).
+- Los gráficos tienen un resumen en texto para lectores de pantalla.
+- Probar con fuente al 130 % y con "Quitar animaciones" activado.
+
+## Movimiento
+
+Animaciones suaves de 300–400 ms. La respiración sigue los segundos del `BreathingPattern`. Si el sistema
+tiene las animaciones desactivadas, la respiración se guía con texto y vibración.

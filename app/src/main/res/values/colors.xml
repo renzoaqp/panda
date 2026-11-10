@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Solo para recursos XML (tema de la ventana e ícono). En Compose se usa ui/theme/Color.kt. -->
+<resources>
+    <color name="panbu_cream">#FFF8F5EF</color>
+    <color name="panbu_lavender">#FFE8DDF5</color>
+</resources>

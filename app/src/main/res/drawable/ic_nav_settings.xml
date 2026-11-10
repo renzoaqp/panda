@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Engranaje: anillo central + 8 dientes rotados cada 45°. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M7,12a5,5 0,1 0,10 0a5,5 0,1 0,-10 0z"
+        android:strokeWidth="4"
+        android:strokeColor="#FF000000" />
+    <group android:pivotX="12" android:pivotY="12" android:rotation="0">
+        <path android:fillColor="#FF000000" android:pathData="M10.6,1.5h2.8v4h-2.8z" />
+    </group>
+    <group android:pivotX="12" android:pivotY="12" android:rotation="45">
+        <path android:fillColor="#FF000000" android:pathData="M10.6,1.5h2.8v4h-2.8z" />
+    </group>
+    <group android:pivotX="12" android:pivotY="12" android:rotation="90">
+        <path android:fillColor="#FF000000" android:pathData="M10.6,1.5h2.8v4h-2.8z" />
+    </group>
+    <group android:pivotX="12" android:pivotY="12" android:rotation="135">
+        <path android:fillColor="#FF000000" android:pathData="M10.6,1.5h2.8v4h-2.8z" />
+    </group>
+    <group android:pivotX="12" android:pivotY="12" android:rotation="180">
+        <path android:fillColor="#FF000000" android:pathData="M10.6,1.5h2.8v4h-2.8z" />
+    </group>
+    <group android:pivotX="12" android:pivotY="12" android:rotation="225">
+        <path android:fillColor="#FF000000" android:pathData="M10.6,1.5h2.8v4h-2.8z" />
+    </group>
+    <group android:pivotX="12" android:pivotY="12" android:rotation="270">
+        <path android:fillColor="#FF000000" android:pathData="M10.6,1.5h2.8v4h-2.8z" />
+    </group>
+    <group android:pivotX="12" android:pivotY="12" android:rotation="315">
+        <path android:fillColor="#FF000000" android:pathData="M10.6,1.5h2.8v4h-2.8z" />
+    </group>
+</vector>
