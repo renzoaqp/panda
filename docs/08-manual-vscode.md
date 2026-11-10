@@ -116,8 +116,13 @@ El script:
 - instala `adb`, Android 36, las build-tools y el driver USB de Google;
 - configura `JAVA_HOME`, `ANDROID_HOME` y `adb` para tu usuario.
 
-Si Windows pide permiso de administrador para el JDK, acepta. **Al terminar, cierra VS Code por completo y
-vuelve a abrirlo** para que tome las variables nuevas.
+**Si se queda en "Iniciando instalación de paquete…":** no está colgado. Windows está pidiendo permiso de
+administrador para instalar el JDK, y esa ventana suele quedar **escondida detrás de VS Code**. Búscala en la barra
+de tareas (un ícono de escudo que parpadea) o con `Alt+Tab`, y responde **Sí**. Si no aparece después de 5 minutos,
+cancela con `Ctrl+C`, instala el JDK 21 a mano desde <https://adoptium.net> (Windows x64, `.msi`) y vuelve a
+ejecutar el script: detecta que el JDK ya está y sigue con el resto.
+
+**Al terminar, cierra VS Code por completo y vuelve a abrirlo** para que tome las variables nuevas.
 
 Comprobación (en la terminal de VS Code):
 

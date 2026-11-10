@@ -21,6 +21,8 @@ $jdk = Get-ChildItem $jdkRoot -Directory -Filter 'jdk-21*' -ErrorAction Silently
     Sort-Object Name | Select-Object -Last 1
 if (-not $jdk) {
     Write-Host '== Instalando JDK 21 (Temurin) con winget =='
+    Write-Host 'Windows va a pedir permiso de administrador. Si parece que no avanza, busca la ventana'
+    Write-Host '"¿Quieres permitir que esta aplicación haga cambios?" en la barra de tareas y responde Sí.'
     winget install --id EclipseAdoptium.Temurin.21.JDK -e --silent --accept-source-agreements --accept-package-agreements
     $jdk = Get-ChildItem $jdkRoot -Directory -Filter 'jdk-21*' -ErrorAction SilentlyContinue |
         Sort-Object Name | Select-Object -Last 1
