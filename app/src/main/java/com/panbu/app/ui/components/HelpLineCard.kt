@@ -2,7 +2,6 @@ package com.panbu.app.ui.components
 
 import android.content.ActivityNotFoundException
 import android.content.Intent
-import android.net.Uri
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -19,6 +18,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
+import androidx.core.net.toUri
 import com.panbu.app.R
 import com.panbu.app.ui.theme.PanbuSpacing
 
@@ -49,7 +49,7 @@ fun HelpLineCard(modifier: Modifier = Modifier) {
         Spacer(Modifier.height(PanbuSpacing.md))
         OutlinedButton(
             onClick = {
-                val dial = Intent(Intent.ACTION_DIAL, Uri.parse("tel:${HelpLine.PHONE}"))
+                val dial = Intent(Intent.ACTION_DIAL, "tel:${HelpLine.PHONE}".toUri())
                 // En una tableta sin teléfono no hay marcador: el número sigue a la vista en el texto.
                 try {
                     context.startActivity(dial)

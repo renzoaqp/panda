@@ -12,9 +12,10 @@ import androidx.compose.ui.unit.dp
 
 /** Botón principal en forma de píldora, a todo el ancho ("Comenzar", "Necesito un momento de calma"…). */
 @Composable
-fun PrimaryPillButton(text: String, onClick: () -> Unit, modifier: Modifier = Modifier) {
+fun PrimaryPillButton(text: String, onClick: () -> Unit, modifier: Modifier = Modifier, enabled: Boolean = true) {
     Button(
         onClick = onClick,
+        enabled = enabled,
         shape = CircleShape,
         modifier = modifier
             .fillMaxWidth()

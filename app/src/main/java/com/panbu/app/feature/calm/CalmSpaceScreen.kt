@@ -46,13 +46,14 @@ fun CalmSpaceScreen(
     onNeedCalm: () -> Unit,
     onOpenBreathing: () -> Unit,
     onOpenShop: () -> Unit,
+    onOpenJournal: () -> Unit = {},
 ) {
     val activities = listOf(
         CalmActivity(R.string.calm_breathe_title, R.string.calm_breathe_desc, onOpenBreathing),
         CalmActivity(R.string.calm_moment_title, R.string.calm_moment_desc),
         CalmActivity(R.string.calm_messages_title, R.string.calm_messages_desc),
         CalmActivity(R.string.calm_sounds_title, R.string.calm_sounds_desc),
-        CalmActivity(R.string.calm_journal_title, R.string.calm_journal_desc),
+        CalmActivity(R.string.calm_journal_title, R.string.calm_journal_desc, onOpenJournal),
         CalmActivity(R.string.calm_rest_title, R.string.calm_rest_desc),
     )
 

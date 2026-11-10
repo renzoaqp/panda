@@ -3,6 +3,7 @@ package com.panbu.app.data.local
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
+import androidx.room.Update
 import androidx.room.Upsert
 import kotlinx.coroutines.flow.Flow
 
@@ -44,4 +45,22 @@ interface GoalDao {
     /** Todas las metas, incluidas las archivadas (para saber si ya se crearon las iniciales). */
     @Query("SELECT COUNT(*) FROM goals")
     suspend fun countAll(): Int
+}
+
+@Dao
+interface JournalDao {
+    @Query("SELECT * FROM journal_entries ORDER BY created_at DESC, id DESC")
+    fun observeAll(): Flow<List<JournalEntryEntity>>
+
+    @Query("SELECT * FROM journal_entries WHERE id = :id")
+    suspend fun getById(id: Long): JournalEntryEntity?
+
+    @Insert
+    suspend fun insert(entry: JournalEntryEntity): Long
+
+    @Update
+    suspend fun update(entry: JournalEntryEntity)
+
+    @Query("DELETE FROM journal_entries WHERE id = :id")
+    suspend fun deleteById(id: Long)
 }

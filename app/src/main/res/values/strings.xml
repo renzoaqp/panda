@@ -3,7 +3,7 @@
     Todos los textos visibles de la app. Tono: cálido, de tú, frases cortas, sin culpa
     (ver docs/02-producto.md, "Tono de los textos").
 -->
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:locale="es">
     <string name="app_name">Panbu</string>
     <string name="tagline">Tu calma, siempre contigo</string>
     <string name="disclaimer">Panbu te acompaña a practicar hábitos de bienestar, pero no sustituye la atención de un profesional de la salud.</string>
@@ -272,4 +272,34 @@
     <string name="reminder_title">Se acerca tu hora de descanso</string>
     <!-- La hora va al final: en formato de 12 h termina en "p. m." y un punto extra quedaría doble. -->
     <string name="reminder_text">¿Dejamos el celular un rato y respiramos con Panbu? Tu descanso empieza a las %1$s</string>
+
+    <!-- Mi diario emocional -->
+    <string name="journal_title">Mi diario emocional</string>
+    <string name="journal_privacy">Tu diario es solo tuyo: se guarda cifrado en este celular. Nadie más lo lee, y Panbu tampoco lo analiza.</string>
+    <string name="journal_write">Escribir</string>
+    <string name="journal_empty">Escribe lo que quieras: cómo te fue hoy, algo que agradeces o algo que te preocupa.</string>
+    <string name="journal_unreadable">No se pudo leer esta entrada.</string>
+    <string name="journal_new_title">Nueva entrada</string>
+    <string name="journal_edit_title">Tu entrada</string>
+    <string name="journal_mood_question">¿Cómo te sientes? (opcional)</string>
+    <string name="journal_placeholder">Escribe aquí…</string>
+    <string name="journal_delete">Borrar entrada</string>
+    <string name="journal_delete_title">¿Borrar esta entrada?</string>
+    <string name="journal_delete_body">Se borrará de tu diario y no se puede deshacer.</string>
+    <string name="journal_delete_confirm">Borrar</string>
+    <string name="journal_discard_title">¿Salir sin guardar?</string>
+    <string name="journal_discard_body">Lo que escribiste desde la última vez que guardaste se perderá.</string>
+    <string name="journal_discard_confirm">Salir sin guardar</string>
+    <string name="journal_keep_writing">Seguir escribiendo</string>
+    <!-- Martes 10 de noviembre · 9:30 p. m. -->
+    <string name="journal_date">%1$s %2$d de %3$s · %4$s</string>
+    <string-array name="weekdays_full">
+        <item>lunes</item>
+        <item>martes</item>
+        <item>miércoles</item>
+        <item>jueves</item>
+        <item>viernes</item>
+        <item>sábado</item>
+        <item>domingo</item>
+    </string-array>
 </resources>

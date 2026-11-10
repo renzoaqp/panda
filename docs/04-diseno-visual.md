@@ -95,6 +95,9 @@ claro; el selector de tema se implementa en la Fase 1.
 | `CalmBarChart` (barras con eje redondo; resalta hoy; resumen para TalkBack) | Hecho | `ui/components/charts/CalmBarChart.kt` |
 | `MinutesAxis` (elige el paso del eje; Kotlin puro con tests) | Hecho | `ui/components/charts/MinutesAxis.kt` |
 | `DonutChart` (dona con separadores y contenido en el centro) | Hecho | `ui/components/charts/DonutChart.kt` |
+| `HelpLineCard` ("¿Necesitas hablar con alguien?" + botón que abre el marcador) | Hecho | `ui/components/HelpLineCard.kt` |
+| `SettingsRow`, `SettingsSwitchRow` (filas de Ajustes, 48 dp, toda la fila tocable) | Hecho | `ui/components/SettingsRows.kt` |
+| `TimePickerDialog`, `formatTime` (reloj de Material 3; 12/24 h según el celular) | Hecho | `ui/components/TimeFormat.kt` |
 
 ### Gráficos
 
@@ -113,7 +116,7 @@ estilo). Reglas:
 
 ## Íconos
 
-Íconos de línea redondeada, 24 dp, en `res/drawable/ic_*.xml`. Hay versiones provisionales de: inicio, luna (`ic_moon`),
+Íconos de línea redondeada, 24 dp, en `res/drawable/ic_*.xml`. Hay versiones provisionales de: inicio, luna (`ic_moon`), cuaderno (`ic_journal`),
 estadísticas, metas, panda, ajustes, volver, agregar y bolsa. Se reemplazarán por los definitivos del diseñador
 (o por Material Symbols Rounded).
 

@@ -14,7 +14,8 @@ guarda.
   cuenta (correo, nombre y foto opcional), según el ADR-0004.
 - `android:allowBackup="false"`: los datos no se suben al backup de Google. En Android 12+ la transferencia
   directa de un celular a otro (por cable o Wi-Fi directo) sigue siendo posible, y se acepta porque es local y
-  la inicia la persona.
+  la inicia la persona. Desde el APK 0.3, `res/xml/data_extraction_rules.xml` excluye todo de la copia en la
+  nube de forma explícita (en Android 12+ `allowBackup` está obsoleto) y deja permitida la transferencia directa.
 - El texto del diario se cifra con AES-GCM y una clave guardada en Android Keystore (Fase 1).
 - Ajustes ofrece exportar los datos y borrarlo todo.
 

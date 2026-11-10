@@ -43,7 +43,7 @@ Inicio ──────────► Modo calma (Respira con Panbu)
    │  └──────────► Detalle de meta
    └─ ⚙ ──────────► Ajustes
 Metas ─── (+) ───► Crear meta
-Panbu ───────────► Respira · Un momento para ti · Mensajes · Sonidos · Diario · Descansar
+Panbu ───────────► Respira · Un momento para ti · Mensajes · Sonidos · Diario (lista ──► escribir/editar) · Descansar
    ├─────────────► "Necesito un momento de calma" (1 toque → respiración de 1 minuto)
    └─────────────► Tienda (Agregar compra) ──► Carrito ──► Pedido
 Primera vez ─────► Bienvenida (5 pasos) ──► Inicio
@@ -135,11 +135,29 @@ No aparece en el mockup; se diseña en la Fase 0 con el mismo estilo. Es la secc
 | Un momento para ti | 5–8 microactividades de 1–3 min: estirarse, tomar agua, 5-4-3-2-1 con los sentidos, escribir 3 cosas buenas… |
 | Mensajes positivos | Frases cortas de acompañamiento; una destacada por día; se pueden marcar como favoritas |
 | Sonidos relajantes | Lluvia, naturaleza, ruido blanco suave y música ambiental; bucle y temporizador de apagado (15/30/60 min) |
-| Mi diario emocional | Entradas privadas con fecha, estado de ánimo opcional y texto. Cifrado. Bloqueo opcional con huella o PIN |
+| Mi diario emocional | ✅ **APK 0.3.** Entradas privadas con fecha, estado de ánimo opcional y texto, cifradas. Bloqueo opcional con huella o PIN (pendiente). Detalle abajo |
 | Acompáñame a descansar | Rutina a la hora de descanso: aviso → respiración → "deja el celular" → modo descanso (pantalla oscura con el panda dormido). Al día siguiente se pregunta "¿A qué hora despertaste?" para el `SleepLog` |
 | Conoce a tu Panbu | Tarjeta que lleva a la tienda. Es la única entrada a la tienda |
 | Estado del peluche (Fase 5) | Conectado o desconectado y batería |
 | Aviso | "Panbu te acompaña a practicar hábitos de bienestar, pero no sustituye la atención de un profesional." + enlace a "¿Necesitas hablar con alguien?" |
+
+### Mi diario emocional (APK 0.3)
+
+Se entra desde la tarjeta "Mi diario emocional" de la pestaña Panbu. Es una pantalla secundaria (sin barra
+inferior, con flecha para volver).
+
+| Elemento | Comportamiento |
+|---|---|
+| Lista | Aviso fijo: "Tu diario es solo tuyo: se guarda cifrado en este celular. Nadie más lo lee, y Panbu tampoco lo analiza." Botón **Escribir**. Entradas de la más reciente a la más antigua: fecha ("Martes 10 de noviembre · 9:30 p. m."), estado de ánimo si se eligió, y las 3 primeras líneas del texto. Tocar una la abre |
+| Sin entradas | El panda y "Escribe lo que quieras: cómo te fue hoy, algo que agradeces o algo que te preocupa." |
+| Escribir / editar | "¿Cómo te sientes? (opcional)" con los 5 estados (tocar el elegido otra vez lo quita) y un campo de texto grande (hasta 10 000 caracteres). **Guardar** se activa cuando hay texto y algo cambió |
+| Salir sin guardar | Con cambios sin guardar, la flecha y el botón atrás preguntan "¿Salir sin guardar?" (**Seguir escribiendo** / **Salir sin guardar**) |
+| Borrar | En una entrada existente, **Borrar entrada** con confirmación ("Se borrará de tu diario y no se puede deshacer.") |
+| Entrada ilegible | Si no se puede descifrar (por ejemplo, si Android perdió la clave): "No se pudo leer esta entrada." Solo se puede borrar |
+
+Reglas: el texto **nunca se analiza** (no hay conteo de palabras, ni resúmenes, ni detección de emociones); el
+estado de ánimo del diario **no se suma** a Estadísticas; el diario no aparece en ninguna notificación. Cómo se
+cifra: [ADR-0006](decisiones/0006-diario-cifrado.md).
 
 ## 5. Tienda — Agregar compra
 

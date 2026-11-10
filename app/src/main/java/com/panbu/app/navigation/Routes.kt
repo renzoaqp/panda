@@ -33,3 +33,11 @@ data class BreathingRoute(val quickStart: Boolean = false)
 /** Un momento con Panbu: temporizador del "Tiempo contigo" (pantalla completa). */
 @Serializable
 data object MomentRoute
+
+/** Mi diario emocional: lista de entradas (pantalla secundaria, se entra desde la pestaña Panbu). */
+@Serializable
+data object JournalRoute
+
+/** Escribir o editar una entrada del diario. `entryId = 0` es una entrada nueva. */
+@Serializable
+data class JournalEditorRoute(val entryId: Long = 0)

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <!--
         PERMISOS: antes de agregar uno, debe estar en la tabla de permisos de
@@ -11,10 +12,16 @@
     <!-- Volver a programar el recordatorio después de reiniciar el celular. Permiso normal: no se pide. -->
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
-    <!-- allowBackup=false: los datos emocionales no se suben al backup de Google (ADR-0002). -->
+    <!--
+        Los datos emocionales no van a la nube (ADR-0002): allowBackup=false apaga la copia de seguridad, y en
+        Android 12+ dataExtractionRules lo deja explícito. La transferencia directa a un celular nuevo se permite.
+    -->
     <application
         android:name=".PanbuApplication"
         android:allowBackup="false"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="false"
+        tools:targetApi="31"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"

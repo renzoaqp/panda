@@ -41,8 +41,9 @@ Estas reglas valen para todo el que trabaje en Panbu, sea persona o IA. Si una t
 12. **Sin SDKs de terceros que vean datos personales:** nada de analítica, publicidad ni "growth". La única
     excepción es el proveedor de cuentas (ADR-0004), que solo ve los datos de la cuenta. Un reporte de errores
     solo con ADR y sin datos personales.
-13. **Diario cifrado** (AES-GCM con clave en Android Keystore) y **backup en la nube desactivado**
-    (`android:allowBackup="false"`) hasta tener una exportación cifrada.
+13. **Diario cifrado** (AES-GCM con clave en Android Keystore; ✅ APK 0.3, ADR-0006) y **backup en la nube
+    desactivado** (`android:allowBackup="false"` y `res/xml/data_extraction_rules.xml` para Android 12+) hasta
+    tener una exportación cifrada.
 14. **Control de la persona:** desde Ajustes se puede ver qué se guarda, exportar los datos y borrarlo todo. La
     cuenta se puede borrar desde la app y desde una página web, y eso borra todo lo que hay en el servidor. La
     cuenta es opcional para las funciones de calma: nunca se pide iniciar sesión para respirar o calmarse.
@@ -85,7 +86,7 @@ bien.
 - [ ] El aviso de "no sustituye a un profesional" se ve en el onboarding, en Panbu y en Ayuda
 - [ ] La línea de ayuda está verificada y vigente
 - [ ] Los permisos del manifest coinciden con la tabla de arriba
-- [ ] `allowBackup="false"` y el diario está cifrado
+- [ ] `allowBackup="false"`, `data_extraction_rules.xml` excluye la nube y el diario está cifrado
 - [ ] Exportar y borrar datos funcionan
 - [ ] Borrar la cuenta funciona desde la app y desde la página web, y borra los datos del servidor
 - [ ] En la nube solo están el correo, el nombre y la foto opcional (sin datos emocionales)

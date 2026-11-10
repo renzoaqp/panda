@@ -1,6 +1,6 @@
 # Plan de trabajo — Panbu (Android)
 
-> **Estado:** APK 0.3 en curso (vía rápida) · **Última actualización:** 2026-11-10
+> **Estado:** APK 0.3 listo; sigue el APK 0.4 (vía rápida) · **Última actualización:** 2026-11-10
 > Las duraciones son orientativas, para 1 desarrollador. Se ajustan al cerrar cada fase.
 
 ## Resumen
@@ -25,7 +25,7 @@ lo marcan estas versiones cortas. Cada una es un APK que se instala en un celula
 |---|---|---|
 | **APK 0.1** ✅ | Esqueleto compilado e instalable: tema, 5 pestañas, registro de estado de ánimo | Todo lo demás |
 | **APK 0.2 — demo funcional** ✅ | Ilustración propia del panda · Inicio con datos reales (ánimo + tiempo de calma de hoy vs. ayer) · Respira con Panbu (3 ritmos, 1/3/5 min) + "Necesito un momento de calma" · Un momento con Panbu (temporizador) · Metas iniciales con progreso automático | Cuentas, tienda, tiempo de pantalla |
-| **APK 0.3** | ✅ Estadísticas reales (Semana, Mes y Total) · Mi diario emocional · ✅ Recordatorio para dejar el celular · ✅ Ajustes básicos · ✅ Bienvenida con el aviso y la línea de ayuda | Cuentas, tienda, tiempo de pantalla |
+| **APK 0.3** ✅ | Estadísticas reales (Semana, Mes y Total) · Mi diario emocional cifrado · Recordatorio para dejar el celular · Ajustes básicos · Bienvenida con el aviso y la línea de ayuda | Cuentas, tienda, tiempo de pantalla |
 | **APK 0.4** | Cuentas opcionales (Firebase, correo) · Tienda con pedido por WhatsApp · Mensajes positivos y sonidos | Tiempo de pantalla, Bluetooth |
 | Después | Tiempo de pantalla nocturno · pruebas y publicación (Fase 4) · Bluetooth (Fase 5) | — |
 
@@ -98,7 +98,8 @@ Detalle en [03-arquitectura.md › Entorno de desarrollo](03-arquitectura.md#ent
 - [x] Botón "Necesito un momento de calma": un toque → 1 minuto de respiración suave
 - [x] Tiempo contigo: iniciar y terminar un momento de calma (fuente `MANUAL`)
 - [ ] Metas: crear (+), editar, pausar y archivar; tipos predefinidos y personalizada; progreso del día o semana
-- [ ] Mi diario emocional: crear, editar y borrar; texto cifrado; bloqueo opcional con huella o PIN
+- [x] Mi diario emocional: crear, editar y borrar; texto cifrado ([ADR-0006](decisiones/0006-diario-cifrado.md),
+      APK 0.3). Falta el bloqueo opcional con huella o PIN
 - [ ] Mensajes positivos: colección local y un mensaje destacado por día
 - [ ] Un momento para ti: 5–8 microactividades (estirarse, tomar agua, ejercicio 5-4-3-2-1…)
 - [ ] Sonidos relajantes: 3–5 audios con licencia libre, en bucle, con temporizador de apagado

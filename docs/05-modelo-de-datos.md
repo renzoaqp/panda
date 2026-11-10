@@ -5,7 +5,7 @@ Todo se guarda **en el celular** ([ADR-0002](decisiones/0002-datos-locales-prime
 
 ## Tablas
 
-### Ya en el esqueleto (versión 1 del esquema)
+### Versión 1 del esquema (APK 0.1–0.2)
 
 **`mood_entries`** — cada vez que la persona dice cómo se siente
 
@@ -39,13 +39,28 @@ Todo se guarda **en el celular** ([ADR-0002](decisiones/0002-datos-locales-prime
 | `is_active` | Boolean | `false` = archivada (sus registros se conservan) |
 | `created_at` | Long | |
 
+### Versión 2 del esquema (APK 0.3)
+
+**`journal_entries`** — "Mi diario emocional" ([ADR-0006](decisiones/0006-diario-cifrado.md))
+
+| Columna | Tipo | Nota |
+|---|---|---|
+| `id` | Long (PK) | |
+| `created_at` | Long (epoch ms) | Indexada. No cambia al editar |
+| `updated_at` | Long (epoch ms) | Última vez que se guardó |
+| `mood` | String? | Estado de ánimo opcional (`Mood` por `name`). No se suma a Estadísticas |
+| `text_encrypted` | BLOB | Texto cifrado con AES-256-GCM (incluye la etiqueta de 16 bytes de GCM). **Nunca texto plano** |
+| `iv` | BLOB | Vector de inicialización de 12 bytes, distinto en cada guardado |
+
+La clave está en Android Keystore con el alias `panbu_journal_v1` (no se cambia: las entradas guardadas dejarían de
+poder leerse). "Borrar todos mis datos" borra la tabla y la clave.
+
 ### Planificadas
 
 | Tabla | Fase | Campos principales |
 |---|---|---|
 | `goal_check_ins` | 1 | `goal_id`, `date`, `value` — avance manual de metas personalizadas |
 | `sleep_logs` | 1 | `night_of` (fecha), `bedtime_at`, `wake_at`, `source` (`MANUAL`, `ROUTINE`, `HEALTH_CONNECT`) |
-| `journal_entries` | 1 | `created_at`, `updated_at`, `mood?`, `text_encrypted`, `iv` — texto cifrado con AES-GCM y clave en Android Keystore |
 | `night_screen_time` | 2 | `night_of`, `minutes`, `computed_at` — resumen diario (Android borra los eventos de uso a los pocos días) |
 
 ### Preferencias (DataStore)
@@ -105,8 +120,12 @@ Estas reglas son la "verdad" de cada número que ve la persona. Toda regla tiene
 
 ## Migraciones
 
-- **Antes de la primera publicación** se puede modificar la versión 1 del esquema (desinstalar y volver a
-  instalar la app en los celulares de prueba).
+- **Ya hay APK de prueba instalados con datos reales**, así que desde el APK 0.3 cada cambio de esquema sube la
+  versión y lleva su migración, también antes de publicar (editar una versión vieja haría que la app se cierre
+  al actualizar).
+- **1 → 2 (APK 0.3):** `AutoMigration`, solo agrega `journal_entries`. Probada a mano el 2026-11-10: el APK 0.3
+  instalado sobre el 0.2 en el emulador conservó los estados de ánimo y las sesiones. El test automático con
+  `MigrationTestHelper` queda para la Fase 4.
 - **Después de publicar:** cada cambio sube la versión y lleva una `Migration` con su test. Nunca se usa
   `fallbackToDestructiveMigration` en release, porque borraría el diario y el historial de la persona.
 - Los esquemas exportados (`app/schemas/`) van al repositorio.

@@ -16,6 +16,7 @@ import com.panbu.app.domain.model.DataSource
 import com.panbu.app.domain.model.DefaultGoals
 import com.panbu.app.domain.model.GoalItem
 import com.panbu.app.domain.model.GoalProgress
+import com.panbu.app.domain.model.JournalEntry
 import com.panbu.app.domain.model.Mood
 import com.panbu.app.domain.model.MoodEntry
 import com.panbu.app.domain.model.StatsCalculator
@@ -29,6 +30,10 @@ import com.panbu.app.feature.calm.CalmSpaceScreen
 import com.panbu.app.feature.goals.GoalsContent
 import com.panbu.app.feature.goals.GoalsUiState
 import com.panbu.app.feature.home.HomeContent
+import com.panbu.app.feature.journal.JournalContent
+import com.panbu.app.feature.journal.JournalEditorContent
+import com.panbu.app.feature.journal.JournalEditorUiState
+import com.panbu.app.feature.journal.JournalUiState
 import com.panbu.app.feature.home.HomeUiState
 import com.panbu.app.feature.moment.MomentContent
 import com.panbu.app.feature.moment.MomentStage
@@ -192,6 +197,31 @@ class ScreensScreenshotTest {
     @Test
     fun moment() = capture("04d_momento_en_curso", tab = null) {
         MomentContent(MomentUiState(stage = MomentStage.RUNNING, elapsedSeconds = 754), {}, {}, {}, animatePulse = false)
+    }
+
+    // Diario: textos de ejemplo escritos para la captura (en la app solo hay lo que escribe la persona).
+    @Test
+    fun journal() = capture("04e_diario", tab = null) {
+        val entries = listOf(
+            JournalEntry(1, sunday.atTime(21, 40).atZone(zone).toInstant(), sunday.atTime(21, 40).atZone(zone).toInstant(), Mood.CALM,
+                "Hoy respiré con Panbu antes de dormir y me sentí más tranquila. Mañana quiero intentarlo otra vez."),
+            JournalEntry(2, sunday.minusDays(2).atTime(8, 15).atZone(zone).toInstant(), sunday.minusDays(2).atTime(8, 15).atZone(zone).toInstant(), null,
+                "Tres cosas buenas de hoy: el desayuno con mi familia, una caminata corta y terminar el trabajo a tiempo."),
+        )
+        JournalContent(JournalUiState(entries), {}, {}, {}, zone = zone)
+    }
+
+    @Test
+    fun journalEmpty() = capture("04f_diario_vacio", tab = null) {
+        JournalContent(JournalUiState(emptyList()), {}, {}, {}, zone = zone)
+    }
+
+    @Test
+    fun journalEditor() = capture("04g_diario_escribir", tab = null) {
+        JournalEditorContent(
+            JournalEditorUiState(mood = Mood.CALM, text = "Hoy respiré con Panbu antes de dormir."),
+            {}, {}, {}, {}, {}, zone = zone,
+        )
     }
 
     @Test

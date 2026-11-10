@@ -4,7 +4,9 @@ App Android de bienestar emocional que acompaña al peluche **Panbu**: momentos 
 sientes, metas pequeñas (menos celular de noche, respirar, dormir mejor) y la tienda del peluche. En la fase
 final se conecta al peluche por Bluetooth.
 
-**Estado:** Fase 0 (base y diseño). Ver el [plan de trabajo](docs/01-plan-de-trabajo.md).
+**Estado:** APK 0.3 de prueba (bienvenida, estadísticas reales, diario cifrado, recordatorio de descanso y
+ajustes). Qué trae cada versión: [docs/09-versiones.md](docs/09-versiones.md). Qué sigue: el
+[plan de trabajo](docs/01-plan-de-trabajo.md).
 
 ## Empezar
 

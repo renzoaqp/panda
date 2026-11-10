@@ -232,6 +232,30 @@ puede probar en un celular real.
 | Completar 3 momentos de calma en el día | La meta se pone verde con ✓ |
 | Al día siguiente | El tiempo y las metas empiezan en cero; aparece "↑/↓ … que ayer" |
 
+### Qué revisar en el APK 0.3
+
+Al actualizar desde el 0.2 **no hace falta desinstalar**: se conservan los estados de ánimo y los momentos de calma.
+La primera vez se ve la bienvenida (aunque ya tuvieras la app), porque es nueva.
+
+| Prueba | Resultado esperado |
+|---|---|
+| Abrir la app por primera vez | Bienvenida en 5 pasos con puntos arriba: "Hola, soy Panbu" → "Así te acompaño" → "Tu privacidad" → "¿Cómo te llamas?" → "Antes de empezar" (aviso + línea de ayuda) |
+| Escribir tu nombre y tocar **Entendido, empecemos** | Inicio dice "Hola, *tu nombre* 👋". El botón atrás del celular, en la bienvenida, vuelve al paso anterior |
+| **Estadísticas** | Pestañas Semana / Mes / Total, las fechas del periodo, el tiempo de calma con su gráfico (la barra de hoy en morado intenso) y la dona "¿Cómo te sientes?" con tus registros reales |
+| Estadísticas sin ningún registro | Tarjeta con el panda y el botón **Respirar con Panbu** (nunca gráficos en cero) |
+| La semana pasada con datos y esta también | "↑ X% que la semana anterior" en verde (o "↓ X%" en gris, nunca en rojo) |
+| **Ajustes → Tu nombre** | Cambia el saludo de Inicio |
+| **Ajustes → Horario de descanso** | Dos relojes: inicio y fin. Abajo dice a qué hora llegará el aviso |
+| **Ajustes → Recordatorio para dejar el celular** | Primero explica para qué es el permiso → **Continuar** → Android pide permiso → **Permitir**. Aparecen "15 min / 30 min / 1 h" y "Te avisaremos a las…" |
+| Esperar a la hora del aviso (por defecto 21:30) | Llega "Se acerca tu hora de descanso" (puede tardar hasta 10 minutos). Al tocarla se abre Panbu |
+| Si dices **No permitir** | El interruptor queda apagado y aparece cómo activarlo en los ajustes del celular |
+| Pestaña **Panbu** (abajo de todo) y **Ajustes → Ayuda** | Tarjeta rosada "¿Necesitas hablar con alguien?". **Llamar al 113** abre el marcador con el número (no llama solo) |
+| **Panbu → Mi diario emocional → Escribir** | Elegir un estado (opcional), escribir y **Guardar**. La entrada aparece arriba con la fecha y la hora |
+| Abrir una entrada, cambiar algo y volver sin guardar | Pregunta "¿Salir sin guardar?" |
+| **Borrar entrada** | Pide confirmación y desaparece de la lista |
+| **Ajustes → Borrar todos mis datos** | Pide confirmación; después vuelve la bienvenida y todo empieza de cero (con las 2 metas iniciales) |
+| Abajo de todo en Ajustes | "Versión 0.3.0" |
+
 Si la app se cierra sola, anota qué tocaste. Con el celular conectado por cable, `adb logcat -d > error.txt` guarda
 el registro del error para revisarlo.
 

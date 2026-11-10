@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Android 12 o más (ADR-0002): nada de Panbu va a la copia de seguridad en la nube.
+    La transferencia directa a un celular nuevo (cable o Wi-Fi directo) sí se permite, como decidió el ADR-0002,
+    porque es local y la inicia la persona. El diario viaja cifrado, pero su clave (Android Keystore) no viaja:
+    en el celular nuevo esas entradas se muestran como "No se pudo leer" (ADR-0006).
+-->
+<data-extraction-rules>
+    <cloud-backup>
+        <exclude domain="root" />
+        <exclude domain="file" />
+        <exclude domain="database" />
+        <exclude domain="sharedpref" />
+        <exclude domain="external" />
+    </cloud-backup>
+</data-extraction-rules>

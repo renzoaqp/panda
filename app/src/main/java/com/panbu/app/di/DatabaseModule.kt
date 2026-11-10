@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.Room
 import com.panbu.app.data.local.CalmSessionDao
 import com.panbu.app.data.local.GoalDao
+import com.panbu.app.data.local.JournalDao
 import com.panbu.app.data.local.MoodDao
 import com.panbu.app.data.local.PanbuDatabase
 import dagger.Module
@@ -31,4 +32,7 @@ object DatabaseModule {
 
     @Provides
     fun provideGoalDao(database: PanbuDatabase): GoalDao = database.goalDao()
+
+    @Provides
+    fun provideJournalDao(database: PanbuDatabase): JournalDao = database.journalDao()
 }

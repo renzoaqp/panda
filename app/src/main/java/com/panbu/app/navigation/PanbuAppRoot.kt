@@ -71,7 +71,13 @@ private fun MainScaffold() {
     }
 }
 
-private val FullScreenRoutes: List<KClass<*>> = listOf(ShopRoute::class, BreathingRoute::class, MomentRoute::class)
+private val FullScreenRoutes: List<KClass<*>> = listOf(
+    ShopRoute::class,
+    BreathingRoute::class,
+    MomentRoute::class,
+    JournalRoute::class,
+    JournalEditorRoute::class,
+)
 
 private fun NavDestination?.isInHierarchy(route: KClass<*>): Boolean =
     this?.hierarchy?.any { it.hasRoute(route) } ?: false

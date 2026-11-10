@@ -97,3 +97,31 @@ fun Goal.toEntity(createdAt: Instant) = GoalEntity(
     isActive = isActive,
     createdAt = createdAt.toEpochMilli(),
 )
+
+/**
+ * Entrada del diario. El texto se guarda **cifrado** (AES-GCM, clave en Android Keystore; ADR-0006) junto con
+ * su IV. Nunca se guarda el texto plano ni se registra en logs.
+ */
+@Entity(tableName = "journal_entries", indices = [Index("created_at")])
+data class JournalEntryEntity(
+    @PrimaryKey(autoGenerate = true) val id: Long = 0,
+    @ColumnInfo(name = "created_at") val createdAt: Long,
+    @ColumnInfo(name = "updated_at") val updatedAt: Long,
+    /** Estado de ánimo opcional, por `name` de [Mood]. */
+    val mood: String?,
+    @ColumnInfo(name = "text_encrypted", typeAffinity = ColumnInfo.BLOB) val textEncrypted: ByteArray,
+    @ColumnInfo(typeAffinity = ColumnInfo.BLOB) val iv: ByteArray,
+) {
+    // Una data class compara los ByteArray por referencia; aquí se comparan por contenido.
+    override fun equals(other: Any?): Boolean = other is JournalEntryEntity &&
+        other.id == id && other.createdAt == createdAt && other.updatedAt == updatedAt && other.mood == mood &&
+        other.textEncrypted.contentEquals(textEncrypted) && other.iv.contentEquals(iv)
+
+    override fun hashCode(): Int {
+        var result = id.hashCode()
+        result = 31 * result + updatedAt.hashCode()
+        result = 31 * result + textEncrypted.contentHashCode()
+        result = 31 * result + iv.contentHashCode()
+        return result
+    }
+}

@@ -6,7 +6,8 @@ noche, respiración, dormir mejor) y comprar el peluche. En la fase final, la ap
 **Bluetooth LE**. Lo que la diferencia es la unión de un producto físico con una experiencia digital.
 
 - **Fuente de verdad del producto:** `00info/` (mockup + guía PDF del cliente; **no editar**) y `docs/`.
-- **Plan y estado:** `docs/01-plan-de-trabajo.md`. **Fase actual: 0 (base y diseño).**
+- **Plan y estado:** `docs/01-plan-de-trabajo.md`. **Hecho: APK 0.1, 0.2 y 0.3. Sigue: APK 0.4** (cuentas,
+  tienda por WhatsApp, mensajes positivos y sonidos). Qué trae cada APK: `docs/09-versiones.md`.
 - **Decisiones tomadas (2026-11-09):** solo Android (sin iPhone). No hay ilustrador: **las ilustraciones del
   panda las creamos nosotros** en vector (la tienda usa fotos reales). **Habrá cuentas opcionales y sin
   sincronizar datos emocionales** (ADR-0004; proveedor propuesto: Firebase con correo). Se trabaja con VS Code +
@@ -29,6 +30,7 @@ noche, respiración, dormir mejor) y comprar el peluche. En la fase final, la ap
 | Peluche y Bluetooth | `docs/07-bluetooth.md` |
 | Por qué se eligió algo | `docs/decisiones/` |
 | Preparar Windows + VS Code, clonar, compilar | `docs/08-manual-vscode.md` |
+| Qué trae cada APK y qué se probó | `docs/09-versiones.md` |
 
 ## Stack
 
@@ -38,13 +40,19 @@ con rutas `@Serializable` · `minSdk 26` / `targetSdk 36`. Versiones en `gradle/
 ## Estructura (paquete `com.panbu.app`)
 
 ```
-navigation/      Rutas, NavHost, barra inferior (5 pestañas: Inicio, Estadísticas, Metas, Panbu, Ajustes)
+navigation/      Rutas, NavHost, barra inferior (5 pestañas); AppViewModel: bienvenida o pestañas
 ui/theme/        PanbuPalette, PanbuTheme (+ extraColors), PanbuTypography, PanbuShapes, PanbuSpacing
-ui/components/   PanbuScreen, PanbuHeader, PanbuCard, PanbuProgressBar, ScreenTitle, SectionTitle…
-feature/<x>/     XScreen + XViewModel por pantalla (home, stats, goals, calm, shop, settings)
-domain/model/    Modelos puros sin Android (Mood, Goal, GoalProgress, CalmSession, BreathingPattern)
-data/local/      Room: PanbuDatabase, Entities.kt, Daos.kt
+ui/components/   PanbuScreen, PanbuCard, GoalRow, HelpLineCard, SegmentedSelector, SettingsRow…
+ui/components/charts/  CalmBarChart, DonutChart, MinutesAxis (Canvas, sin librerías)
+feature/<x>/     XScreen + XContent + XViewModel (onboarding, home, stats, goals, calm, breathing, moment,
+                 journal, shop, settings)
+domain/model/    Modelos y reglas puras sin Android (Mood, Goal, CalmSession, StatsCalculator, RestReminder…)
+domain/usecase/  ObserveTodayProgress, ObserveStats
+data/local/      Room: PanbuDatabase (v2), Entities.kt, Daos.kt; esquemas en app/schemas/
+data/preferences/ DataStore: nombre, bienvenida, horario de descanso, recordatorio
+data/crypto/     Cifrado del diario (AES-GCM, Android Keystore)
 data/repository/ Interfaz + implementación Room (MoodRepository es el ejemplo de referencia)
+reminders/       Recordatorio de descanso (AlarmManager + receptores + notificación)
 device/          PanbuDevice (interfaz del peluche) + NoPanbuDevice; BLE en la Fase 5
 di/              Módulos de Hilt (Clock, base de datos, repositorios, peluche)
 ```
@@ -65,7 +73,9 @@ Gradle 8.14 necesita **JDK 17 o 21** (con JDK 25 falla) y el Android SDK en `AND
 En Linux usa `./scripts/gradlew.sh <tarea>`, que busca solo el JDK 21 (el Java del sistema es el 25).
 Detalle en `docs/03-arquitectura.md` › Entorno de desarrollo. Si no hay un SDK o un JDK compatible, dilo
 explícitamente: **no afirmes que algo compila si no se compiló**. Sin Android Studio no hay `@Preview`; para ver
-una pantalla se usan los tests de captura (Roborazzi) y se mira el PNG.
+una pantalla se usan los tests de captura (Roborazzi) y se mira el PNG. **Una animación infinita
+(`rememberInfiniteTransition`) cuelga el test de captura**: el contenido debe tener un parámetro para apagarla
+(ejemplo: `MomentContent(animatePulse = false)`). Para probar en el emulador: `adb` + `uiautomator dump`.
 
 ## Guardrails (no negociables; detalle y razones en docs/06-guardrails.md)
 

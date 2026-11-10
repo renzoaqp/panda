@@ -82,6 +82,7 @@ panda/
         │   │   │   ├── stats/              Estadísticas (Semana / Mes / Total)
         │   │   │   ├── goals/              Metas
         │   │   │   ├── calm/               Panbu, tu espacio de calma
+        │   │   │   ├── journal/            Mi diario emocional: lista y editor
         │   │   │   ├── breathing/          Respira con Panbu
         │   │   │   ├── moment/             Un momento con Panbu (temporizador)
         │   │   │   ├── shop/               Tienda
@@ -91,6 +92,7 @@ panda/
         │   │   │   │                       RestReminder, UserPreferences…)
         │   │   │   └── usecase/            Combinan repositorios: ObserveTodayProgress, ObserveStats
         │   │   ├── data/
+        │   │   │   ├── crypto/             Cifrado del diario (AES-GCM, clave en Android Keystore)
         │   │   │   ├── local/              Room: base de datos, entidades, DAOs
         │   │   │   ├── preferences/        DataStore: nombre, bienvenida, horario de descanso, recordatorio
         │   │   │   ├── repository/         Repositorios (interfaz + implementación)
@@ -104,8 +106,7 @@ panda/
         └── test/java/com/panbu/app/        Tests unitarios
 ```
 
-Carpetas que se agregarán más adelante: `feature/journal/` y `data/crypto/` (diario cifrado, APK 0.3),
-`data/account/` y `feature/account/` (cuentas, APK 0.4), `device/ble/` (Fase 5), `src/androidTest/` (Fase 4).
+Carpetas que se agregarán más adelante: `data/account/` y `feature/account/` (cuentas, APK 0.4), `device/ble/` (Fase 5), `src/androidTest/` (Fase 4).
 
 ## Convenciones
 
@@ -114,6 +115,10 @@ Carpetas que se agregarán más adelante: `feature/journal/` y `data/crypto/` (d
 - **Paquetes por funcionalidad** (`feature/x`), no por tipo de clase.
 - **Pantallas:** `XScreen` obtiene el ViewModel con `hiltViewModel()` y llama a `XContent(uiState, callbacks)`,
   que no tiene estado y tiene `@Preview`.
+- **Capturas de pantalla (Roborazzi):** cada `XContent` tiene su captura en `ScreensScreenshotTest`. Si la pantalla
+  tiene una animación infinita, `XContent` recibe un parámetro para apagarla (si no, el test nunca termina).
+- **Datos sensibles:** el texto del diario no va a `SavedStateHandle` ni a `rememberSaveable` (Android guarda ese
+  estado fuera de la app y sin cifrar; ver ADR-0006). Tampoco a los logs.
 - **Estado:** `data class XUiState` inmutable; el ViewModel lo expone como `StateFlow` con
   `stateIn(viewModelScope, WhileSubscribed(5_000), XUiState())`.
 - **Fechas:** se guarda `Instant` (epoch millis en Room). Los "días" se calculan con `LocalDate` y el `Clock`
