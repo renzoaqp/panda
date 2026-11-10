@@ -24,7 +24,7 @@ lo marcan estas versiones cortas. Cada una es un APK que se instala en un celula
 | Versión | Contenido | Fuera por ahora |
 |---|---|---|
 | **APK 0.1** ✅ | Esqueleto compilado e instalable: tema, 5 pestañas, registro de estado de ánimo | Todo lo demás |
-| **APK 0.2 — demo funcional** | Ilustraciones propias del panda · Inicio con datos reales (ánimo + tiempo de calma de hoy) · Respira con Panbu + "Necesito un momento de calma" (guardan sesiones) · Metas predefinidas con progreso automático | Cuentas, tienda, tiempo de pantalla |
+| **APK 0.2 — demo funcional** ✅ | Ilustración propia del panda · Inicio con datos reales (ánimo + tiempo de calma de hoy vs. ayer) · Respira con Panbu (3 ritmos, 1/3/5 min) + "Necesito un momento de calma" · Un momento con Panbu (temporizador) · Metas iniciales con progreso automático | Cuentas, tienda, tiempo de pantalla |
 | **APK 0.3** | Estadísticas reales (semana) · Mi diario emocional · Recordatorio para dejar el celular · Ajustes básicos · Onboarding con el aviso | Cuentas, tienda, tiempo de pantalla |
 | **APK 0.4** | Cuentas opcionales (Firebase, correo) · Tienda con pedido por WhatsApp · Mensajes positivos y sonidos | Tiempo de pantalla, Bluetooth |
 | Después | Tiempo de pantalla nocturno · pruebas y publicación (Fase 4) · Bluetooth (Fase 5) | — |

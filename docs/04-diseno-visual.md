@@ -83,12 +83,15 @@ claro; el selector de tema se implementa en la Fase 1.
 | `ScreenTitle`, `SectionTitle` | Hecho | `ui/components/ScreenTitle.kt` |
 | `PanbuCard` | Hecho | `ui/components/PanbuCard.kt` |
 | `PanbuProgressBar` | Hecho | `ui/components/PanbuProgressBar.kt` |
-| Chip de estado de ánimo | Hecho (en Inicio) | `feature/home/HomeScreen.kt` |
-| Fila de meta (ícono + texto + barra + %) | Pendiente | — |
-| Tarjeta de métrica (número grande + comparación) | Pendiente | — |
+| `ChoiceChip` (opción en píldora: ánimo, ritmo, duración) | Hecho | `ui/components/ChoiceChip.kt` |
+| `ActionRow` (fila con ícono, texto y ▶), `IconBubble` | Hecho | `ui/components/ActionRow.kt` |
+| `GoalRow` (fila de meta: ícono + valor + barra + % + ✓) | Hecho | `ui/components/GoalRow.kt` |
+| `KeepScreenOn` (pantalla encendida durante la calma) | Hecho | `ui/components/KeepScreenOn.kt` |
+| `formatDuration` / `formatClock` ("2 h 15 min", "4:05") | Hecho | `ui/components/Formatters.kt` |
+| Animación de respiración (círculo + panda al ritmo de cada fase) | Hecho | `feature/breathing/BreathingScreen.kt` |
+| Tarjeta de métrica (número grande + comparación) | Hecho dentro de Inicio; extraer cuando la use Estadísticas | `feature/home/HomeScreen.kt` |
 | Selector Semana/Mes/Total | Pendiente | — |
-| Gráfico de barras, gráfico de dona | Pendiente (Fase 2) | — |
-| Animación de respiración | Pendiente (Fase 1) | — |
+| Gráfico de barras, gráfico de dona | Pendiente (Estadísticas) | — |
 
 ## Íconos
 
@@ -108,8 +111,8 @@ representar un producto que se vende (guardrail 7, sin engaños).
 
 | Ilustración | Dónde |
 |---|---|
-| Logo Panbu en vector (SVG) | Cabecera, ícono de la app, splash |
-| Panda sentado con corazón | Inicio, banner de Metas, tienda |
+| Logo Panbu en vector (SVG) | Cabecera, ícono de la app, splash (hoy: cara provisional `ic_panbu_face`) |
+| ✅ Panda sentado con corazón — `res/drawable/ill_panda_heart.xml` | Inicio, Metas, Respira con Panbu, Un momento con Panbu, espacio de calma |
 | Panda saludando | Onboarding |
 | Panda respirando (2 frames: inflado/desinflado) | Respira con Panbu |
 | Panda dormido | Acompáñame a descansar, modo descanso |

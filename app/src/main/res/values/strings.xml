@@ -8,9 +8,19 @@
     <string name="tagline">Tu calma, siempre contigo</string>
     <string name="disclaimer">Panbu te acompaña a practicar hábitos de bienestar, pero no sustituye la atención de un profesional de la salud.</string>
     <string name="placeholder_phase">Se construye en la fase %1$d del plan de trabajo.</string>
+    <string name="soon">Próximamente</string>
+    <string name="back_home">Volver</string>
+    <string name="calm_too_short">Fue un momento corto. Para que cuente en tus metas, intenta al menos 30 segundos.</string>
 
     <!-- Accesibilidad -->
     <string name="cd_back">Volver</string>
+
+    <!-- Duraciones -->
+    <string name="duration_h_min">%1$d h %2$d min</string>
+    <string name="duration_min">%1$d min</string>
+    <string name="duration_sec">%1$d s</string>
+    <string name="goal_value_pair">%1$s / %2$s</string>
+    <string name="duration_clock">%1$d:%2$02d</string>
 
     <!-- Navegación -->
     <string name="nav_home">Inicio</string>
@@ -32,9 +42,17 @@
     <string name="home_no_mood_yet">Elige cómo te sientes. Solo tú ves esta información.</string>
     <string name="home_mood_saved">Hoy: %1$s. Gracias por contármelo.</string>
     <string name="home_panbu_today">Tu Panbu hoy</string>
-    <string name="home_panbu_today_placeholder">Aquí verás tu tiempo de calma de hoy y podrás entrar al modo calma.</string>
+    <string name="home_time_with_you">Tiempo contigo</string>
+    <string name="home_vs_yesterday_more">↑ %1$s más que ayer</string>
+    <string name="home_vs_yesterday_less">↓ %1$s menos que ayer</string>
+    <string name="home_vs_yesterday_same">Igual que ayer</string>
+    <string name="home_no_calm_yet">Aún no tienes momentos de calma hoy. ¿Respiramos un minuto?</string>
+    <string name="home_calm_mode">Modo calma</string>
+    <string name="home_calm_mode_desc">Respiración guiada</string>
+    <string name="home_moment">Un momento con Panbu</string>
+    <string name="home_moment_desc">Panbu cuenta tu tiempo de calma</string>
     <string name="home_goals_today">Tus objetivos de hoy</string>
-    <string name="home_goals_placeholder">Aquí aparecerán tus metas activas con su avance del día.</string>
+    <string name="home_no_goals">Todavía no tienes metas activas.</string>
 
     <!-- Estadísticas -->
     <string name="stats_title">Estadísticas</string>
@@ -43,9 +61,45 @@
     <!-- Metas -->
     <string name="goals_title">Metas</string>
     <string name="goals_add">Agregar meta</string>
-    <string name="goals_placeholder">Crea metas pequeñas y alcanzables: menos celular por la noche, momentos de calma con Panbu, respiración y dormir mejor.</string>
+    <string name="goals_auto_hint">Tus metas avanzan solas cuando respiras o compartes un momento con Panbu.</string>
+    <string name="goals_custom_soon">Pronto podrás crear tus propias metas.</string>
     <string name="goals_motivation_title">Pequeños hábitos, grandes cambios</string>
     <string name="goals_motivation_subtitle">Panbu siempre contigo</string>
+    <string name="goal_calm_moments">Momentos de calma con Panbu</string>
+    <string name="goal_mindfulness">Respiración y mindfulness</string>
+    <string name="goal_night_screen">Menos celular en la noche</string>
+    <string name="goal_sleep">Dormir mejor</string>
+    <string name="goal_times">%1$d / %2$d veces</string>
+    <string name="goal_percent">%1$d%%</string>
+    <string name="goal_no_data">Aún sin datos</string>
+    <string name="goal_achieved">Meta cumplida</string>
+
+    <!-- Respira con Panbu -->
+    <string name="breathing_title">Respira con Panbu</string>
+    <string name="breathing_intro">Busca una posición cómoda. Sigue a Panbu: cuando crece, inhalas; cuando se achica, exhalas.</string>
+    <string name="breathing_pattern">Ritmo</string>
+    <string name="breathing_pattern_gentle">Suave · 4-6</string>
+    <string name="breathing_pattern_box">Caja · 4-4-4-4</string>
+    <string name="breathing_pattern_478">Relajante · 4-7-8</string>
+    <string name="breathing_duration">Duración</string>
+    <string name="breathing_start">Comenzar</string>
+    <string name="breathing_inhale">Inhala</string>
+    <string name="breathing_hold">Sostén</string>
+    <string name="breathing_exhale">Exhala</string>
+    <string name="breathing_remaining">Quedan %1$s</string>
+    <string name="breathing_finish">Terminar</string>
+    <string name="breathing_done_title">¡Bien hecho!</string>
+    <string name="breathing_done_text">Respiraste %1$s con Panbu.</string>
+    <string name="breathing_again">Otra vez</string>
+
+    <!-- Un momento con Panbu -->
+    <string name="moment_title">Un momento con Panbu</string>
+    <string name="moment_intro">Abraza a tu Panbu o descansa un momento tranquilo. Panbu cuenta el tiempo contigo.</string>
+    <string name="moment_start">Comenzar</string>
+    <string name="moment_running">Estás en un momento de calma</string>
+    <string name="moment_finish">Terminar</string>
+    <string name="moment_done_title">Gracias por este momento</string>
+    <string name="moment_done_text">Compartiste %1$s con Panbu.</string>
 
     <!-- Panbu, tu espacio de calma -->
     <string name="calm_title">Tu espacio de calma</string>

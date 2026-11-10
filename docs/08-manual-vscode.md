@@ -220,6 +220,18 @@ puede probar en un celular real.
 | Pestaña Panbu → "Conoce a tu Panbu" | Abre "Agregar compra" sin la barra de abajo; la flecha ← o el gesto de volver regresa |
 | Pantallas con "Se construye en la fase…" | Es lo esperado en esta versión |
 
+### Qué revisar en el APK 0.2
+
+| Prueba | Resultado esperado |
+|---|---|
+| Inicio → **Modo calma** → elegir ritmo y duración → **Comenzar** | El círculo y el panda crecen al inhalar y se achican al exhalar; dice "Inhala / Sostén / Exhala" con los segundos |
+| Esperar a que termine (o **Terminar** después de 30 s) → **Volver** | En Inicio, "Tiempo contigo" suma ese tiempo; las metas "Momentos de calma" y "Respiración" suben 1 |
+| Panbu → **Necesito un momento de calma** | Empieza enseguida 1 minuto de respiración suave, sin elegir nada |
+| Inicio → **Un momento con Panbu** → Comenzar → esperar más de 30 s → Terminar | "Compartiste X con Panbu" y suma al Tiempo contigo y a "Momentos de calma" |
+| Terminar antes de 30 s | Dice que fue un momento corto y **no** suma (así no se inflan los datos) |
+| Completar 3 momentos de calma en el día | La meta se pone verde con ✓ |
+| Al día siguiente | El tiempo y las metas empiezan en cero; aparece "↑/↓ … que ayer" |
+
 Si la app se cierra sola, anota qué tocaste. Con el celular conectado por cable, `adb logcat -d > error.txt` guarda
 el registro del error para revisarlo.
 

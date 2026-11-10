@@ -93,6 +93,21 @@ sesiones → "Aún no tienes momentos de calma hoy. ¿Respiramos un minuto?".
 | Barras de progreso | Porcentaje redondeado hacia abajo (7 h 10 min de 8 h = 89 %, como en el mockup) |
 | Mensaje motivador | "Pequeños hábitos, grandes cambios. Panbu siempre contigo" |
 
+**Metas iniciales (APK 0.2):** la app trae dos metas diarias, con progreso automático a partir de las sesiones
+de calma. Se crean la primera vez que se abre la app, si todavía no hay metas.
+
+| Meta | Objetivo | Qué cuenta |
+|---|---|---|
+| Momentos de calma con Panbu | 3 por día | Cualquier sesión de calma de al menos 30 s (respiración, momento con Panbu…) |
+| Respiración y mindfulness | 2 por día | Solo las sesiones de respiración y mindfulness de al menos 30 s |
+
+"Menos celular en la noche" y "Dormir mejor" se agregan cuando existan sus datos (tiempo de pantalla y registro de
+sueño). Así nunca se muestra una meta con números inventados.
+
+**Un momento con Panbu** (Inicio → Tu Panbu hoy): un temporizador para registrar el tiempo de calma con el peluche
+(abrazarlo, descansar con él). Se toca "Comenzar", Panbu cuenta el tiempo, y "Terminar" lo guarda como "Tiempo
+contigo". En la Fase 5, el peluche lo registrará solo.
+
 **Crear meta:** tipo (predefinido o personalizada), objetivo (número + unidad), frecuencia (diaria o semanal),
 recordatorio opcional. Se pueden editar, pausar y archivar. **No se borran los registros** al archivar una meta.
 

@@ -74,6 +74,12 @@ Estas reglas son la "verdad" de cada número que ve la persona. Toda regla tiene
 | **Distribución de ánimo** | Registros de cada estado / total del periodo. Los porcentajes se ajustan para sumar 100 (método del mayor residuo) |
 | **Estado más frecuente** | El de mayor cantidad; si hay empate, el más reciente |
 | **Tiempo de pantalla nocturno** | Suma de intervalos con la pantalla encendida (`SCREEN_INTERACTIVE` → `SCREEN_NON_INTERACTIVE`, API 28+) dentro de la noche. En API 26–27: suma del tiempo de apps en primer plano (aproximado) |
+| **Meta "Momentos de calma"** | Cantidad de sesiones de hoy que cuentan (≥ 30 s), de cualquier tipo |
+| **Meta "Respiración y mindfulness"** | Cantidad de sesiones de hoy que cuentan, de tipo `BREATHING` o `MINDFULNESS` |
+| **Metas sin datos** | Sueño, celular de noche y personalizadas no muestran progreso hasta que existan sus datos (nunca un 0 % inventado) |
+| **Metas iniciales** | Si la tabla `goals` está vacía (sin contar archivadas), se crean las de `DefaultGoals`; su nombre visible sale de `strings.xml` según el tipo |
+| **Un momento con Panbu** | Se guarda como `MOMENT_WITH_PANBU`; se corta solo a las 2 h para que un temporizador olvidado no infle los datos |
+| **Salir a mitad de una actividad** | La sesión se guarda igual hasta ese momento (si dura ≥ 30 s) |
 | **Progreso de meta (%)** | `actual × 100 / objetivo`, entero, **redondeado hacia abajo**, entre 0 y 100 (7 h 10 min de 8 h = 89 %) |
 | **Meta cumplida** | Metas normales: `actual ≥ objetivo`. Meta de límite (`NIGHT_SCREEN_LIMIT`): `actual ≤ objetivo` al terminar la noche |
 | **Sueño** | `wake_at − bedtime_at` del `sleep_log` de esa noche |

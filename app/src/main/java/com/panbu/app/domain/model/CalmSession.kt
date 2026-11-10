@@ -22,8 +22,17 @@ data class CalmSession(
 ) {
     val duration: Duration get() = Duration.between(startedAt, endedAt)
 
+    val counts: Boolean get() = duration >= MIN_COUNTED_DURATION
+
     companion object {
-        /** Las sesiones más cortas no cuentan en las estadísticas. */
+        /** Las sesiones más cortas no cuentan en las estadísticas ni en las metas. */
         val MIN_COUNTED_DURATION: Duration = Duration.ofSeconds(30)
     }
 }
+
+/** Solo las sesiones que cuentan (al menos [CalmSession.MIN_COUNTED_DURATION]). */
+fun List<CalmSession>.counted(): List<CalmSession> = filter { it.counts }
+
+/** "Tiempo contigo" / "Tiempo de calma": suma de las sesiones que cuentan. */
+fun List<CalmSession>.totalDuration(): Duration =
+    counted().fold(Duration.ZERO) { total, session -> total.plus(session.duration) }

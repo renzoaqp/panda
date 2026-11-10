@@ -23,8 +23,10 @@ fun PanbuAppRoot() {
     val backStackEntry by navController.currentBackStackEntryAsState()
     val currentDestination = backStackEntry?.destination
 
-    // La tienda es una pantalla secundaria: se oculta la barra inferior.
-    val showBottomBar = currentDestination?.hasRoute(ShopRoute::class) != true
+    // Pantallas secundarias o de calma a pantalla completa: sin barra inferior.
+    val showBottomBar = currentDestination?.let { destination ->
+        FullScreenRoutes.none { destination.hasRoute(it) }
+    } ?: true
 
     Scaffold(
         containerColor = MaterialTheme.colorScheme.background,
@@ -44,6 +46,8 @@ fun PanbuAppRoot() {
         )
     }
 }
+
+private val FullScreenRoutes: List<KClass<*>> = listOf(ShopRoute::class, BreathingRoute::class, MomentRoute::class)
 
 private fun NavDestination?.isInHierarchy(route: KClass<*>): Boolean =
     this?.hierarchy?.any { it.hasRoute(route) } ?: false

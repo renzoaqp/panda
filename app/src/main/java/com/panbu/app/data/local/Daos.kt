@@ -38,6 +38,10 @@ interface GoalDao {
     @Upsert
     suspend fun upsert(goal: GoalEntity): Long
 
-    @Query("SELECT * FROM goals WHERE is_active = 1 ORDER BY created_at ASC")
+    @Query("SELECT * FROM goals WHERE is_active = 1 ORDER BY created_at ASC, id ASC")
     fun observeActive(): Flow<List<GoalEntity>>
+
+    /** Todas las metas, incluidas las archivadas (para saber si ya se crearon las iniciales). */
+    @Query("SELECT COUNT(*) FROM goals")
+    suspend fun countAll(): Int
 }

@@ -22,3 +22,14 @@ data object SettingsRoute
 /** Pantalla secundaria (sin barra inferior). Solo se entra desde la pestaña Panbu. */
 @Serializable
 data object ShopRoute
+
+/**
+ * Respira con Panbu (pantalla completa). `quickStart = true` viene del botón "Necesito un momento de calma":
+ * empieza enseguida 1 minuto de respiración suave, sin pasos previos.
+ */
+@Serializable
+data class BreathingRoute(val quickStart: Boolean = false)
+
+/** Un momento con Panbu: temporizador del "Tiempo contigo" (pantalla completa). */
+@Serializable
+data object MomentRoute

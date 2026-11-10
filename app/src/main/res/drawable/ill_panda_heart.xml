@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Ilustración propia de Panbu: panda sentado abrazando un corazón lavanda.
+    Se usa en Inicio, Metas, Respira con Panbu y Un momento con Panbu. Ver docs/04-diseno-visual.md.
+-->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="200dp"
+    android:height="200dp"
+    android:viewportWidth="200"
+    android:viewportHeight="200">
+
+    <!-- Sombra -->
+    <path
+        android:fillColor="#1F24212E"
+        android:pathData="M40,188a60,8 0,1 0,120 0a60,8 0,1 0,-120 0z" />
+
+    <!-- Orejas -->
+    <path
+        android:fillColor="#FF2B2733"
+        android:pathData="M42,34a17,17 0,1 0,34 0a17,17 0,1 0,-34 0z" />
+    <path
+        android:fillColor="#FF2B2733"
+        android:pathData="M124,34a17,17 0,1 0,34 0a17,17 0,1 0,-34 0z" />
+
+    <!-- Cuerpo -->
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M44,142a56,46 0,1 0,112 0a56,46 0,1 0,-112 0z"
+        android:strokeWidth="2.5"
+        android:strokeColor="#FF2B2733" />
+
+    <!-- Piernas y almohadillas -->
+    <path
+        android:fillColor="#FF2B2733"
+        android:pathData="M40,176a24,16 0,1 0,48 0a24,16 0,1 0,-48 0z" />
+    <path
+        android:fillColor="#FF2B2733"
+        android:pathData="M112,176a24,16 0,1 0,48 0a24,16 0,1 0,-48 0z" />
+    <path
+        android:fillColor="#FF4A4453"
+        android:pathData="M54,178a10,7 0,1 0,20 0a10,7 0,1 0,-20 0z" />
+    <path
+        android:fillColor="#FF4A4453"
+        android:pathData="M126,178a10,7 0,1 0,20 0a10,7 0,1 0,-20 0z" />
+
+    <!-- Cabeza -->
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M50,74a50,50 0,1 0,100 0a50,50 0,1 0,-100 0z"
+        android:strokeWidth="2.5"
+        android:strokeColor="#FF2B2733" />
+
+    <!-- Manchas de los ojos -->
+    <group
+        android:pivotX="80"
+        android:pivotY="76"
+        android:rotation="-25">
+        <path
+            android:fillColor="#FF2B2733"
+            android:pathData="M68,76a12,16 0,1 0,24 0a12,16 0,1 0,-24 0z" />
+    </group>
+    <group
+        android:pivotX="120"
+        android:pivotY="76"
+        android:rotation="25">
+        <path
+            android:fillColor="#FF2B2733"
+            android:pathData="M108,76a12,16 0,1 0,24 0a12,16 0,1 0,-24 0z" />
+    </group>
+
+    <!-- Ojos: blanco, pupila y brillo -->
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M76,74a6,6 0,1 0,12 0a6,6 0,1 0,-12 0z" />
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M112,74a6,6 0,1 0,12 0a6,6 0,1 0,-12 0z" />
+    <path
+        android:fillColor="#FF2B2733"
+        android:pathData="M79.4,75a3.6,3.6 0,1 0,7.2 0a3.6,3.6 0,1 0,-7.2 0z" />
+    <path
+        android:fillColor="#FF2B2733"
+        android:pathData="M113.4,75a3.6,3.6 0,1 0,7.2 0a3.6,3.6 0,1 0,-7.2 0z" />
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M83.1,73.5a1.4,1.4 0,1 0,2.8 0a1.4,1.4 0,1 0,-2.8 0z" />
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M117.1,73.5a1.4,1.4 0,1 0,2.8 0a1.4,1.4 0,1 0,-2.8 0z" />
+
+    <!-- Mejillas -->
+    <path
+        android:fillColor="#FFF2B8C6"
+        android:pathData="M59,96a9,5.5 0,1 0,18 0a9,5.5 0,1 0,-18 0z" />
+    <path
+        android:fillColor="#FFF2B8C6"
+        android:pathData="M123,96a9,5.5 0,1 0,18 0a9,5.5 0,1 0,-18 0z" />
+
+    <!-- Nariz y boca -->
+    <path
+        android:fillColor="#FF2B2733"
+        android:pathData="M93.5,92a6.5,4.5 0,1 0,13 0a6.5,4.5 0,1 0,-13 0z" />
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M93,99q3.5,4 7,0q3.5,4 7,0"
+        android:strokeWidth="2.2"
+        android:strokeColor="#FF2B2733"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round" />
+
+    <!-- Brazos -->
+    <group
+        android:pivotX="66"
+        android:pivotY="140"
+        android:rotation="-35">
+        <path
+            android:fillColor="#FF2B2733"
+            android:pathData="M51,140a15,26 0,1 0,30 0a15,26 0,1 0,-30 0z" />
+    </group>
+    <group
+        android:pivotX="134"
+        android:pivotY="140"
+        android:rotation="35">
+        <path
+            android:fillColor="#FF2B2733"
+            android:pathData="M119,140a15,26 0,1 0,30 0a15,26 0,1 0,-30 0z" />
+    </group>
+
+    <!-- Corazón lavanda con brillo -->
+    <path
+        android:fillColor="#FFB19DE2"
+        android:pathData="M100,166C76,150 70,138 70,128C70,119 77,113 85,113C92,113 97,117 100,122C103,117 108,113 115,113C123,113 130,119 130,128C130,138 124,150 100,166Z"
+        android:strokeWidth="2"
+        android:strokeColor="#FF9E8BCD" />
+    <path
+        android:fillColor="#99FFFFFF"
+        android:pathData="M80,126a4.5,3.2 0,1 0,9 0a4.5,3.2 0,1 0,-9 0z" />
+
+    <!-- Patitas sobre el corazón -->
+    <path
+        android:fillColor="#FF2B2733"
+        android:pathData="M68,141a10,10 0,1 0,20 0a10,10 0,1 0,-20 0z" />
+    <path
+        android:fillColor="#FF2B2733"
+        android:pathData="M112,141a10,10 0,1 0,20 0a10,10 0,1 0,-20 0z" />
+</vector>
