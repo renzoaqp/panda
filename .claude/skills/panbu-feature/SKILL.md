@@ -22,8 +22,10 @@ Referencia viva del patrón: `feature/home/` → `HomeViewModel` → `data/repos
      más sus funciones `toDomain()` / `toEntity()`.
    - DAO en `Daos.kt`: lecturas observables con `Flow`, escrituras con `suspend`.
    - Regístrala en `@Database(entities = …)` de `PanbuDatabase`.
-   - **Esquema:** antes de la primera publicación se puede editar la versión 1. Después: subir `version`, escribir
-     una `Migration`, probarla y nunca usar `fallbackToDestructiveMigration`.
+   - **Esquema:** ya hay APK de prueba instalados con datos reales (versión 2 desde el APK 0.3), así que **todo
+     cambio sube `version` y lleva su migración**: `AutoMigration` si solo se agregan tablas o columnas con valor
+     por defecto; `Migration` escrita a mano si no. Nunca `fallbackToDestructiveMigration`. Pruébala instalando
+     el APK nuevo encima del anterior en el emulador.
    - Actualiza `docs/05-modelo-de-datos.md` (tabla y reglas de cálculo).
 5. **Repositorio** (`data/repository/`): interfaz `XRepository` + `RoomXRepository @Inject constructor(...)`;
    binding con `@Binds @Singleton` en `di/RepositoryModule.kt`.

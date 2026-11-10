@@ -39,6 +39,11 @@ description: Construir o modificar la interfaz de Panbu (Jetpack Compose) respet
 ## Checklist antes de terminar
 - [ ] Se parece al mockup (o a lo descrito en `docs/02` si no hay mockup)
 - [ ] El `@Preview` renderiza con datos de ejemplo
+- [ ] Tiene su captura en `app/src/test/.../screenshots/ScreensScreenshotTest.kt` y se revisó el PNG
+      (`./scripts/gradlew.sh recordRoborazziDebug`). Si la pantalla tiene una animación infinita, `XContent`
+      recibe un parámetro para apagarla; si no, el test se cuelga
+- [ ] Reutiliza los componentes que ya existen (`PrimaryPillButton`, `SettingsRow`, `HelpLineCard`,
+      `SegmentedSelector`, gráficos de `ui/components/charts/`…; lista en `docs/04-diseno-visual.md`)
 - [ ] Todos los textos están en `strings.xml`; no hay colores ni medidas sueltos
 - [ ] Tiene estado vacío
 - [ ] 48 dp, `contentDescription`, títulos como heading

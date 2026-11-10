@@ -118,6 +118,16 @@ Estas reglas son la "verdad" de cada número que ve la persona. Toda regla tiene
 | **Sueño** | `wake_at − bedtime_at` del `sleep_log` de esa noche |
 | **Hora del recordatorio de descanso** | `restStart − reminderMinutesBefore` (si da negativo, es del día anterior: 00:30 − 60 min = 23:30). Si esa hora de hoy ya pasó (o es justo ahora), el próximo es mañana. Llega con un margen de hasta 10 min (ADR-0005) |
 
+**Dónde está el test de cada regla:** `StatsCalculatorTest` (semana, mes, total, día de un registro,
+comparación, barras, distribución y estado más frecuente), `MinutesAxisTest` (eje), `GoalProgressTest` y
+`GoalTrackingTest` (progreso y metas), `ObserveTodayProgressTest` (hoy y ayer), `RestReminderTest` (hora del
+recordatorio) y `BreathingPatternTest` (respiración).
+
+**Reglas que todavía no tienen test automático** (pendiente; el guardrail 8 lo exige antes de publicar):
+"↑ 45 min que ayer" (hoy se calcula en `HomeScreen.kt`), "Metas iniciales" (`RoomGoalRepository`), el corte a las
+2 h de "Un momento con Panbu" (`MomentViewModel`) y "Salir a mitad de una actividad" (que una sesión de menos de
+30 s no se guarde, `RoomCalmSessionRepository.record`). Las cuatro se probaron a mano en el emulador.
+
 ## Migraciones
 
 - **Ya hay APK de prueba instalados con datos reales**, así que desde el APK 0.3 cada cambio de esquema sube la

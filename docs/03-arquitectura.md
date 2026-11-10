@@ -10,11 +10,14 @@
 | Inyección de dependencias | Hilt | Estándar de Android; permite cambiar implementaciones (p. ej., el peluche) |
 | Base de datos | Room (SQLite) | Datos en el celular ([ADR-0002](decisiones/0002-datos-locales-primero.md)) |
 | Navegación | Navigation Compose con rutas tipadas (`@Serializable`) | Seguridad de tipos |
-| Preferencias | DataStore (Fase 1) | Ajustes de la persona |
-| Cuentas | Firebase Authentication — propuesto (Fase 1) | Ver [ADR-0004](decisiones/0004-cuentas-de-usuario.md) |
-| Tareas programadas | WorkManager / AlarmManager (Fase 1–2) | Recordatorios y resumen nocturno |
-| Audio | Media3 ExoPlayer (Fase 1) | Sonidos relajantes en bucle |
-| Gráficos | Canvas de Compose (Fase 2) | Iguales al mockup, sin librerías extra |
+| Preferencias | DataStore Preferences ✅ APK 0.3 | Nombre, bienvenida, horario de descanso, recordatorio |
+| Cuentas | Firebase Authentication — propuesto (APK 0.4) | Ver [ADR-0004](decisiones/0004-cuentas-de-usuario.md) |
+| Recordatorios | AlarmManager con alarma inexacta ✅ APK 0.3 | Aviso diario para dejar el celular ([ADR-0005](decisiones/0005-recordatorios-con-alarmmanager.md)) |
+| Tareas en segundo plano | WorkManager (Fase 2) | Resumen nocturno del tiempo de pantalla |
+| Audio | Media3 ExoPlayer (APK 0.4) | Sonidos relajantes en bucle |
+| Gráficos | Canvas de Compose ✅ APK 0.3 | Iguales al mockup, sin librerías extra |
+| Cifrado | AES-256-GCM con clave en Android Keystore ✅ APK 0.3 | Diario privado ([ADR-0006](decisiones/0006-diario-cifrado.md)) |
+| Pruebas | JUnit + corrutinas de prueba; Robolectric + Roborazzi para capturas | Reglas de cálculo y pantallas sin celular |
 | Bluetooth | API BLE de Android + CompanionDeviceManager (Fase 5) | Ver [07-bluetooth.md](07-bluetooth.md) |
 
 **SDK:** `minSdk 26` (Android 8.0, ~97 % de celulares) · `targetSdk 36` · `compileSdk 36`.
@@ -223,5 +226,5 @@ Las versiones de `gradle/libs.versions.toml` son un conjunto compatible conocido
 KSP 2.1.21-2.0.1 · Compose BOM 2025.06.01 · Gradle 8.14.3). Para actualizarlas, trabaja en una rama aparte:
 cambia las versiones en el catálogo (respetando la compatibilidad entre AGP, Gradle, Kotlin y KSP), compila,
 corre los tests y prueba en un celular antes de unir los cambios.
-Las librerías que se usarán en fases siguientes (DataStore, WorkManager, Media3, Biometric) ya están declaradas
-en el catálogo, pero se agregan a `app/build.gradle.kts` recién cuando se usan.
+DataStore ya se usa (APK 0.3). Las librerías de fases siguientes (WorkManager, Media3, Biometric) ya están
+declaradas en el catálogo, pero se agregan a `app/build.gradle.kts` recién cuando se usan.

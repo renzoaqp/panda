@@ -26,14 +26,21 @@ proyecto.
 
 ## Patrones obligatorios
 - **Diario:** el texto se cifra con AES-GCM y una clave en Android Keystore (`KeyGenParameterSpec`, sin
-  exportar la clave). El IV se guarda junto al texto cifrado. Bloqueo opcional con `androidx.biometric`.
-- **Backup:** `android:allowBackup="false"` se mantiene (ADR-0002).
+  exportar la clave). El IV se guarda junto al texto cifrado. Ya existe: `data/crypto/TextCipher.kt` (ADR-0006);
+  reutilízalo, no crees otro cifrado. Bloqueo opcional con `androidx.biometric` (pendiente).
+- **Estado de pantalla:** el texto del diario (o cualquier dato emocional escrito) **no** va a `SavedStateHandle`
+  ni a `rememberSaveable`: Android guarda ese estado fuera de la app y sin cifrar.
+- **Backup:** `android:allowBackup="false"` y `res/xml/data_extraction_rules.xml` (excluye todo de la nube en
+  Android 12+) se mantienen (ADR-0002). La transferencia directa a un celular nuevo está permitida.
 - **Borrar todo:** borra Room, DataStore y la clave del Keystore; luego vuelve al onboarding.
 - **Exportar:** archivo JSON que elige la persona con el Storage Access Framework; nunca se envía a ningún lado
   automáticamente.
 - **Tiempo de pantalla:** `PACKAGE_USAGE_STATS` es opcional; sin permiso, la tarjeta lo explica (no muestra 0).
-- **Ayuda humana:** "¿Necesitas hablar con alguien?" en Panbu y en Ayuda. La línea de ayuda debe estar
-  verificada (Perú: Línea 113, opción 5); no inventes números.
+- **Ayuda humana:** "¿Necesitas hablar con alguien?" en Panbu, en Ayuda y en la bienvenida, con el componente
+  `HelpLineCard` (el número vive en `HelpLine.PHONE`). Perú: Línea 113 del Minsa, "opción de salud mental" (la
+  ruta exacta del menú está pendiente de confirmar con el cliente). No inventes números.
+- **Notificaciones:** hoy solo existe el recordatorio de descanso (1 al día, ADR-0005). Si agregas otra, el total
+  no puede pasar de 2 al día, y nunca menciona la tienda ni el contenido del diario.
 
 ## Checklist
 - [ ] No hay datos personales nuevos que salgan del celular

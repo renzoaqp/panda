@@ -7,9 +7,9 @@
 
 | Fase | Objetivo | Duración orientativa | Estado |
 |---|---|---|---|
-| 0 | Base y diseño: proyecto, tema y pantallas navegables | 1–2 semanas | En curso |
-| 1 | Funciones principales: ánimo, calma, metas, diario, recordatorios, ajustes | 3–4 semanas | Pendiente |
-| 2 | Estadísticas con datos reales y tiempo de pantalla | 2 semanas | Pendiente |
+| 0 | Base y diseño: proyecto, tema y pantallas navegables | 1–2 semanas | Casi lista: falta Nunito, logo, más ilustraciones y la aprobación del cliente |
+| 1 | Funciones principales: ánimo, calma, metas, diario, recordatorios, ajustes | 3–4 semanas | En curso: ánimo, respiración, momento, metas iniciales, diario, recordatorio, bienvenida y ajustes básicos hechos (APK 0.1–0.3) |
+| 2 | Estadísticas con datos reales y tiempo de pantalla | 2 semanas | En curso: estadísticas ✅ (APK 0.3); falta el tiempo de pantalla |
 | 3 | Tienda: catálogo, carrito y pedido | 1–2 semanas | Pendiente |
 | 4 | Pruebas y publicación en Google Play | 2–3 semanas | Pendiente |
 | 5 | Conexión Bluetooth con el peluche | 2–4 semanas (depende del hardware) | Pendiente |
@@ -67,16 +67,17 @@ Detalle en [03-arquitectura.md › Entorno de desarrollo](03-arquitectura.md#ent
 - [ ] Tipografía Nunito en `res/font` (licencia OFL) conectada en `ui/theme/Type.kt`
 - [ ] Logo vectorial definitivo e ícono de la app (hoy hay uno provisional)
 - [ ] Crear las ilustraciones propias del panda en vector. No hay ilustrador, así que las diseñamos nosotros
-      (lista en [04-diseno-visual.md](04-diseno-visual.md#ilustraciones-necesarias))
+      (lista en [04-diseno-visual.md](04-diseno-visual.md#ilustraciones-necesarias)). Hecha: panda con corazón
+      (APK 0.2). Faltan: saludando, respirando, dormido, abrazo, celebrando
 - [x] Componentes: fila de meta, tarjeta de métrica, botón principal, selector Semana/Mes/Total,
       gráfico de barras, gráfico de dona (2026-11-10)
-- [ ] Inicio igual al mockup
+- [ ] Inicio igual al mockup (con datos reales desde el APK 0.2; faltan Nunito y la meta "celular de noche")
 - [x] Estadísticas igual al mockup (con datos reales; el tiempo de pantalla dice "Próximamente")
-- [ ] Metas igual al mockup
+- [ ] Metas igual al mockup (con datos reales desde el APK 0.2; faltan las metas de celular de noche y de sueño)
 - [x] Diseñar **Panbu, tu espacio de calma** (no está en el mockup; ver [02-producto.md §4](02-producto.md#4-panbu-tu-espacio-de-calma))
 - [x] Diseñar **Ajustes** (no está en el mockup; ver [02-producto.md §6](02-producto.md#6-ajustes))
 - [ ] Tienda "Agregar compra" igual al mockup (se entra desde la pestaña Panbu)
-- [ ] Estados vacíos de todas las pantallas
+- [ ] Estados vacíos de todas las pantallas (hechos: Inicio, Estadísticas, Metas, Diario; falta la tienda)
 - [ ] `DemoData` en el source set `app/src/debug/` para la demo con pantallas llenas (nunca en release)
 
 **Terminado cuando:** el cliente navega todas las pantallas en un celular real y aprueba el diseño.
@@ -111,6 +112,8 @@ Detalle en [03-arquitectura.md › Entorno de desarrollo](03-arquitectura.md#ent
       **Hecho en el APK 0.3:** nombre, horario de descanso, recordatorio, ayuda, borrar todos mis datos.
       Falta: foto, sonido, tema, exportar, aviso legal
 - [x] Tests unitarios del progreso de metas y de la duración de sesiones
+- [ ] Tests de las 4 reglas que aún no tienen ("↑ que ayer", metas iniciales, corte de 2 h del momento, no guardar
+      sesiones de menos de 30 s; ver [05-modelo-de-datos.md](05-modelo-de-datos.md#reglas-de-cálculo))
 
 **Terminado cuando:** cada función guarda y recupera datos reales después de cerrar y abrir la app, y los
 tests pasan.
@@ -198,10 +201,11 @@ Los números no cambian, porque otros documentos y el código los citan ("decisi
 | 7 | Hardware del peluche (placa, sensores, batería) | Pendiente | Bluetooth | Fase 5 |
 | 8 | Audios relajantes: origen y licencia | Pendiente | Sonidos | Fase 1 |
 | 9 | Textos legales: política de privacidad y términos | Pendiente | Publicación | Fase 4 |
-| 10 | Línea de ayuda a mostrar (verificar que esté vigente) | Pendiente | Ayuda | Fase 1 |
+| 10 | Línea de ayuda a mostrar (verificar que esté vigente) | ✅ **Línea 113 del Minsa** en la app desde el APK 0.3 (verificada el 2026-11-10). ⏳ **El cliente debe confirmar la ruta del menú** ("opción 5" u "opción 3 → 5"; las fuentes no coinciden) | Ayuda, [06-guardrails.md](06-guardrails.md) regla 3 | Antes de publicar |
 | 11 | Proveedor de cuentas y formas de iniciar sesión | Propuesta: Firebase Authentication **con correo primero** (Google después); los usuarios de prueba se crean en la consola de Firebase. Las cuentas llegan en el APK 0.4 | ADR-0004 | APK 0.4 |
 | 12 | ¿La cuenta es obligatoria o se puede usar la app sin cuenta? | ✅ **Opcional** (2026-11-09) | ADR-0004, onboarding | — |
 | 13 | ¿Los datos emocionales se sincronizan con la cuenta? | ✅ **No, al inicio no** (2026-11-09); más adelante, quizás una copia cifrada opcional | ADR-0002, privacidad | — |
+| 14 | Al pasar los datos a un celular nuevo (transferencia directa, permitida por el ADR-0002), el diario viaja cifrado pero su clave no: ¿se acepta que esas entradas queden ilegibles, o no se transfiere ningún dato? | Pendiente (hoy: se transfieren y el diario queda ilegible) | [ADR-0006](decisiones/0006-diario-cifrado.md) | Antes de publicar |
 
 ## Riesgos
 

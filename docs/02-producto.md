@@ -58,10 +58,10 @@ Primera pantalla al abrir la app: cómo se siente la persona, qué puede hacer y
 | Elemento | Comportamiento |
 |---|---|
 | Logo + "Tu calma, siempre contigo" | Fijo. Engranaje arriba a la derecha → Ajustes |
-| Saludo | "Hola, {nombre}" si hay nombre; si no, "Hola". **(supuesto)** Cambia según la hora: "Buen día", "Buenas tardes", "Buenas noches" |
+| Saludo | ✅ "Hola, {nombre} 👋" si hay nombre (bienvenida o Ajustes); si no, "Hola 👋" (APK 0.3). **(supuesto, pendiente)** Cambia según la hora: "Buen día", "Buenas tardes", "Buenas noches" |
 | ¿Cómo te sientes hoy? | 5 estados: Tranquilo, Ansioso, Triste, Estresado, Feliz. Al tocar uno se guarda un `MoodEntry`. Se puede registrar varias veces al día; Inicio muestra el último. Tocar el mismo estado otra vez no crea un registro duplicado |
 | Imagen del peluche | Ilustración de Panbu. **(supuesto)** Cambia de pose según el estado elegido (p. ej., abrazo si está triste) |
-| Tu Panbu hoy → Tiempo contigo | Suma de las sesiones de calma de hoy y diferencia con ayer ("↑ 45 min que ayer"). Si ayer no hubo sesiones, no se muestra la comparación |
+| Tu Panbu hoy → Tiempo contigo | ✅ Suma de las sesiones de calma de hoy y diferencia con ayer ("↑ 45 min que ayer"). Si ayer no hubo sesiones, no se muestra la comparación. Debajo: **Modo calma** y **Un momento con Panbu** (APK 0.2) |
 | Modo calma | Abre "Respira con Panbu" |
 | Tus objetivos de hoy | Metas activas con su progreso de hoy. Tocar una → detalle. Meta cumplida → check verde |
 
@@ -126,20 +126,21 @@ recordatorio opcional. Se pueden editar, pausar y archivar. **No se borran los r
 
 ## 4. Panbu, tu espacio de calma
 
-No aparece en el mockup; se diseña en la Fase 0 con el mismo estilo. Es la sección más importante de la marca.
+No aparece en el mockup; se diseñó con el mismo estilo. Es la sección más importante de la marca. Las funciones que
+todavía no existen muestran "Próximamente" en su tarjeta.
 
 | Elemento | Comportamiento |
 |---|---|
-| **Necesito un momento de calma** | Botón grande y siempre visible. Un toque → 1 minuto de respiración suave, sin pasos previos |
-| Respira con Panbu | Panda que "se infla" al inhalar y "se desinfla" al exhalar. Patrones: 4-4-4-4 (caja), 4-7-8, suave 4-6. Duración: 1, 3 o 5 min. Vibración suave opcional. Al terminar guarda una `CalmSession` |
-| Un momento para ti | 5–8 microactividades de 1–3 min: estirarse, tomar agua, 5-4-3-2-1 con los sentidos, escribir 3 cosas buenas… |
-| Mensajes positivos | Frases cortas de acompañamiento; una destacada por día; se pueden marcar como favoritas |
-| Sonidos relajantes | Lluvia, naturaleza, ruido blanco suave y música ambiental; bucle y temporizador de apagado (15/30/60 min) |
+| **Necesito un momento de calma** | ✅ APK 0.2. Botón grande y siempre visible. Un toque → 1 minuto de respiración suave, sin pasos previos |
+| Respira con Panbu | ✅ APK 0.2 (sin vibración todavía). Panda que "se infla" al inhalar y "se desinfla" al exhalar. Patrones: 4-4-4-4 (caja), 4-7-8, suave 4-6. Duración: 1, 3 o 5 min. Vibración suave opcional. Al terminar guarda una `CalmSession` |
+| Un momento para ti | Pendiente. 5–8 microactividades de 1–3 min: estirarse, tomar agua, 5-4-3-2-1 con los sentidos, escribir 3 cosas buenas… |
+| Mensajes positivos | APK 0.4. Frases cortas de acompañamiento; una destacada por día; se pueden marcar como favoritas |
+| Sonidos relajantes | APK 0.4 (faltan los audios con licencia). Lluvia, naturaleza, ruido blanco suave y música ambiental; bucle y temporizador de apagado (15/30/60 min) |
 | Mi diario emocional | ✅ **APK 0.3.** Entradas privadas con fecha, estado de ánimo opcional y texto, cifradas. Bloqueo opcional con huella o PIN (pendiente). Detalle abajo |
-| Acompáñame a descansar | Rutina a la hora de descanso: aviso → respiración → "deja el celular" → modo descanso (pantalla oscura con el panda dormido). Al día siguiente se pregunta "¿A qué hora despertaste?" para el `SleepLog` |
-| Conoce a tu Panbu | Tarjeta que lleva a la tienda. Es la única entrada a la tienda |
+| Acompáñame a descansar | Pendiente. Rutina a la hora de descanso: aviso → respiración → "deja el celular" → modo descanso (pantalla oscura con el panda dormido). Al día siguiente se pregunta "¿A qué hora despertaste?" para el `SleepLog` |
+| Conoce a tu Panbu | ✅ Tarjeta que lleva a la tienda (la tienda todavía es un marcador; APK 0.4). Es la única entrada a la tienda |
 | Estado del peluche (Fase 5) | Conectado o desconectado y batería |
-| Aviso | "Panbu te acompaña a practicar hábitos de bienestar, pero no sustituye la atención de un profesional." + enlace a "¿Necesitas hablar con alguien?" |
+| Aviso | ✅ "Panbu te acompaña a practicar hábitos de bienestar, pero no sustituye la atención de un profesional." y debajo la tarjeta "¿Necesitas hablar con alguien?" (APK 0.3; ver "Ayuda humana") |
 
 ### Mi diario emocional (APK 0.3)
 
