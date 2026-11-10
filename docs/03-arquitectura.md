@@ -180,8 +180,13 @@ sincronizar en la barra inferior.
 
 ### Linux (Fedora)
 
-JDK 21 en `~/.jdks/` (Temurin) y SDK en `~/Android/Sdk`. Agrega a `~/.bashrc`:
-`export JAVA_HOME=$HOME/.jdks/jdk-21.0.13+9` y `export ANDROID_HOME=$HOME/Android/Sdk`.
+JDK 21 en `~/.jdks/` (Temurin) y SDK en `~/Android/Sdk` (`local.properties` tiene `sdk.dir`).
+
+**No hay que configurar nada más:** el Java del sistema es el 25 (con él Gradle falla con
+`What went wrong: 25.0.4.1`), pero `scripts/gradlew.sh` busca solo un JDK 21 y llama a `./gradlew`.
+
+- En VS Code: `Ctrl+Shift+B` (las tareas de Linux ya usan `scripts/gradlew.sh`).
+- En la terminal (bash o PowerShell): `./scripts/gradlew.sh assembleDebug`.
 
 ## Comandos
 

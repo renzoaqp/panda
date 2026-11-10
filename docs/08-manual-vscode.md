@@ -131,8 +131,11 @@ adb version          # debe mostrar la versión de Android Debug Bridge
 `Ctrl+Shift+B` (o *Terminal → Run Task… → Panbu: compilar APK*).
 
 - La primera vez tarda **5–10 minutos**: descarga Gradle y las librerías. Las siguientes, menos de un minuto.
-- Al final debe decir **BUILD SUCCESSFUL**.
-- El APK queda en `app\build\outputs\apk\debug\app-debug.apk`.
+- **Resultado esperado:** la terminal de VS Code muestra muchas líneas `> Task :app:...` y termina con
+  **`BUILD SUCCESSFUL in …`**.
+- El APK queda en `app\build\outputs\apk\debug\app-debug.apk` (unos 11 MB).
+- Si termina con `BUILD FAILED` o *"terminated with exit code: 1"*, sube un poco en la terminal hasta
+  **`What went wrong:`** y busca ese mensaje en la tabla de problemas del final.
 
 ## Paso 7 — Instalar la app en un celular
 
@@ -179,6 +182,7 @@ del plan (`docs/01-plan-de-trabajo.md`).
 | En `Ctrl+Shift+P` **no aparece "Git: Clone"** (solo "Git: Show Git Output") | VS Code no encuentra Git. Instálalo (`winget install --id Git.Git -e`), **cierra todas las ventanas de VS Code** y vuelve a abrirlo. Alternativa sin VS Code: ver "Clonar desde PowerShell" abajo |
 | VS Code ofrece **"Upgrade Gradle"** / actualizar el wrapper | Responde **No**. Panbu usa Gradle 8.14.3 |
 | `Verification of Gradle distribution failed` | `gradle\wrapper\gradle-wrapper.properties` debe decir `gradle-8.14.3-bin.zip`. Si dice otra versión, alguien la cambió: restáuralo con Git (`Ctrl+Shift+G` → clic derecho en el archivo → *Discard Changes*) |
+| `What went wrong: 25.0.4.1` (o cualquier número 25.x) | Gradle está usando Java 25. En Windows: vuelve a ejecutar el script del paso 5 y reinicia VS Code. En Linux: compila con `Ctrl+Shift+B` o con `./scripts/gradlew.sh assembleDebug` (no con `./gradlew` directo) |
 | `JAVA_HOME is not set` o `Unsupported class file major version` | Cierra y abre VS Code. Si sigue, ejecuta de nuevo el script del paso 5. `java -version` debe decir 21 |
 | `SDK location not found` | Falta `ANDROID_HOME`: ejecuta el script del paso 5 y reinicia VS Code |
 | `...running scripts is disabled on this system` | Usa el comando del paso 5 tal cual (incluye `-ExecutionPolicy Bypass`) |

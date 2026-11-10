@@ -62,6 +62,7 @@ MoodDao).
 ```
 
 Gradle 8.14 necesita **JDK 17 o 21** (con JDK 25 falla) y el Android SDK en `ANDROID_HOME` (`~/Android/Sdk`).
+En Linux usa `./scripts/gradlew.sh <tarea>`, que busca solo el JDK 21 (el Java del sistema es el 25).
 Detalle en `docs/03-arquitectura.md` › Entorno de desarrollo. Si no hay un SDK o un JDK compatible, dilo
 explícitamente: **no afirmes que algo compila si no se compiló**. Sin Android Studio no hay `@Preview`; para ver
 una pantalla se usan los tests de captura (Roborazzi) y se mira el PNG.
