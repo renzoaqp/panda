@@ -4,6 +4,7 @@
         "mathiasfrohlich.Kotlin",
         "redhat.vscode-xml",
         "EditorConfig.EditorConfig",
+        "yzhang.markdown-all-in-one",
         "anthropic.claude-code"
     ],
     // No soportan proyectos Android y ofrecen "actualizar" Gradle, lo que rompe la compilación.

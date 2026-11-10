@@ -3,6 +3,21 @@
 Paso a paso para dejar una PC con Windows lista para compilar Panbu e instalarlo en un celular, **sin Android
 Studio**. Se hace una sola vez y toma unos 30 minutos, casi todo en descargas.
 
+## Cómo leer este manual (y toda la documentación)
+
+Los documentos son archivos Markdown (`.md`): texto con formato (títulos, tablas, listas).
+
+- **Antes de clonar:** léelo en GitHub, que lo muestra formateado sin instalar nada:
+  <https://github.com/renzoaqp/panda/blob/main/docs/08-manual-vscode.md>
+- **En VS Code, ya con el proyecto abierto:** los `.md` se abren formateados automáticamente (lo configura
+  `.vscode/settings.json`). Si alguno se ve como texto plano con `#`, `|` y `**`:
+  - `Ctrl+Shift+V` → abre la vista formateada;
+  - `Ctrl+K` y luego `V` → texto y vista formateada lado a lado (útil para editar).
+- Para **editar** un `.md`: clic derecho en la pestaña → *Reopen Editor With…* → *Text Editor*.
+
+No hace falta ninguna extensión para ver Markdown: VS Code ya lo trae. La extensión recomendada *Markdown All in
+One* (paso 4) solo agrega comodidades para editar, como el índice automático y atajos.
+
 ## Qué vas a instalar
 
 | Programa | Para qué | Cómo |
@@ -75,6 +90,7 @@ recomendadas"* → **Instalar todo**. Si no lo ves: `Ctrl+Shift+X` → escribe `
 | **Kotlin** (`mathiasfrohlich.Kotlin`) | Colores y formato del código Kotlin | Recomendada |
 | **XML** (`redhat.vscode-xml`) | Archivos de Android (`AndroidManifest.xml`, `strings.xml`, íconos) | Recomendada |
 | **EditorConfig** (`EditorConfig.EditorConfig`) | Aplica el formato del proyecto (sangría, finales de línea) | Recomendada |
+| **Markdown All in One** (`yzhang.markdown-all-in-one`) | Comodidades para editar la documentación `.md` (verla no necesita extensión) | Recomendada |
 | **Claude Code** (`anthropic.claude-code`) | Trabajar con Claude dentro de VS Code | Recomendada |
 | Language Support for Java (`redhat.java`), Extension Pack for Java, Gradle for Java | — | ❌ **No instalar** |
 
@@ -159,6 +175,7 @@ del plan (`docs/01-plan-de-trabajo.md`).
 
 | Mensaje o síntoma | Solución |
 |---|---|
+| Un `.md` se ve como texto plano (con `#`, `\|`, `**`) | `Ctrl+Shift+V`, o `Ctrl+K` y luego `V` para verlo lado a lado |
 | En `Ctrl+Shift+P` **no aparece "Git: Clone"** (solo "Git: Show Git Output") | VS Code no encuentra Git. Instálalo (`winget install --id Git.Git -e`), **cierra todas las ventanas de VS Code** y vuelve a abrirlo. Alternativa sin VS Code: ver "Clonar desde PowerShell" abajo |
 | VS Code ofrece **"Upgrade Gradle"** / actualizar el wrapper | Responde **No**. Panbu usa Gradle 8.14.3 |
 | `Verification of Gradle distribution failed` | `gradle\wrapper\gradle-wrapper.properties` debe decir `gradle-8.14.3-bin.zip`. Si dice otra versión, alguien la cambió: restáuralo con Git (`Ctrl+Shift+G` → clic derecho en el archivo → *Discard Changes*) |

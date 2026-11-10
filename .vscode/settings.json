@@ -6,6 +6,12 @@
     "java.import.gradle.enabled": false,
     "java.configuration.updateBuildConfiguration": "disabled",
 
+    // Los .md (documentación) se abren ya formateados. Para editarlos: clic derecho en la pestaña →
+    // "Reopen Editor With…" → "Text Editor".
+    "workbench.editorAssociations": {
+        "*.md": "vscode.markdown.preview.editor"
+    },
+
     "files.eol": "\n",
     "files.exclude": {
         "**/.gradle": true,
