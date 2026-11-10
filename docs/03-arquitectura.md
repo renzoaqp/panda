@@ -133,7 +133,7 @@ Variables de entorno: `ANDROID_HOME=$HOME/Android/Sdk` y `JAVA_HOME=<ruta del JD
 | `@Preview` de Compose | Tests de captura de pantalla con Roborazzi: `./gradlew recordRoborazziDebug` genera un PNG de cada pantalla en `app/build/outputs/roborazzi/` |
 | Autocompletado y refactors completos para Android | La extensión de Kotlin de VS Code es más limitada en Android; algunos errores solo aparecen al compilar |
 | Depurador visual, Layout Inspector, Database Inspector | `adb logcat` y logs. Android Studio se puede instalar después solo para casos difíciles |
-| Emulador con interfaz gráfica | Celular físico por USB (el Bluetooth del peluche también necesita un celular real) |
+| Administrador de emuladores | Emulador por línea de comandos: `scripts/setup-emulator.sh` (Linux) o `scripts/setup-emulator-windows.ps1` crean el celular virtual "Panbu"; la tarea "Panbu: abrir emulador" lo abre. Para el Bluetooth del peluche hace falta un celular real |
 
 ### VS Code (Linux y Windows)
 

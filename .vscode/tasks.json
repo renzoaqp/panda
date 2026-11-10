@@ -13,11 +13,37 @@
             "problemMatcher": []
         },
         {
+            // Instala en el celular conectado por USB o en el emulador abierto.
             "label": "Panbu: instalar en el celular",
             "type": "shell",
             "command": "./scripts/gradlew.sh",
             "windows": { "command": ".\\gradlew.bat" },
             "args": ["installDebug"],
+            "problemMatcher": []
+        },
+        {
+            "label": "Panbu: abrir la app",
+            "type": "process",
+            "command": "${env:HOME}/Android/Sdk/platform-tools/adb",
+            "windows": { "command": "${env:LOCALAPPDATA}\\Android\\Sdk\\platform-tools\\adb.exe" },
+            "args": ["shell", "am", "start", "-n", "com.panbu.app/.MainActivity"],
+            "problemMatcher": []
+        },
+        {
+            // Compila, instala y abre Panbu en el celular o en el emulador.
+            "label": "Panbu: instalar y abrir",
+            "dependsOrder": "sequence",
+            "dependsOn": ["Panbu: instalar en el celular", "Panbu: abrir la app"],
+            "problemMatcher": []
+        },
+        {
+            // Abre el celular virtual "Panbu" (crearlo antes con scripts/setup-emulator*.{sh,ps1}).
+            "label": "Panbu: abrir emulador",
+            "type": "process",
+            "command": "${env:HOME}/Android/Sdk/emulator/emulator",
+            "windows": { "command": "${env:LOCALAPPDATA}\\Android\\Sdk\\emulator\\emulator.exe" },
+            "args": ["-avd", "Panbu", "-no-boot-anim"],
+            "isBackground": true,
             "problemMatcher": []
         },
         {

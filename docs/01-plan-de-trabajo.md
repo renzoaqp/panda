@@ -57,7 +57,9 @@ Detalle en [03-arquitectura.md › Entorno de desarrollo](03-arquitectura.md#ent
 - [x] Primer `./gradlew assembleDebug` exitoso: APK 0.1 de depuración generado; 5/5 tests en verde
 - [x] Tests de captura de pantalla (Roborazzi): 7 capturas generadas
 - [x] Soporte para Windows: `scripts/setup-windows.ps1`, tareas de VS Code, `.gitattributes`
-- [ ] Windows: clonar con VS Code, ejecutar `scripts/setup-windows.ps1` y compilar (pasos en docs/03 › Windows)
+- [x] Windows: clonar con VS Code, ejecutar `scripts/setup-windows.ps1` y compilar (BUILD SUCCESSFUL, 2026-11-09)
+- [x] Emulador en Linux (`scripts/setup-emulator.sh`): APK 0.1 instalado en Android 15; el estado de ánimo se
+      conserva después de cerrar la app a la fuerza (2026-11-10)
 - [ ] `adb` reconoce un celular Android con "Depuración USB" activada; app instalada con `installDebug`
 - [ ] Hacer commit de `app/schemas/` (lo genera Room en la primera compilación)
 

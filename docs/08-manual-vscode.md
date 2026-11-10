@@ -161,6 +161,21 @@ adb version          # debe mostrar la versión de Android Debug Bridge
    de prueba que no viene de Play Store.
 4. Para instalar una versión nueva, repite lo mismo: se instala encima y conserva los datos.
 
+**Opción C — emulador (un celular virtual en la PC, sin celular real):**
+1. Crea el celular virtual una sola vez (descarga unos 1,5 GB):
+   - Windows: `powershell -ExecutionPolicy Bypass -File scripts\setup-emulator-windows.ps1`
+   - Linux: `./scripts/setup-emulator.sh`
+2. *Terminal → Run Task… → **Panbu: abrir emulador***. Se abre una ventana con un celular. La primera vez tarda
+   1–3 minutos en arrancar.
+3. Cuando muestre la pantalla de inicio de Android: *Run Task… → **Panbu: instalar y abrir***. Compila, instala y
+   abre Panbu dentro del emulador.
+4. Se usa con el mouse como si fuera el dedo. El teclado de la PC también funciona.
+
+El emulador usa unos 2–3 GB de RAM: cierra programas pesados si la PC se pone lenta. En Windows necesita la
+virtualización activa: si dice *"requires hardware acceleration"*, ve a "Activar o desactivar las características
+de Windows", marca **Plataforma del hipervisor de Windows** y reinicia. El Bluetooth del peluche (Fase 5) solo se
+puede probar en un celular real.
+
 ### Qué revisar para saber si funciona (APK 0.1)
 
 | Prueba | Resultado esperado |
