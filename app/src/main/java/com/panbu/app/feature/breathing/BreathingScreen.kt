@@ -18,7 +18,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.selection.selectableGroup
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
@@ -45,6 +44,7 @@ import com.panbu.app.domain.model.BreathingPhase
 import com.panbu.app.domain.model.BreathingStep
 import com.panbu.app.ui.components.ChoiceChip
 import com.panbu.app.ui.components.KeepScreenOn
+import com.panbu.app.ui.components.PrimaryPillButton
 import com.panbu.app.ui.components.PanbuProgressBar
 import com.panbu.app.ui.components.PanbuScreen
 import com.panbu.app.ui.components.ScreenTitle
@@ -269,19 +269,6 @@ internal fun ColumnScope.CalmFinished(
         ) {
             Text(text = stringResource(R.string.breathing_again))
         }
-    }
-}
-
-@Composable
-internal fun PrimaryPillButton(text: String, onClick: () -> Unit) {
-    Button(
-        onClick = onClick,
-        shape = CircleShape,
-        modifier = Modifier
-            .fillMaxWidth()
-            .heightIn(min = 56.dp),
-    ) {
-        Text(text = text, style = MaterialTheme.typography.labelLarge)
     }
 }
 

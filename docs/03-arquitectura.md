@@ -70,21 +70,33 @@ panda/
         │   ├── java/com/panbu/app/
         │   │   ├── PanbuApplication.kt     Punto de entrada (Hilt)
         │   │   ├── MainActivity.kt
-        │   │   ├── navigation/             Rutas, NavHost, barra inferior
+        │   │   ├── navigation/             Rutas, NavHost, barra inferior; AppViewModel decide
+        │   │   │                           si se ve la bienvenida o las pestañas
         │   │   ├── ui/theme/               Colores, tipografía, formas, espaciado
-        │   │   ├── ui/components/          Componentes reutilizables (PanbuCard, PanbuProgressBar…)
-        │   │   ├── feature/
+        │   │   ├── ui/components/          Componentes reutilizables (PanbuCard, GoalRow, HelpLineCard,
+        │   │   │   │                       SegmentedSelector, SettingsRow, TimePickerDialog…)
+        │   │   │   └── charts/             Gráficos con Canvas: CalmBarChart, DonutChart, MinutesAxis
+        │   │   ├── feature/                Una carpeta por pantalla: XScreen + XContent + XViewModel
+        │   │   │   ├── onboarding/         Bienvenida (5 pasos) con el aviso y la línea de ayuda
         │   │   │   ├── home/               Inicio
-        │   │   │   ├── stats/              Estadísticas
+        │   │   │   ├── stats/              Estadísticas (Semana / Mes / Total)
         │   │   │   ├── goals/              Metas
-        │   │   │   ├── calm/               Panbu, tu espacio de calma (respirar, diario, sonidos…)
+        │   │   │   ├── calm/               Panbu, tu espacio de calma
+        │   │   │   ├── breathing/          Respira con Panbu
+        │   │   │   ├── moment/             Un momento con Panbu (temporizador)
         │   │   │   ├── shop/               Tienda
         │   │   │   └── settings/           Ajustes
-        │   │   ├── domain/model/           Modelos puros (Mood, Goal, CalmSession…)
+        │   │   ├── domain/
+        │   │   │   ├── model/              Modelos y reglas puras (Mood, Goal, CalmSession, StatsCalculator,
+        │   │   │   │                       RestReminder, UserPreferences…)
+        │   │   │   └── usecase/            Combinan repositorios: ObserveTodayProgress, ObserveStats
         │   │   ├── data/
         │   │   │   ├── local/              Room: base de datos, entidades, DAOs
+        │   │   │   ├── preferences/        DataStore: nombre, bienvenida, horario de descanso, recordatorio
         │   │   │   ├── repository/         Repositorios (interfaz + implementación)
+        │   │   │   ├── LocalDataEraser.kt  "Borrar todos mis datos"
         │   │   │   └── screentime/         Tiempo de pantalla nocturno (Fase 2)
+        │   │   ├── reminders/              Recordatorio de descanso: AlarmManager, receptores y notificación
         │   │   ├── device/                 Peluche Panbu: interfaz + implementación vacía (BLE en Fase 5)
         │   │   └── di/                     Módulos de Hilt
         │   └── res/                        Textos (strings.xml), íconos, temas
@@ -92,8 +104,8 @@ panda/
         └── test/java/com/panbu/app/        Tests unitarios
 ```
 
-Carpetas que se agregarán más adelante: `notifications/` (Fase 1), `data/preferences/` (DataStore, Fase 1),
-`data/account/` y `feature/account/` (cuentas, Fase 1), `device/ble/` (Fase 5), `src/androidTest/` (Fase 4).
+Carpetas que se agregarán más adelante: `feature/journal/` y `data/crypto/` (diario cifrado, APK 0.3),
+`data/account/` y `feature/account/` (cuentas, APK 0.4), `device/ble/` (Fase 5), `src/androidTest/` (Fase 4).
 
 ## Convenciones
 

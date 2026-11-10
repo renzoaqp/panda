@@ -49,6 +49,8 @@ class ObserveTodayProgressTest {
 
     private class FakeGoals(private val goals: List<Goal>) : GoalRepository {
         override fun observeActive(): Flow<List<Goal>> = flowOf(goals)
+
+        override suspend fun ensureDefaultGoals() = Unit
     }
 
     @Test

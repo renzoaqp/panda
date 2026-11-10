@@ -28,7 +28,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.panbu.app.R
 import com.panbu.app.feature.breathing.CalmFinished
-import com.panbu.app.feature.breathing.PrimaryPillButton
+import com.panbu.app.ui.components.PrimaryPillButton
 import com.panbu.app.ui.components.KeepScreenOn
 import com.panbu.app.ui.components.PanbuScreen
 import com.panbu.app.ui.components.ScreenTitle
@@ -49,6 +49,8 @@ internal fun MomentContent(
     onStart: () -> Unit,
     onFinish: () -> Unit,
     onClose: () -> Unit,
+    /** false en las capturas de pantalla: una animación infinita nunca "termina" y el test se quedaría esperando. */
+    animatePulse: Boolean = true,
 ) {
     KeepScreenOn(enabled = state.stage == MomentStage.RUNNING)
     PanbuScreen(onBack = onClose) {
@@ -66,12 +68,17 @@ internal fun MomentContent(
                 PrimaryPillButton(text = stringResource(R.string.moment_start), onClick = onStart)
             }
             MomentStage.RUNNING -> {
-                val pulse by rememberInfiniteTransition(label = "momento").animateFloat(
-                    initialValue = 0.96f,
-                    targetValue = 1.04f,
-                    animationSpec = infiniteRepeatable(tween(3_000, easing = FastOutSlowInEasing), RepeatMode.Reverse),
-                    label = "pulso",
-                )
+                val pulse = if (animatePulse) {
+                    val value by rememberInfiniteTransition(label = "momento").animateFloat(
+                        initialValue = 0.96f,
+                        targetValue = 1.04f,
+                        animationSpec = infiniteRepeatable(tween(3_000, easing = FastOutSlowInEasing), RepeatMode.Reverse),
+                        label = "pulso",
+                    )
+                    value
+                } else {
+                    1f
+                }
                 Image(
                     painter = painterResource(R.drawable.ill_panda_heart),
                     contentDescription = null,

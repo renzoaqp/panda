@@ -4,8 +4,12 @@
     <!--
         PERMISOS: antes de agregar uno, debe estar en la tabla de permisos de
         docs/06-guardrails.md (para qué sirve, en qué fase y cómo se pide).
-        El esqueleto actual no necesita ninguno.
     -->
+
+    <!-- Recordatorio para dejar el celular (Android 13+). Se pide al activarlo en Ajustes, nunca al inicio. -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <!-- Volver a programar el recordatorio después de reiniciar el celular. Permiso normal: no se pide. -->
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
     <!-- allowBackup=false: los datos emocionales no se suben al backup de Google (ADR-0002). -->
     <application
@@ -26,6 +30,23 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- Recordatorio de descanso: lo dispara el AlarmManager de la propia app. -->
+        <receiver
+            android:name=".reminders.RestReminderReceiver"
+            android:exported="false" />
+
+        <!-- Vuelve a programar el recordatorio cuando Android borra las alarmas o cambia la hora. -->
+        <receiver
+            android:name=".reminders.RescheduleReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
+                <action android:name="android.intent.action.TIME_SET" />
+                <action android:name="android.intent.action.TIMEZONE_CHANGED" />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>

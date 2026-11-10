@@ -46,7 +46,7 @@ Metas ─── (+) ───► Crear meta
 Panbu ───────────► Respira · Un momento para ti · Mensajes · Sonidos · Diario · Descansar
    ├─────────────► "Necesito un momento de calma" (1 toque → respiración de 1 minuto)
    └─────────────► Tienda (Agregar compra) ──► Carrito ──► Pedido
-Primera vez ─────► Onboarding ──► Inicio
+Primera vez ─────► Bienvenida (5 pasos) ──► Inicio
 ```
 
 ---
@@ -70,16 +70,29 @@ sesiones → "Aún no tienes momentos de calma hoy. ¿Respiramos un minuto?".
 
 ## 2. Estadísticas
 
+Implementada en el **APK 0.3** (salvo el tiempo de pantalla, que llega en la Fase 2). Las fórmulas exactas están en
+[05-modelo-de-datos.md](05-modelo-de-datos.md#reglas-de-cálculo) y cada una tiene un test.
+
 | Elemento | Comportamiento |
 |---|---|
-| Semana / Mes / Total | Semana = lunes a domingo actual. Mes = mes calendario. Total = desde el primer registro |
-| Tiempo de calma | Suma de las sesiones de calma del periodo + % frente al periodo anterior |
-| Gráfico de barras | Semana: minutos por día. Mes: por semana. Total: por mes |
-| ¿Cómo te sientes? | Dona con el % de cada estado de ánimo del periodo; en el centro, el estado más frecuente |
-| Tiempo de pantalla (noche) | Promedio diario de uso del celular dentro del horario de descanso. Requiere el permiso "Acceso a datos de uso"; sin permiso, la tarjeta explica para qué sirve y cómo activarlo |
-| Comparación | "↑ 32 % que la semana anterior". En verde si mejora y en gris neutro si empeora (nunca en rojo). Sin periodo anterior → no se muestra |
+| Semana / Mes / Total | Selector en forma de píldora. **Semana** = de lunes a domingo de la semana actual. **Mes** = mes calendario actual. **Total** = desde el primer registro (sesión de calma o estado de ánimo) hasta hoy. Al abrir la pantalla se ve Semana; el periodo elegido se mantiene si se gira el celular |
+| Fechas del periodo | Debajo del selector: "9 – 15 nov", "Noviembre de 2026" o "Desde el 9 de noviembre de 2026" |
+| Tiempo de calma | Suma de las sesiones de calma del periodo (cada sesión cuenta el día en que empezó; las de menos de 30 s no cuentan) |
+| Comparación | "↑ 32% que la semana anterior" / "↓ 10% que el mes anterior" / "Igual que…". Se compara con **el mismo tramo** del periodo anterior: un miércoles, de lunes a miércoles contra de lunes a miércoles de la semana pasada. En verde si sube y en gris neutro si baja, **nunca en rojo**. No se muestra en Total, ni si el periodo actual o el anterior están en 0 |
+| Gráfico de barras | Semana: una barra por día (Lun…Dom). Mes: una barra por semana de lunes a domingo, recortada al mes ("1", "2–8", …, "30"). Total: una barra por mes ("sep", "oct", "nov"), como máximo los últimos 12 meses (la suma sí incluye todo). La barra de hoy va en morado más intenso. Eje con pasos redondos (5 min, 15 min, 1 h…) |
+| ¿Cómo te sientes? | Dona con el % de cada estado de ánimo registrado en el periodo; en el centro, el más frecuente con su %. Al lado, la leyenda ordenada de mayor a menor. Debajo: "20 registros en este periodo". Los % suman siempre 100 |
+| Tiempo de pantalla (noche) | **Fase 2.** Promedio diario de uso del celular dentro del horario de descanso. Requiere el permiso "Acceso a datos de uso"; sin permiso, la tarjeta explica para qué sirve y cómo activarlo. Hoy la tarjeta dice "Próximamente" y no muestra ningún número |
 
-**Estado vacío:** "Cuando registres tus momentos de calma y cómo te sientes, aquí verás tu avance."
+**Estados vacíos (nunca gráficos en cero):**
+
+| Situación | Qué se ve |
+|---|---|
+| Sin sesiones ni estados de ánimo en el periodo | Tarjeta con el panda: "Cuando registres tus momentos de calma y cómo te sientes, aquí verás tu avance." + botón **Respirar con Panbu** |
+| Hay estados de ánimo pero no sesiones | Tarjeta de tiempo de calma con "0 min" y "Aún no hay momentos de calma esta semana. ¿Respiramos un minuto?" (sin gráfico) |
+| Hay sesiones pero no estados de ánimo | Tarjeta de ánimo con "Aún no registraste cómo te sientes en este periodo. Puedes hacerlo en Inicio." |
+
+**Accesibilidad:** el selector se lee como pestañas; el gráfico de barras se lee como un resumen ("Tiempo de calma:
+Lun, 25 min; Mar, 40 min; …"); la dona es decorativa porque la leyenda dice lo mismo en texto.
 
 ## 3. Metas
 
@@ -143,32 +156,68 @@ No aparece en el mockup; se diseña en la Fase 0 con el mismo estilo. Es la secc
 
 ## 6. Ajustes
 
-No aparece en el mockup; se diseña en la Fase 0.
+No aparece en el mockup; se diseñó con los mismos componentes. **APK 0.3:** perfil, horario de descanso,
+recordatorio, ayuda y "Borrar todos mis datos". El resto aparece en una tarjeta "Próximamente".
 
-| Opción | Detalle |
+| Opción | Detalle | Estado |
+|---|---|---|
+| Tu nombre | Diálogo "¿Cómo te llamas?" (máximo 30 caracteres, puede quedar vacío). Se usa solo para el saludo de Inicio | ✅ APK 0.3 |
+| Horario de descanso | Dos relojes seguidos: "¿A qué hora empiezas a descansar?" y "¿A qué hora te levantas?" (por defecto 22:00–06:00). Lo usan el recordatorio, el tiempo de pantalla (Fase 2) y "Acompáñame a descansar". Las horas siguen el formato 12/24 h del celular | ✅ APK 0.3 |
+| Recordatorio para dejar el celular | Interruptor, **apagado por defecto**. Al activarlo en Android 13 o más, primero se explica para qué es el permiso y después se pide. Si la persona no lo da, el interruptor queda apagado y se explica con calma cómo activarlo en los ajustes del celular | ✅ APK 0.3 |
+| Avisarme antes | 15 min, 30 min o 1 h antes del inicio del descanso (por defecto 30). Debajo: "Te avisaremos a las 21:30." | ✅ APK 0.3 |
+| Ayuda | Tarjeta "¿Necesitas hablar con alguien?" con la Línea 113 y un botón que abre el marcador del teléfono | ✅ APK 0.3 |
+| Privacidad y mis datos | Qué se guarda y dónde. **Borrar todos mis datos**, con confirmación: borra la base de datos, las preferencias y el recordatorio, y vuelve a la bienvenida. Exportar mis datos y la lista de permisos activos llegan después | ✅ Borrar · Exportar pendiente |
+| Mi cuenta | Correo, iniciar o cerrar sesión, borrar la cuenta ([ADR-0004](decisiones/0004-cuentas-de-usuario.md)). Sin cuenta: "Crear cuenta / Iniciar sesión" | APK 0.4 |
+| Sonidos de relajación | Sonido preferido | APK 0.4 |
+| Tema | Claro, oscuro o el del sistema | Pendiente |
+| Política de privacidad y términos | Textos del cliente | Pendiente (cliente) |
+| Versión | "Versión 0.3.0" al final de la pantalla | ✅ APK 0.3 |
+
+### Recordatorio para dejar el celular
+
+- **Cuándo:** una vez al día, a la hora `inicio del descanso − minutos de anticipación` (con un margen de hasta 10
+  minutos, ver [ADR-0005](decisiones/0005-recordatorios-con-alarmmanager.md)). Si el descanso empieza 00:30 y el
+  aviso es 1 h antes, llega a las 23:30 del día anterior.
+- **Texto:** "Se acerca tu hora de descanso — ¿Dejamos el celular un rato y respiramos con Panbu? Tu descanso
+  empieza a las 10:00 p. m.". Al tocarlo se abre la app. Nunca menciona la tienda.
+- Sigue funcionando después de reiniciar el celular, actualizar la app o cambiar la hora o la zona horaria.
+- Hoy es la única notificación de la app (el máximo es 2 al día).
+
+## 7. Bienvenida (onboarding), cuenta y permisos
+
+**APK 0.3:** la primera vez que se abre la app (y después de "Borrar todos mis datos") aparece la bienvenida, en
+pantalla completa y sin barra inferior. Tiene 5 pasos, con puntos de avance arriba y los botones "Siguiente" y
+"Atrás" abajo (el botón "atrás" del celular también vuelve al paso anterior):
+
+| Paso | Contenido |
 |---|---|
-| Editar perfil | Nombre y foto (solo en el celular) |
-| Notificaciones | Activar/desactivar; máximo 2 al día |
-| Horario de descanso | Hora de inicio y fin (por defecto 22:00–06:00). Lo usan los recordatorios, el tiempo de pantalla y "Acompáñame a descansar" |
-| Recordatorios para dejar el celular | Cuántos minutos antes del horario de descanso |
-| Sonidos de relajación | Sonido preferido |
-| Tema | Claro, oscuro o el del sistema |
-| Privacidad y mis datos | Qué se guarda, exportar mis datos, borrar todo, permisos activos |
-| Ayuda y soporte | Preguntas frecuentes, contacto, "¿Necesitas hablar con alguien?" (línea de ayuda) |
-| Aviso legal | Política de privacidad y términos |
-| Mi cuenta | Correo, iniciar o cerrar sesión, borrar la cuenta ([ADR-0004](decisiones/0004-cuentas-de-usuario.md)). Sin cuenta: "Crear cuenta / Iniciar sesión" |
+| 1. Hola, soy Panbu | El panda con el corazón y "Tu calma, siempre contigo. Te acompaño a crear momentos de tranquilidad en tu día." |
+| 2. Así te acompaño | Respiramos juntos · Registras cómo te sientes · Metas pequeñas, sin presión · Un aviso para dejar el celular |
+| 3. Tu privacidad | Lo que registras se queda en este celular · Sin publicidad ni seguimiento · Puedes borrarlo todo desde Ajustes |
+| 4. ¿Cómo te llamas? | Campo opcional ("Lo usamos solo para saludarte. Puedes dejarlo vacío.") |
+| 5. Antes de empezar | El aviso "Panbu te acompaña a practicar hábitos de bienestar, pero no sustituye la atención de un profesional de la salud." + la tarjeta de la línea de ayuda + **Entendido, empecemos** |
 
-## 7. Onboarding, cuenta y permisos
+Al terminar se guarda `onboardingDone = true` (y el nombre) y la app pasa sola a Inicio.
 
-- Primera vez: 3 pantallas (qué es Panbu, cómo te acompaña, tu privacidad) → **Crear cuenta / Iniciar sesión /
-  Continuar sin cuenta** → nombre → aviso de que no sustituye a un profesional → Inicio.
-- **Cuenta** ([ADR-0004](decisiones/0004-cuentas-de-usuario.md)): con Google o con correo y contraseña. Al crearla
-  se explica en una frase qué se guarda en la nube (correo, nombre y foto opcional) y que los datos emocionales
-  se quedan en el celular. Se puede cerrar sesión y borrar la cuenta desde Ajustes.
+- **Cuenta** ([ADR-0004](decisiones/0004-cuentas-de-usuario.md), **APK 0.4**): entre los pasos 3 y 4 se sumará
+  **Crear cuenta / Iniciar sesión / Continuar sin cuenta**. Al crearla se explica en una frase qué se guarda en la
+  nube (correo, nombre y foto opcional) y que los datos emocionales se quedan en el celular.
 - **La cuenta es opcional** (decidido el 2026-11-09): se pide al comprar o al querer conservar el perfil en otro
   celular. Las funciones de calma nunca la piden. Los datos emocionales no se sincronizan.
-- Los permisos **nunca** se piden al inicio: se piden en el momento en que se usan, con una pantalla previa que
-  explica para qué (ver la tabla de permisos en [06-guardrails.md](06-guardrails.md#permisos)).
+- Los permisos **nunca** se piden en la bienvenida: se piden en el momento en que se usan, con una explicación
+  previa (ver la tabla de permisos en [06-guardrails.md](06-guardrails.md#permisos)).
+
+## Ayuda humana: "¿Necesitas hablar con alguien?"
+
+Tarjeta rosada que aparece en **la pestaña Panbu** (al final, junto al aviso), en **Ajustes › Ayuda** y en **el
+último paso de la bienvenida** (guardrail 2). Texto: "Si estás pasando por un momento muy difícil, hablar con
+alguien puede ayudar. En Perú puedes llamar gratis al 113 (Minsa) y elegir la opción de salud mental. Atienden
+las 24 horas." El botón **Llamar al 113** abre el marcador con el número escrito (no llama solo y no necesita
+permisos).
+
+**Pendiente del cliente:** confirmar la ruta del menú de la Línea 113. Fuentes oficiales del Minsa dicen "opción 5";
+otras, "opción 3 y luego 5". Por eso el texto dice "elegir la opción de salud mental", que es correcto en los dos
+casos. El número vive en `HelpLine.PHONE` (`ui/components/HelpLineCard.kt`) y en los textos `help_*`.
 
 ## Tono de los textos
 

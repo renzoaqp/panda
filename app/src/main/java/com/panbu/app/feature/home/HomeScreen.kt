@@ -37,6 +37,7 @@ import com.panbu.app.ui.components.GoalRow
 import com.panbu.app.ui.components.PanbuCard
 import com.panbu.app.ui.components.PanbuScreen
 import com.panbu.app.ui.components.SectionTitle
+import com.panbu.app.ui.components.TrendText
 import com.panbu.app.ui.components.color
 import com.panbu.app.ui.components.formatDuration
 import com.panbu.app.ui.components.labelRes
@@ -82,7 +83,7 @@ internal fun HomeContent(
             }
         },
     ) {
-        GreetingCard(todayMood = uiState.todayMood, onMoodSelected = onMoodSelected)
+        GreetingCard(userName = uiState.userName, todayMood = uiState.todayMood, onMoodSelected = onMoodSelected)
 
         SectionTitle(stringResource(R.string.home_panbu_today))
         PanbuTodayCard(
@@ -106,14 +107,21 @@ internal fun HomeContent(
 }
 
 @Composable
-private fun GreetingCard(todayMood: Mood?, onMoodSelected: (Mood) -> Unit) {
+private fun GreetingCard(userName: String?, todayMood: Mood?, onMoodSelected: (Mood) -> Unit) {
     PanbuCard(
         modifier = Modifier.fillMaxWidth(),
         containerColor = MaterialTheme.colorScheme.primaryContainer,
     ) {
         Row(verticalAlignment = Alignment.CenterVertically) {
             Column(Modifier.weight(1f)) {
-                Text(text = stringResource(R.string.home_greeting), style = MaterialTheme.typography.titleLarge)
+                Text(
+                    text = if (userName == null) {
+                        stringResource(R.string.home_greeting)
+                    } else {
+                        stringResource(R.string.home_greeting_name, userName)
+                    },
+                    style = MaterialTheme.typography.titleLarge,
+                )
                 Text(text = stringResource(R.string.home_how_do_you_feel), style = MaterialTheme.typography.bodyLarge)
             }
             Image(
@@ -198,14 +206,12 @@ private fun CalmComparison(calmToday: Duration, calmYesterday: Duration) {
     if (calmYesterday.isZero) return
     val diffMinutes = calmToday.toMinutes() - calmYesterday.toMinutes()
     val diffText = formatDuration(Duration.ofMinutes(kotlin.math.abs(diffMinutes)))
-    val (text, color) = when {
-        diffMinutes > 0 -> stringResource(R.string.home_vs_yesterday_more, diffText) to
-            PanbuTheme.extraColors.positiveText
-        diffMinutes < 0 -> stringResource(R.string.home_vs_yesterday_less, diffText) to
-            MaterialTheme.colorScheme.onSurfaceVariant
-        else -> stringResource(R.string.home_vs_yesterday_same) to MaterialTheme.colorScheme.onSurfaceVariant
+    val text = when {
+        diffMinutes > 0 -> stringResource(R.string.home_vs_yesterday_more, diffText)
+        diffMinutes < 0 -> stringResource(R.string.home_vs_yesterday_less, diffText)
+        else -> stringResource(R.string.home_vs_yesterday_same)
     }
-    Text(text = text, style = MaterialTheme.typography.bodySmall, color = color)
+    TrendText(text = text, improved = diffMinutes > 0)
 }
 
 @Preview(showBackground = true, backgroundColor = 0xFFF8F5EF, heightDp = 1200)

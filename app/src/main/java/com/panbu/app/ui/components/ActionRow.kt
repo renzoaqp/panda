@@ -1,6 +1,7 @@
 package com.panbu.app.ui.components
 
 import androidx.annotation.DrawableRes
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
@@ -71,9 +72,12 @@ fun ActionRow(
     }
 }
 
-/** Ícono dentro de un círculo lavanda (filas de metas y acciones). */
+/**
+ * Ícono dentro de un círculo lavanda (filas de metas y acciones).
+ * Con [tinted] = false se dibuja con sus colores originales (la cara del panda, que teñida pierde los ojos).
+ */
 @Composable
-fun IconBubble(@DrawableRes iconRes: Int, modifier: Modifier = Modifier) {
+fun IconBubble(@DrawableRes iconRes: Int, modifier: Modifier = Modifier, tinted: Boolean = true) {
     Box(
         modifier
             .size(44.dp)
@@ -81,11 +85,15 @@ fun IconBubble(@DrawableRes iconRes: Int, modifier: Modifier = Modifier) {
             .background(MaterialTheme.colorScheme.primaryContainer),
         contentAlignment = Alignment.Center,
     ) {
-        Icon(
-            painter = painterResource(iconRes),
-            contentDescription = null,
-            tint = MaterialTheme.colorScheme.primary,
-            modifier = Modifier.size(24.dp),
-        )
+        if (tinted) {
+            Icon(
+                painter = painterResource(iconRes),
+                contentDescription = null,
+                tint = MaterialTheme.colorScheme.primary,
+                modifier = Modifier.size(24.dp),
+            )
+        } else {
+            Image(painter = painterResource(iconRes), contentDescription = null, modifier = Modifier.size(28.dp))
+        }
     }
 }

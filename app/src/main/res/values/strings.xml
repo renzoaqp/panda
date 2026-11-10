@@ -19,6 +19,7 @@
     <string name="duration_h_min">%1$d h %2$d min</string>
     <string name="duration_min">%1$d min</string>
     <string name="duration_sec">%1$d s</string>
+    <string name="duration_h">%1$d h</string>
     <string name="goal_value_pair">%1$s / %2$s</string>
     <string name="duration_clock">%1$d:%2$02d</string>
 
@@ -38,6 +39,7 @@
 
     <!-- Inicio -->
     <string name="home_greeting">Hola 👋</string>
+    <string name="home_greeting_name">Hola, %1$s 👋</string>
     <string name="home_how_do_you_feel">¿Cómo te sientes hoy?</string>
     <string name="home_no_mood_yet">Elige cómo te sientes. Solo tú ves esta información.</string>
     <string name="home_mood_saved">Hoy: %1$s. Gracias por contármelo.</string>
@@ -56,7 +58,80 @@
 
     <!-- Estadísticas -->
     <string name="stats_title">Estadísticas</string>
-    <string name="stats_placeholder">Aquí verás tu tiempo de calma, cómo te has sentido y tu tiempo de pantalla por la noche, siempre con tus datos reales.</string>
+    <string name="stats_period_week">Semana</string>
+    <string name="stats_period_month">Mes</string>
+    <string name="stats_period_total">Total</string>
+    <string name="stats_periods_cd">Periodo de las estadísticas</string>
+    <!-- 9 – 15 nov -->
+    <string name="stats_span_days">%1$d %2$s – %3$d %4$s</string>
+    <!-- noviembre de 2026 -->
+    <string name="stats_span_month">%1$s de %2$d</string>
+    <!-- Desde el 9 de noviembre de 2026 -->
+    <string name="stats_span_since">Desde el %1$d de %2$s de %3$d</string>
+    <string name="stats_calm_time">Tiempo de calma</string>
+    <string name="stats_change_up">↑ %1$d%% que %2$s</string>
+    <string name="stats_change_down">↓ %1$d%% que %2$s</string>
+    <string name="stats_change_same">Igual que %1$s</string>
+    <string name="stats_previous_week">la semana anterior</string>
+    <string name="stats_previous_month">el mes anterior</string>
+    <string name="stats_no_calm_week">Aún no hay momentos de calma esta semana. ¿Respiramos un minuto?</string>
+    <string name="stats_no_calm_total">Aún no tienes momentos de calma. ¿Respiramos un minuto?</string>
+    <string name="stats_no_calm_month">Aún no hay momentos de calma este mes. ¿Respiramos un minuto?</string>
+    <string name="stats_chart_cd">Tiempo de calma: %1$s</string>
+    <string name="stats_chart_item_cd">%1$s, %2$s</string>
+    <!-- Barra del mes: días 3–9 -->
+    <string name="stats_bar_days">%1$d–%2$d</string>
+    <string name="stats_moods_title">¿Cómo te sientes?</string>
+    <plurals name="stats_moods_count">
+        <item quantity="one">%1$d registro en este periodo</item>
+        <item quantity="many">%1$d registros en este periodo</item>
+        <item quantity="other">%1$d registros en este periodo</item>
+    </plurals>
+    <string name="stats_no_moods">Aún no registraste cómo te sientes en este periodo. Puedes hacerlo en Inicio.</string>
+    <string name="stats_percent">%1$d%%</string>
+    <string name="stats_screen_time_title">Tiempo de pantalla (noche)</string>
+    <string name="stats_screen_time_soon">Pronto verás cuánto usas el celular en tu horario de descanso. Panbu te pedirá permiso antes de mirarlo.</string>
+    <string name="stats_empty">Cuando registres tus momentos de calma y cómo te sientes, aquí verás tu avance.</string>
+    <string name="stats_empty_action">Respirar con Panbu</string>
+
+    <!-- Días y meses (abreviados para los gráficos) -->
+    <string-array name="weekdays_short">
+        <item>Lun</item>
+        <item>Mar</item>
+        <item>Mié</item>
+        <item>Jue</item>
+        <item>Vie</item>
+        <item>Sáb</item>
+        <item>Dom</item>
+    </string-array>
+    <string-array name="months_short">
+        <item>ene</item>
+        <item>feb</item>
+        <item>mar</item>
+        <item>abr</item>
+        <item>may</item>
+        <item>jun</item>
+        <item>jul</item>
+        <item>ago</item>
+        <item>sept</item>
+        <item>oct</item>
+        <item>nov</item>
+        <item>dic</item>
+    </string-array>
+    <string-array name="months_full">
+        <item>enero</item>
+        <item>febrero</item>
+        <item>marzo</item>
+        <item>abril</item>
+        <item>mayo</item>
+        <item>junio</item>
+        <item>julio</item>
+        <item>agosto</item>
+        <item>septiembre</item>
+        <item>octubre</item>
+        <item>noviembre</item>
+        <item>diciembre</item>
+    </string-array>
 
     <!-- Metas -->
     <string name="goals_title">Metas</string>
@@ -125,13 +200,76 @@
 
     <!-- Ajustes -->
     <string name="settings_title">Ajustes</string>
-    <string name="settings_account">Mi cuenta</string>
-    <string name="settings_profile">Editar perfil</string>
-    <string name="settings_notifications">Notificaciones</string>
+    <string name="settings_section_profile">Tu perfil</string>
+    <string name="settings_name">Tu nombre</string>
+    <string name="settings_name_empty">Sin nombre</string>
+    <string name="settings_name_dialog_title">¿Cómo te llamas?</string>
+    <string name="settings_name_dialog_hint">Lo usamos solo para saludarte. Puedes dejarlo vacío.</string>
+    <string name="settings_section_rest">Descanso</string>
     <string name="settings_rest_schedule">Horario de descanso</string>
-    <string name="settings_reminders">Recordatorios para dejar el celular</string>
+    <!-- 22:00 – 06:00 -->
+    <string name="settings_rest_schedule_value">%1$s – %2$s</string>
+    <string name="settings_rest_start_title">¿A qué hora empiezas a descansar?</string>
+    <string name="settings_rest_end_title">¿A qué hora te levantas?</string>
+    <string name="settings_reminders">Recordatorio para dejar el celular</string>
+    <string name="settings_reminders_desc">Un aviso al día, antes de tu horario de descanso.</string>
+    <string name="settings_reminder_before">Avisarme antes</string>
+    <string name="settings_reminder_minutes">%1$d min</string>
+    <string name="settings_reminder_hour">1 h</string>
+    <!-- Se muestra debajo del interruptor: "Te avisaremos a las 21:30" -->
+    <string name="settings_reminder_at">Te avisaremos a las %1$s</string>
+    <string name="settings_notifications_off">Las notificaciones de Panbu están desactivadas en tu celular. Si quieres recibir el recordatorio, actívalas en los ajustes del celular.</string>
+    <string name="settings_open_system_settings">Abrir ajustes del celular</string>
+    <string name="settings_permission_title">Permitir notificaciones</string>
+    <string name="settings_permission_body">Para avisarte antes de tu hora de descanso, Panbu necesita permiso para enviarte notificaciones. Será un solo aviso al día y nunca te mostrará publicidad.</string>
+    <string name="settings_section_help">Ayuda</string>
+    <string name="settings_section_privacy">Privacidad y mis datos</string>
+    <string name="settings_privacy_body">Todo lo que registras (cómo te sientes, tus momentos de calma, tus metas y tu diario) se guarda solo en este celular. Panbu no usa publicidad ni seguimiento.</string>
+    <string name="settings_erase_all">Borrar todos mis datos</string>
+    <string name="settings_erase_title">¿Borrar todos tus datos?</string>
+    <string name="settings_erase_body">Se borrarán de este celular tus estados de ánimo, momentos de calma, metas, diario y preferencias. No se puede deshacer.</string>
+    <string name="settings_erase_confirm">Borrar todo</string>
+    <string name="settings_section_soon">Próximamente</string>
+    <string name="settings_account">Mi cuenta</string>
     <string name="settings_sounds">Sonidos de relajación</string>
     <string name="settings_theme">Tema de la aplicación</string>
-    <string name="settings_privacy">Privacidad y mis datos</string>
-    <string name="settings_help">Ayuda y soporte</string>
+    <string name="settings_legal">Política de privacidad y términos</string>
+    <string name="settings_version">Versión %1$s</string>
+    <string name="save">Guardar</string>
+    <string name="cancel">Cancelar</string>
+    <string name="continue_action">Continuar</string>
+
+    <!-- Ayuda humana (guardrail 2). Línea 113 del Minsa: confirmar con el cliente la opción del menú. -->
+    <string name="help_title">¿Necesitas hablar con alguien?</string>
+    <string name="help_body">Si estás pasando por un momento muy difícil, hablar con alguien puede ayudar. En Perú puedes llamar gratis al 113 (Minsa) y elegir la opción de salud mental. Atienden las 24 horas.</string>
+    <string name="help_call">Llamar al 113</string>
+
+    <!-- Bienvenida (onboarding) -->
+    <string name="onboarding_welcome_title">Hola, soy Panbu</string>
+    <string name="onboarding_welcome_body">Tu calma, siempre contigo. Te acompaño a crear momentos de tranquilidad en tu día.</string>
+    <string name="onboarding_how_title">Así te acompaño</string>
+    <string name="onboarding_how_breathe">Respiramos juntos cuando lo necesites</string>
+    <string name="onboarding_how_mood">Registras cómo te sientes, en un toque</string>
+    <string name="onboarding_how_goals">Metas pequeñas, sin presión</string>
+    <string name="onboarding_how_rest">Un aviso para dejar el celular antes de dormir</string>
+    <string name="onboarding_privacy_title">Tu privacidad</string>
+    <string name="onboarding_privacy_local">Lo que registras se queda en este celular.</string>
+    <string name="onboarding_privacy_no_ads">Sin publicidad ni seguimiento.</string>
+    <string name="onboarding_privacy_erase">Puedes borrarlo todo cuando quieras, desde Ajustes.</string>
+    <string name="onboarding_name_title">¿Cómo te llamas?</string>
+    <string name="onboarding_name_body">Lo usamos solo para saludarte. Puedes dejarlo vacío.</string>
+    <string name="onboarding_name_label">Tu nombre (opcional)</string>
+    <string name="onboarding_disclaimer_title">Antes de empezar</string>
+    <string name="onboarding_next">Siguiente</string>
+    <string name="onboarding_back">Atrás</string>
+    <string name="onboarding_start">Entendido, empecemos</string>
+    <!-- Paso 2 de 5 -->
+    <string name="onboarding_step_cd">Paso %1$d de %2$d</string>
+
+    <!-- Recordatorio para dejar el celular (notificación) -->
+    <string name="reminder_channel_name">Recordatorio de descanso</string>
+    <string name="reminder_channel_desc">Un aviso al día, antes de tu horario de descanso.</string>
+    <string name="reminder_title">Se acerca tu hora de descanso</string>
+    <!-- La hora va al final: en formato de 12 h termina en "p. m." y un punto extra quedaría doble. -->
+    <string name="reminder_text">¿Dejamos el celular un rato y respiramos con Panbu? Tu descanso empieza a las %1$s</string>
 </resources>

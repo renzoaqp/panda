@@ -34,7 +34,7 @@ fun PanbuNavHost(
                 onOpenMoment = { navController.navigate(MomentRoute) },
             )
         }
-        composable<StatsRoute> { StatsScreen() }
+        composable<StatsRoute> { StatsScreen(onOpenBreathing = { navController.navigate(BreathingRoute()) }) }
         composable<GoalsRoute> { GoalsScreen() }
         composable<CalmRoute> {
             CalmSpaceScreen(

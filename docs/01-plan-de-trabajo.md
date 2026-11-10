@@ -1,6 +1,6 @@
 # Plan de trabajo — Panbu (Android)
 
-> **Estado:** Fase 0 en curso · **Última actualización:** 2026-11-09
+> **Estado:** APK 0.3 en curso (vía rápida) · **Última actualización:** 2026-11-10
 > Las duraciones son orientativas, para 1 desarrollador. Se ajustan al cerrar cada fase.
 
 ## Resumen
@@ -25,7 +25,7 @@ lo marcan estas versiones cortas. Cada una es un APK que se instala en un celula
 |---|---|---|
 | **APK 0.1** ✅ | Esqueleto compilado e instalable: tema, 5 pestañas, registro de estado de ánimo | Todo lo demás |
 | **APK 0.2 — demo funcional** ✅ | Ilustración propia del panda · Inicio con datos reales (ánimo + tiempo de calma de hoy vs. ayer) · Respira con Panbu (3 ritmos, 1/3/5 min) + "Necesito un momento de calma" · Un momento con Panbu (temporizador) · Metas iniciales con progreso automático | Cuentas, tienda, tiempo de pantalla |
-| **APK 0.3** | Estadísticas reales (semana) · Mi diario emocional · Recordatorio para dejar el celular · Ajustes básicos · Onboarding con el aviso | Cuentas, tienda, tiempo de pantalla |
+| **APK 0.3** | ✅ Estadísticas reales (Semana, Mes y Total) · Mi diario emocional · ✅ Recordatorio para dejar el celular · ✅ Ajustes básicos · ✅ Bienvenida con el aviso y la línea de ayuda | Cuentas, tienda, tiempo de pantalla |
 | **APK 0.4** | Cuentas opcionales (Firebase, correo) · Tienda con pedido por WhatsApp · Mensajes positivos y sonidos | Tiempo de pantalla, Bluetooth |
 | Después | Tiempo de pantalla nocturno · pruebas y publicación (Fase 4) · Bluetooth (Fase 5) | — |
 
@@ -68,13 +68,13 @@ Detalle en [03-arquitectura.md › Entorno de desarrollo](03-arquitectura.md#ent
 - [ ] Logo vectorial definitivo e ícono de la app (hoy hay uno provisional)
 - [ ] Crear las ilustraciones propias del panda en vector. No hay ilustrador, así que las diseñamos nosotros
       (lista en [04-diseno-visual.md](04-diseno-visual.md#ilustraciones-necesarias))
-- [ ] Componentes: fila de meta, tarjeta de métrica, botón principal, selector Semana/Mes/Total,
-      gráfico de barras, gráfico de dona
+- [x] Componentes: fila de meta, tarjeta de métrica, botón principal, selector Semana/Mes/Total,
+      gráfico de barras, gráfico de dona (2026-11-10)
 - [ ] Inicio igual al mockup
-- [ ] Estadísticas igual al mockup
+- [x] Estadísticas igual al mockup (con datos reales; el tiempo de pantalla dice "Próximamente")
 - [ ] Metas igual al mockup
-- [ ] Diseñar **Panbu, tu espacio de calma** (no está en el mockup; ver [02-producto.md §4](02-producto.md#4-panbu-tu-espacio-de-calma))
-- [ ] Diseñar **Ajustes** (no está en el mockup; ver [02-producto.md §6](02-producto.md#6-ajustes))
+- [x] Diseñar **Panbu, tu espacio de calma** (no está en el mockup; ver [02-producto.md §4](02-producto.md#4-panbu-tu-espacio-de-calma))
+- [x] Diseñar **Ajustes** (no está en el mockup; ver [02-producto.md §6](02-producto.md#6-ajustes))
 - [ ] Tienda "Agregar compra" igual al mockup (se entra desde la pestaña Panbu)
 - [ ] Estados vacíos de todas las pantallas
 - [ ] `DemoData` en el source set `app/src/debug/` para la demo con pantallas llenas (nunca en release)
@@ -87,26 +87,29 @@ Detalle en [03-arquitectura.md › Entorno de desarrollo](03-arquitectura.md#ent
 
 **Objetivo:** que cada botón haga algo real y guarde datos reales.
 
-- [ ] Onboarding: bienvenida en 3 pasos, crear cuenta / iniciar sesión / continuar sin cuenta, nombre, aviso
-      "Panbu no sustituye a un profesional"
+- [x] Onboarding: bienvenida en 5 pasos, nombre, aviso "Panbu no sustituye a un profesional" y línea de ayuda
+      (APK 0.3). Falta el paso de la cuenta (APK 0.4)
 - [ ] Cuentas de usuario ([ADR-0004](decisiones/0004-cuentas-de-usuario.md)): registro, inicio de sesión con Google y
       con correo, recuperar contraseña, perfil, cerrar sesión
 - [ ] Borrar la cuenta desde la app y desde una página web (requisito de Google Play)
 - [ ] Estado de ánimo: 5 estados y nota opcional; Inicio muestra el último del día
-- [ ] Respira con Panbu: animación de respiración, patrones (4-4-4-4, 4-7-8, suave 4-6), duración 1/3/5 min;
+- [x] Respira con Panbu: animación de respiración, patrones (4-4-4-4, 4-7-8, suave 4-6), duración 1/3/5 min;
       guarda una `CalmSession`
-- [ ] Botón "Necesito un momento de calma": un toque → 1 minuto de respiración suave
-- [ ] Tiempo contigo: iniciar y terminar un momento de calma (fuente `MANUAL`)
+- [x] Botón "Necesito un momento de calma": un toque → 1 minuto de respiración suave
+- [x] Tiempo contigo: iniciar y terminar un momento de calma (fuente `MANUAL`)
 - [ ] Metas: crear (+), editar, pausar y archivar; tipos predefinidos y personalizada; progreso del día o semana
 - [ ] Mi diario emocional: crear, editar y borrar; texto cifrado; bloqueo opcional con huella o PIN
 - [ ] Mensajes positivos: colección local y un mensaje destacado por día
 - [ ] Un momento para ti: 5–8 microactividades (estirarse, tomar agua, ejercicio 5-4-3-2-1…)
 - [ ] Sonidos relajantes: 3–5 audios con licencia libre, en bucle, con temporizador de apagado
 - [ ] Acompáñame a descansar: rutina guiada a la hora de descanso; registra un `SleepLog`
-- [ ] Recordatorios: notificación para dejar el celular (hora de descanso − N min), máximo 2 al día
+- [x] Recordatorios: notificación para dejar el celular (hora de descanso − N min), máximo 2 al día
+      ([ADR-0005](decisiones/0005-recordatorios-con-alarmmanager.md); probada en el emulador el 2026-11-10)
 - [ ] Ajustes: perfil local (nombre y foto), notificaciones, horario de descanso, recordatorios, sonido preferido,
-      tema claro/oscuro/sistema, privacidad (exportar y borrar datos), ayuda (con línea de ayuda), aviso legal
-- [ ] Tests unitarios del progreso de metas y de la duración de sesiones
+      tema claro/oscuro/sistema, privacidad (exportar y borrar datos), ayuda (con línea de ayuda), aviso legal.
+      **Hecho en el APK 0.3:** nombre, horario de descanso, recordatorio, ayuda, borrar todos mis datos.
+      Falta: foto, sonido, tema, exportar, aviso legal
+- [x] Tests unitarios del progreso de metas y de la duración de sesiones
 
 **Terminado cuando:** cada función guarda y recupera datos reales después de cerrar y abrir la app, y los
 tests pasan.
@@ -117,15 +120,15 @@ tests pasan.
 
 **Objetivo:** que los gráficos muestren solo lo que la persona registró (nunca datos inventados).
 
-- [ ] Consultas por periodo: Semana (barras por día), Mes (barras por semana), Total (barras por mes)
-- [ ] Gráfico de barras y gráfico de dona dibujados con Canvas, con descripción para lectores de pantalla
-- [ ] Comparación con el periodo anterior (si no hay periodo anterior, no se muestra porcentaje)
+- [x] Consultas por periodo: Semana (barras por día), Mes (barras por semana), Total (barras por mes)
+- [x] Gráfico de barras y gráfico de dona dibujados con Canvas, con descripción para lectores de pantalla
+- [x] Comparación con el mismo tramo del periodo anterior (si alguno está en 0, no se muestra porcentaje)
 - [ ] Tiempo de pantalla nocturno con `UsageStatsManager`: pantalla que explica para qué sirve → Ajustes del
       sistema; sin permiso, la tarjeta lo explica (no muestra 0)
 - [ ] Resumen nocturno diario guardado cada mañana con WorkManager (Android solo conserva los eventos de uso
       unos días)
 - [ ] Progreso automático de metas: celular de noche, sueño, momentos de calma, respiración
-- [ ] Tests con datos conocidos → valores esperados en cada gráfico
+- [x] Tests con datos conocidos → valores esperados en cada gráfico (`StatsCalculatorTest`, `MinutesAxisTest`)
 
 **Terminado cuando:** con un conjunto de datos de prueba, cada número y barra coincide con el valor calculado
 a mano.

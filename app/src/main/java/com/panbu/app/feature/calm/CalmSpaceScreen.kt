@@ -22,7 +22,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.panbu.app.R
-import com.panbu.app.feature.breathing.PrimaryPillButton
+import com.panbu.app.ui.components.PrimaryPillButton
+import com.panbu.app.ui.components.HelpLineCard
 import com.panbu.app.ui.components.PanbuCard
 import com.panbu.app.ui.components.PanbuScreen
 import com.panbu.app.ui.components.ScreenTitle
@@ -110,6 +111,9 @@ fun CalmSpaceScreen(
             style = MaterialTheme.typography.bodySmall,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
         )
+
+        // Siempre hay una salida a ayuda humana (guardrail 2).
+        HelpLineCard()
     }
 }
 

@@ -17,6 +17,9 @@ import kotlinx.coroutines.sync.withLock
 interface GoalRepository {
     /** Metas activas. La primera vez crea las metas iniciales (DefaultGoals). */
     fun observeActive(): Flow<List<Goal>>
+
+    /** Crea las metas iniciales si la tabla está vacía (primera vez, o después de "Borrar todos mis datos"). */
+    suspend fun ensureDefaultGoals()
 }
 
 class RoomGoalRepository @Inject constructor(
@@ -32,7 +35,7 @@ class RoomGoalRepository @Inject constructor(
         emitAll(dao.observeActive().map { list -> list.map { it.toDomain() } })
     }
 
-    private suspend fun ensureDefaultGoals() = seedLock.withLock {
+    override suspend fun ensureDefaultGoals() = seedLock.withLock {
         if (dao.countAll() == 0) {
             val now = clock.instant()
             DefaultGoals.all.forEach { dao.upsert(it.toEntity(createdAt = now)) }

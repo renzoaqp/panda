@@ -2,6 +2,7 @@ package com.panbu.app.feature.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.panbu.app.data.preferences.PreferencesRepository
 import com.panbu.app.data.repository.MoodRepository
 import com.panbu.app.domain.model.GoalItem
 import com.panbu.app.domain.model.Mood
@@ -19,6 +20,8 @@ import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 
 data class HomeUiState(
+    /** Nombre para el saludo ("Hola, Ana"); null si la persona no lo escribió. */
+    val userName: String? = null,
     /** Último estado de ánimo registrado HOY, o null si todavía no hay registro. */
     val todayMood: Mood? = null,
     val calmToday: Duration = Duration.ZERO,
@@ -34,14 +37,17 @@ data class HomeUiState(
 class HomeViewModel @Inject constructor(
     private val moodRepository: MoodRepository,
     observeTodayProgress: ObserveTodayProgress,
+    preferences: PreferencesRepository,
     private val clock: Clock,
 ) : ViewModel() {
 
     val uiState: StateFlow<HomeUiState> = combine(
         moodRepository.observeLatest(),
         observeTodayProgress(),
-    ) { latestMood, today ->
+        preferences.preferences,
+    ) { latestMood, today, prefs ->
         HomeUiState(
+            userName = prefs.displayName,
             todayMood = latestMood?.takeIf { it.isFromToday() }?.mood,
             calmToday = today.calmToday,
             calmYesterday = today.calmYesterday,

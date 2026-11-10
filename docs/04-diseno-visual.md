@@ -89,13 +89,31 @@ claro; el selector de tema se implementa en la Fase 1.
 | `KeepScreenOn` (pantalla encendida durante la calma) | Hecho | `ui/components/KeepScreenOn.kt` |
 | `formatDuration` / `formatClock` ("2 h 15 min", "4:05") | Hecho | `ui/components/Formatters.kt` |
 | Animación de respiración (círculo + panda al ritmo de cada fase) | Hecho | `feature/breathing/BreathingScreen.kt` |
-| Tarjeta de métrica (número grande + comparación) | Hecho dentro de Inicio; extraer cuando la use Estadísticas | `feature/home/HomeScreen.kt` |
-| Selector Semana/Mes/Total | Pendiente | — |
-| Gráfico de barras, gráfico de dona | Pendiente (Estadísticas) | — |
+| `PrimaryPillButton` (botón principal en píldora, a todo el ancho) | Hecho | `ui/components/PrimaryPillButton.kt` |
+| `TrendText` (comparación: verde si mejora, gris si no; nunca rojo) | Hecho (Inicio y Estadísticas) | `ui/components/TrendText.kt` |
+| `SegmentedSelector` (Semana · Mes · Total) | Hecho | `ui/components/SegmentedSelector.kt` |
+| `CalmBarChart` (barras con eje redondo; resalta hoy; resumen para TalkBack) | Hecho | `ui/components/charts/CalmBarChart.kt` |
+| `MinutesAxis` (elige el paso del eje; Kotlin puro con tests) | Hecho | `ui/components/charts/MinutesAxis.kt` |
+| `DonutChart` (dona con separadores y contenido en el centro) | Hecho | `ui/components/charts/DonutChart.kt` |
+
+### Gráficos
+
+Se dibujan con `Canvas` de Compose, **sin librerías de gráficos** (una dependencia menos y control total del
+estilo). Reglas:
+
+- Barras en `extraColors.progress` (`PurpleSoft`); la barra de hoy en `primary` (`Purple`). Esquinas de arriba
+  redondeadas (6 dp), ancho máximo 28 dp, líneas guía de 1 dp en `outline`.
+- Etiquetas en `labelSmall` y `onSurfaceVariant`. Si no caben (muchas barras o letra grande), se muestra una de cada
+  N, siempre incluida la última.
+- Una barra con muy poco tiempo (por ejemplo 40 s en un eje de 1 h) se dibuja con al menos 3 dp para que no
+  parezca vacía; una barra en 0 no se dibuja.
+- Dona de 24 dp de grosor que empieza arriba y gira en el sentido del reloj, con una línea fina del color de la
+  tarjeta entre porciones. Colores de `MoodPalette`. En el centro, el panda, el % y el estado más frecuente.
+- Todo gráfico tiene su equivalente en texto (leyenda o `contentDescription`).
 
 ## Íconos
 
-Íconos de línea redondeada, 24 dp, en `res/drawable/ic_*.xml`. Hay versiones provisionales de: inicio,
+Íconos de línea redondeada, 24 dp, en `res/drawable/ic_*.xml`. Hay versiones provisionales de: inicio, luna (`ic_moon`),
 estadísticas, metas, panda, ajustes, volver, agregar y bolsa. Se reemplazarán por los definitivos del diseñador
 (o por Material Symbols Rounded).
 

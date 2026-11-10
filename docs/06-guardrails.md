@@ -11,8 +11,11 @@ Estas reglas valen para todo el que trabaje en Panbu, sea persona o IA. Si una t
 2. **Aviso visible** en el onboarding, en la pestaña Panbu y en Ayuda: "Panbu te acompaña a practicar hábitos de
    bienestar, pero no sustituye la atención de un profesional de la salud."
 3. **Siempre hay una salida a ayuda humana:** "¿Necesitas hablar con alguien?", en la pestaña Panbu y en Ayuda,
-   con la línea de ayuda del país. Para Perú: Línea 113, opción 5 (salud mental, MINSA). **Verificar que siga
-   vigente antes de publicar.**
+   con la línea de ayuda del país. Para Perú: Línea 113 del Minsa, gratuita y las 24 horas, en su opción de salud
+   mental. **Verificar que siga vigente antes de publicar.** (Verificado el 2026-11-10 en fuentes del Minsa y del
+   INSM; las fuentes no coinciden en la ruta del menú, "opción 5" u "opción 3 → 5", así que el texto de la app
+   dice "elegir la opción de salud mental". El cliente debe confirmarla.) Desde el APK 0.3 la tarjeta está en
+   la pestaña Panbu, en Ajustes › Ayuda y en el último paso de la bienvenida.
 4. **No se analiza el contenido del diario** (ni en el celular ni fuera de él). Es privado.
 5. **Sin presión:** no hay rachas que se pierden, ni rojo de error, ni mensajes de culpa. Superar un límite se
    muestra en rosa suave y con un texto amable.
@@ -65,9 +68,8 @@ Estas reglas valen para todo el que trabaje en Panbu, sea persona o IA. Si una t
 
 | Permiso | Para qué | Fase | Cómo se pide |
 |---|---|---|---|
-| *(ninguno)* | El esqueleto actual no necesita permisos | 0 | — |
-| `POST_NOTIFICATIONS` | Recordatorios (Android 13+) | 1 | Al activar los recordatorios |
-| `RECEIVE_BOOT_COMPLETED` | Volver a programar los recordatorios tras reiniciar | 1 | No se pide (normal) |
+| `POST_NOTIFICATIONS` | Recordatorios (Android 13+) | ✅ En el manifest desde el APK 0.3 | Al activar el recordatorio en Ajustes, después de un diálogo que explica para qué es |
+| `RECEIVE_BOOT_COMPLETED` | Volver a programar los recordatorios tras reiniciar | ✅ En el manifest desde el APK 0.3 | No se pide (normal) |
 | `USE_BIOMETRIC` | Bloquear el diario con huella | 1 | No se pide (normal) |
 | `FOREGROUND_SERVICE`, `FOREGROUND_SERVICE_MEDIA_PLAYBACK` | Sonidos con la pantalla apagada | 1 | No se pide (normal) |
 | `PACKAGE_USAGE_STATS` | Tiempo de pantalla nocturno | 2 | Pantalla explicativa → Ajustes del sistema. Opcional |
