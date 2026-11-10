@@ -12,6 +12,14 @@ No hace falta Android Studio: basta VS Code y la terminal. Se necesitan el JDK 2
 (command-line tools). El paso a paso está en
 [docs/03-arquitectura.md › Entorno de desarrollo](docs/03-arquitectura.md#entorno-de-desarrollo).
 
+**Windows: sigue el [manual de VS Code](docs/08-manual-vscode.md)** (paso a paso, con solución de problemas). En
+resumen:
+1. Instala Git y VS Code (`winget install Git.Git` y `winget install Microsoft.VisualStudioCode`).
+2. En VS Code: `Ctrl+Shift+P` → **Git: Clone** → `https://github.com/renzoaqp/panda.git` → carpeta corta, como
+   `C:\dev`, → **Abrir** → "Confiar".
+3. En la terminal de VS Code: `powershell -ExecutionPolicy Bypass -File scripts\setup-windows.ps1`.
+4. Reinicia VS Code y compila con `Ctrl+Shift+B`. Si VS Code ofrece "actualizar Gradle", responde que no.
+
 Con `JAVA_HOME` (JDK 21) y `ANDROID_HOME` configurados, y un celular conectado con "Depuración USB":
 
 ```bash

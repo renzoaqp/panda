@@ -130,10 +130,58 @@ Variables de entorno: `ANDROID_HOME=$HOME/Android/Sdk` y `JAVA_HOME=<ruta del JD
 
 | Con Android Studio | Sin Android Studio |
 |---|---|
-| `@Preview` de Compose | Tests de captura de pantalla con Roborazzi: generan un PNG de cada pantalla con `./gradlew` (por configurar en la Fase 0) |
+| `@Preview` de Compose | Tests de captura de pantalla con Roborazzi: `./gradlew recordRoborazziDebug` genera un PNG de cada pantalla en `app/build/outputs/roborazzi/` |
 | Autocompletado y refactors completos para Android | La extensión de Kotlin de VS Code es más limitada en Android; algunos errores solo aparecen al compilar |
 | Depurador visual, Layout Inspector, Database Inspector | `adb logcat` y logs. Android Studio se puede instalar después solo para casos difíciles |
 | Emulador con interfaz gráfica | Celular físico por USB (el Bluetooth del peluche también necesita un celular real) |
+
+### VS Code (Linux y Windows)
+
+- `.vscode/tasks.json`: *Terminal → Run Task…* tiene "compilar APK" (Ctrl+Shift+B), "instalar en el celular",
+  "tests" y "capturas de pantalla". Funcionan en los dos sistemas.
+- `.vscode/settings.json` desactiva la importación de Gradle de la extensión de Java de Red Hat. Esa extensión no
+  soporta Android y, con su Java 25, propone "actualizar" el wrapper a Gradle 9.x, lo que rompe la compilación.
+  **Si VS Code ofrece actualizar Gradle, responde que no.**
+- `.gitattributes` fija los finales de línea (LF en todo; CRLF en `.bat` y `.ps1`), así que no hace falta tocar
+  `core.autocrlf`.
+
+### Windows
+
+**Paso 0 — tener Git y VS Code** (una sola vez, en PowerShell):
+```powershell
+winget install --id Git.Git -e
+winget install --id Microsoft.VisualStudioCode -e
+git config --global core.longpaths true   # las compilaciones de Android crean rutas muy largas
+```
+
+**Paso 1 — clonar el repositorio con VS Code**
+1. Abre VS Code → `Ctrl+Shift+P` → escribe **Git: Clone** → pega `https://github.com/renzoaqp/panda.git`.
+2. Elige una carpeta **corta y sin espacios**, por ejemplo `C:\dev` (queda `C:\dev\panda`). Las rutas largas
+   como `C:\Users\Nombre\OneDrive\Documentos\...` causan errores de Gradle en Windows, y OneDrive además
+   sincroniza las carpetas `build`.
+3. Si el repo es privado, VS Code pide iniciar sesión en GitHub: acepta.
+4. Cuando termine, presiona **Abrir**. Si pregunta *"¿Confías en los autores de los archivos?"*, responde **Sí**
+   (sin eso, las tareas de compilación no funcionan).
+
+**Paso 2 — instalar las herramientas:** en VS Code abre *Terminal → New Terminal* (PowerShell) y ejecuta:
+`powershell -ExecutionPolicy Bypass -File scripts\setup-windows.ps1`
+El script instala el JDK 21 (con `winget`) y el Android SDK en `%LOCALAPPDATA%\Android\Sdk` (verificando el
+checksum), y configura `JAVA_HOME`, `ANDROID_HOME` y `adb` en el `PATH` del usuario.
+
+**Paso 3 — compilar:** cierra y vuelve a abrir VS Code; luego `Ctrl+Shift+B` (o `.\gradlew.bat assembleDebug`). La
+primera vez tarda unos minutos porque descarga Gradle y las librerías. El APK queda en
+`app\build\outputs\apk\debug\app-debug.apk`.
+
+**Paso 4 — celular:** activa "Depuración USB" y conéctalo. Si `adb devices` no lo muestra, instala el driver USB del
+fabricante (el script ya instala el de Google para los Pixel). Luego, la tarea "Panbu: instalar en el celular".
+
+**Para traer los cambios nuevos:** en VS Code, barra lateral de Git (`Ctrl+Shift+G`) → `…` → **Pull**, o el botón de
+sincronizar en la barra inferior.
+
+### Linux (Fedora)
+
+JDK 21 en `~/.jdks/` (Temurin) y SDK en `~/Android/Sdk`. Agrega a `~/.bashrc`:
+`export JAVA_HOME=$HOME/.jdks/jdk-21.0.13+9` y `export ANDROID_HOME=$HOME/Android/Sdk`.
 
 ## Comandos
 

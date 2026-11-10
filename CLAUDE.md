@@ -28,6 +28,7 @@ noche, respiración, dormir mejor) y comprar el peluche. En la fase final, la ap
 | Qué está prohibido u obligatorio | `docs/06-guardrails.md` |
 | Peluche y Bluetooth | `docs/07-bluetooth.md` |
 | Por qué se eligió algo | `docs/decisiones/` |
+| Preparar Windows + VS Code, clonar, compilar | `docs/08-manual-vscode.md` |
 
 ## Stack
 

@@ -11,6 +11,7 @@ Todo lo que se decida sobre Panbu se escribe aquí.
 | [05-modelo-de-datos.md](05-modelo-de-datos.md) | Qué se guarda y cómo se calcula cada métrica |
 | [06-guardrails.md](06-guardrails.md) | Reglas obligatorias: salud, datos reales, privacidad, técnica y permisos |
 | [07-bluetooth.md](07-bluetooth.md) | Diseño preliminar de la conexión con el peluche (fase final) |
+| [08-manual-vscode.md](08-manual-vscode.md) | **Manual paso a paso:** preparar Windows + VS Code, clonar, compilar e instalar en el celular |
 | [decisiones/](decisiones/) | Registro de decisiones de arquitectura (ADR) |
 
 Material original del cliente (no editar): [`../00info/`](../00info/) — mockup y guía en PDF.

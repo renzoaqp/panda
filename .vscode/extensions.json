@@ -1,0 +1,15 @@
+{
+    // VS Code propone instalar estas extensiones al abrir el proyecto. Ver docs/08-manual-vscode.md, paso 4.
+    "recommendations": [
+        "mathiasfrohlich.Kotlin",
+        "redhat.vscode-xml",
+        "EditorConfig.EditorConfig",
+        "anthropic.claude-code"
+    ],
+    // No soportan proyectos Android y ofrecen "actualizar" Gradle, lo que rompe la compilación.
+    "unwantedRecommendations": [
+        "redhat.java",
+        "vscjava.vscode-java-pack",
+        "vscjava.vscode-gradle"
+    ]
+}

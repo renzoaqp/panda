@@ -23,7 +23,7 @@ lo marcan estas versiones cortas. Cada una es un APK que se instala en un celula
 
 | Versión | Contenido | Fuera por ahora |
 |---|---|---|
-| **APK 0.1** | Esqueleto compilado e instalable: tema, 5 pestañas, registro de estado de ánimo | Todo lo demás |
+| **APK 0.1** ✅ | Esqueleto compilado e instalable: tema, 5 pestañas, registro de estado de ánimo | Todo lo demás |
 | **APK 0.2 — demo funcional** | Ilustraciones propias del panda · Inicio con datos reales (ánimo + tiempo de calma de hoy) · Respira con Panbu + "Necesito un momento de calma" (guardan sesiones) · Metas predefinidas con progreso automático | Cuentas, tienda, tiempo de pantalla |
 | **APK 0.3** | Estadísticas reales (semana) · Mi diario emocional · Recordatorio para dejar el celular · Ajustes básicos · Onboarding con el aviso | Cuentas, tienda, tiempo de pantalla |
 | **APK 0.4** | Cuentas opcionales (Firebase, correo) · Tienda con pedido por WhatsApp · Mensajes positivos y sonidos | Tiempo de pantalla, Bluetooth |
@@ -53,10 +53,12 @@ datos de ejemplo (solo en compilaciones de depuración).
 
 ### Entorno (VS Code + línea de comandos; Android Studio es opcional)
 Detalle en [03-arquitectura.md › Entorno de desarrollo](03-arquitectura.md#entorno-de-desarrollo).
-- [ ] JDK 21 y Android SDK (command-line tools) instalados; `ANDROID_HOME` configurado
-- [ ] `adb` reconoce un celular Android con "Depuración USB" activada
-- [ ] Primer `./gradlew assembleDebug` exitoso y app instalada con `./gradlew installDebug`
-- [ ] Tests de captura de pantalla (Roborazzi) para ver las pantallas sin Android Studio
+- [x] JDK 21 y Android SDK (command-line tools) instalados en Linux (2026-11-09)
+- [x] Primer `./gradlew assembleDebug` exitoso: APK 0.1 de depuración generado; 5/5 tests en verde
+- [x] Tests de captura de pantalla (Roborazzi): 7 capturas generadas
+- [x] Soporte para Windows: `scripts/setup-windows.ps1`, tareas de VS Code, `.gitattributes`
+- [ ] Windows: clonar con VS Code, ejecutar `scripts/setup-windows.ps1` y compilar (pasos en docs/03 › Windows)
+- [ ] `adb` reconoce un celular Android con "Depuración USB" activada; app instalada con `installDebug`
 - [ ] Hacer commit de `app/schemas/` (lo genera Room en la primera compilación)
 
 ### Diseño
