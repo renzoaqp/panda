@@ -1,0 +1,20 @@
+{
+    // La extensión de Java de Red Hat no soporta proyectos Android. Además, como trae su propio Java 25,
+    // propone "actualizar" el Gradle wrapper a 9.x, y eso rompe la compilación (AGP 8.11 + Kotlin 2.1 usan
+    // Gradle 8.14.3). Por eso se desactiva su importación de Gradle en este proyecto.
+    // Compilar: Ctrl+Shift+B (tareas en .vscode/tasks.json) o ./gradlew en la terminal.
+    "java.import.gradle.enabled": false,
+    "java.configuration.updateBuildConfiguration": "disabled",
+
+    "files.eol": "\n",
+    "files.exclude": {
+        "**/.gradle": true,
+        "**/build": true,
+        "**/.kotlin": true
+    },
+    "files.watcherExclude": {
+        "**/.gradle/**": true,
+        "**/build/**": true,
+        "**/.kotlin/**": true
+    }
+}

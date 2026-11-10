@@ -1,0 +1,40 @@
+{
+    // Tareas de Panbu: Terminal → Run Task… (Ctrl+Shift+B compila). Funcionan en Linux y en Windows.
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Panbu: compilar APK",
+            "type": "shell",
+            "command": "./gradlew",
+            "windows": { "command": ".\\gradlew.bat" },
+            "args": ["assembleDebug"],
+            "group": { "kind": "build", "isDefault": true },
+            "problemMatcher": []
+        },
+        {
+            "label": "Panbu: instalar en el celular",
+            "type": "shell",
+            "command": "./gradlew",
+            "windows": { "command": ".\\gradlew.bat" },
+            "args": ["installDebug"],
+            "problemMatcher": []
+        },
+        {
+            "label": "Panbu: tests",
+            "type": "shell",
+            "command": "./gradlew",
+            "windows": { "command": ".\\gradlew.bat" },
+            "args": ["testDebugUnitTest"],
+            "group": { "kind": "test", "isDefault": true },
+            "problemMatcher": []
+        },
+        {
+            "label": "Panbu: capturas de pantalla",
+            "type": "shell",
+            "command": "./gradlew",
+            "windows": { "command": ".\\gradlew.bat" },
+            "args": ["recordRoborazziDebug"],
+            "problemMatcher": []
+        }
+    ]
+}

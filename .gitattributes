@@ -1,0 +1,22 @@
+# Finales de línea iguales en Linux y Windows (el repo se abre en ambos).
+* text=auto eol=lf
+
+# Scripts de Windows con CRLF
+*.bat text eol=crlf
+*.cmd text eol=crlf
+*.ps1 text eol=crlf
+
+# El script gradlew debe quedar con LF también en Windows (si no, falla en Linux/macOS/WSL)
+gradlew text eol=lf
+
+# Binarios
+*.jar binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.webp binary
+*.pdf binary
+*.ttf binary
+*.otf binary
+*.mp3 binary
+*.ogg binary

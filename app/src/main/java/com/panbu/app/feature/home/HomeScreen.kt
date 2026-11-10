@@ -58,8 +58,9 @@ fun HomeScreen(
     )
 }
 
+/** Sin estado: la usan HomeScreen, el @Preview y las capturas de pantalla. */
 @Composable
-private fun HomeContent(
+internal fun HomeContent(
     uiState: HomeUiState,
     onMoodSelected: (Mood) -> Unit,
     onOpenSettings: () -> Unit,
