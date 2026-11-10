@@ -11,6 +11,7 @@
 | Base de datos | Room (SQLite) | Datos en el celular ([ADR-0002](decisiones/0002-datos-locales-primero.md)) |
 | Navegación | Navigation Compose con rutas tipadas (`@Serializable`) | Seguridad de tipos |
 | Preferencias | DataStore (Fase 1) | Ajustes de la persona |
+| Cuentas | Firebase Authentication — propuesto (Fase 1) | Ver [ADR-0004](decisiones/0004-cuentas-de-usuario.md) |
 | Tareas programadas | WorkManager / AlarmManager (Fase 1–2) | Recordatorios y resumen nocturno |
 | Audio | Media3 ExoPlayer (Fase 1) | Sonidos relajantes en bucle |
 | Gráficos | Canvas de Compose (Fase 2) | Iguales al mockup, sin librerías extra |
@@ -92,7 +93,7 @@ panda/
 ```
 
 Carpetas que se agregarán más adelante: `notifications/` (Fase 1), `data/preferences/` (DataStore, Fase 1),
-`device/ble/` (Fase 5), `src/androidTest/` (Fase 4).
+`data/account/` y `feature/account/` (cuentas, Fase 1), `device/ble/` (Fase 5), `src/androidTest/` (Fase 4).
 
 ## Convenciones
 
@@ -110,14 +111,35 @@ Carpetas que se agregarán más adelante: `notifications/` (Fase 1), `data/prefe
 - **Colores y medidas:** solo desde el tema (`MaterialTheme`, `PanbuTheme.extraColors`, `PanbuSpacing`).
 - **Dependencias:** todas en `gradle/libs.versions.toml`.
 
+## Entorno de desarrollo
+
+**No hace falta Android Studio.** Se trabaja con VS Code (o cualquier editor) y la línea de comandos. Es la
+opción recomendada para este equipo: consume mucha menos memoria y permite que Claude Code compile, corra los tests y
+vea las pantallas.
+
+| Herramienta | Para qué |
+|---|---|
+| JDK 21 | Ejecutar Gradle 8.14 (no funciona con el JDK 25) |
+| Android SDK command-line tools en `~/Android/Sdk`, con `platform-tools`, `platforms;android-36` y `build-tools;36.0.0` | Compilar |
+| `adb` (viene en `platform-tools`) | Instalar en el celular y leer los logs |
+| `scrcpy` (opcional) | Ver y controlar la pantalla del celular desde la PC |
+| VS Code + extensión de Kotlin | Editar |
+
+Variables de entorno: `ANDROID_HOME=$HOME/Android/Sdk` y `JAVA_HOME=<ruta del JDK 21>`. También se puede poner
+`sdk.dir` en `local.properties`, que no va al repositorio.
+
+| Con Android Studio | Sin Android Studio |
+|---|---|
+| `@Preview` de Compose | Tests de captura de pantalla con Roborazzi: generan un PNG de cada pantalla con `./gradlew` (por configurar en la Fase 0) |
+| Autocompletado y refactors completos para Android | La extensión de Kotlin de VS Code es más limitada en Android; algunos errores solo aparecen al compilar |
+| Depurador visual, Layout Inspector, Database Inspector | `adb logcat` y logs. Android Studio se puede instalar después solo para casos difíciles |
+| Emulador con interfaz gráfica | Celular físico por USB (el Bluetooth del peluche también necesita un celular real) |
+
 ## Comandos
 
-Gradle 8.14 necesita **JDK 17 o 21**. Android Studio trae uno (JBR 21); el Java 25 del sistema no sirve
-para Gradle 8.14.
-
 ```bash
-# Desde la terminal (Linux), usando el JDK de Android Studio:
-export JAVA_HOME=/ruta/a/android-studio/jbr
+export ANDROID_HOME=$HOME/Android/Sdk
+export JAVA_HOME=/ruta/al/jdk-21
 
 ./gradlew assembleDebug          # Compila el APK de depuración
 ./gradlew installDebug           # Instala en el celular conectado por USB
@@ -128,7 +150,8 @@ export JAVA_HOME=/ruta/a/android-studio/jbr
 ## Versiones
 
 Las versiones de `gradle/libs.versions.toml` son un conjunto compatible conocido (AGP 8.11 · Kotlin 2.1.21 ·
-KSP 2.1.21-2.0.1 · Compose BOM 2025.06.01 · Gradle 8.14.3). Para actualizarlas, usa el *AGP Upgrade Assistant*
-de Android Studio en una rama aparte, compila, corre los tests y prueba en un celular antes de unir los cambios.
+KSP 2.1.21-2.0.1 · Compose BOM 2025.06.01 · Gradle 8.14.3). Para actualizarlas, trabaja en una rama aparte:
+cambia las versiones en el catálogo (respetando la compatibilidad entre AGP, Gradle, Kotlin y KSP), compila,
+corre los tests y prueba en un celular antes de unir los cambios.
 Las librerías que se usarán en fases siguientes (DataStore, WorkManager, Media3, Biometric) ya están declaradas
 en el catálogo, pero se agregan a `app/build.gradle.kts` recién cuando se usan.

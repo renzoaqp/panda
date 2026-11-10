@@ -141,12 +141,17 @@ No aparece en el mockup; se diseña en la Fase 0.
 | Privacidad y mis datos | Qué se guarda, exportar mis datos, borrar todo, permisos activos |
 | Ayuda y soporte | Preguntas frecuentes, contacto, "¿Necesitas hablar con alguien?" (línea de ayuda) |
 | Aviso legal | Política de privacidad y términos |
-| Cerrar sesión | Solo si se decide tener cuentas (decisión pendiente #4) |
+| Mi cuenta | Correo, iniciar o cerrar sesión, borrar la cuenta ([ADR-0004](decisiones/0004-cuentas-de-usuario.md)). Sin cuenta: "Crear cuenta / Iniciar sesión" |
 
-## 7. Onboarding y permisos
+## 7. Onboarding, cuenta y permisos
 
-- Primera vez: 3 pantallas (qué es Panbu, cómo te acompaña, tu privacidad) → nombre (opcional) → aviso de que
-  no sustituye a un profesional → Inicio.
+- Primera vez: 3 pantallas (qué es Panbu, cómo te acompaña, tu privacidad) → **Crear cuenta / Iniciar sesión /
+  Continuar sin cuenta** → nombre → aviso de que no sustituye a un profesional → Inicio.
+- **Cuenta** ([ADR-0004](decisiones/0004-cuentas-de-usuario.md)): con Google o con correo y contraseña. Al crearla
+  se explica en una frase qué se guarda en la nube (correo, nombre y foto opcional) y que los datos emocionales
+  se quedan en el celular. Se puede cerrar sesión y borrar la cuenta desde Ajustes.
+- **(supuesto, decisión pendiente #12)** La cuenta es opcional: se pide al comprar o al querer conservar el
+  perfil en otro celular. Las funciones de calma nunca la piden.
 - Los permisos **nunca** se piden al inicio: se piden en el momento en que se usan, con una pantalla previa que
   explica para qué (ver la tabla de permisos en [06-guardrails.md](06-guardrails.md#permisos)).
 
@@ -160,4 +165,4 @@ No aparece en el mockup; se diseña en la Fase 0.
 ## Fuera de alcance (por ahora)
 
 Chat con inteligencia artificial, diagnósticos o tests psicológicos, red social o compartir, versión para
-iPhone (decisión pendiente #1), cuentas en la nube (decisión pendiente #4).
+iPhone (decidido: solo Android), sincronizar los datos emocionales en la nube (decisión pendiente #13).

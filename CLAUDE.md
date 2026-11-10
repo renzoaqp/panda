@@ -7,6 +7,10 @@ noche, respiración, dormir mejor) y comprar el peluche. En la fase final, la ap
 
 - **Fuente de verdad del producto:** `00info/` (mockup + guía PDF del cliente; **no editar**) y `docs/`.
 - **Plan y estado:** `docs/01-plan-de-trabajo.md`. **Fase actual: 0 (base y diseño).**
+- **Decisiones tomadas (2026-11-09):** solo Android (sin iPhone). No hay ilustrador: **las ilustraciones del
+  panda las creamos nosotros** en vector (la tienda usa fotos reales). **Habrá cuentas de usuario**
+  (ADR-0004; el proveedor y los detalles siguen pendientes). Se trabaja con VS Code + línea de comandos; Android
+  Studio es opcional.
 - **Idioma:** conversación, documentación y textos de la app en **español**. Código (clases, funciones,
   variables) en inglés; comentarios en español.
 
@@ -54,9 +58,10 @@ MoodDao).
 ./gradlew installDebug         # instalar en el celular conectado
 ```
 
-Gradle 8.14 necesita **JDK 17 o 21** (el de Android Studio: `JAVA_HOME=<android-studio>/jbr`). Con JDK 25 falla.
-Si no hay Android SDK o JDK compatible en el entorno, dilo explícitamente: **no afirmes que algo compila si no
-se compiló**.
+Gradle 8.14 necesita **JDK 17 o 21** (con JDK 25 falla) y el Android SDK en `ANDROID_HOME` (`~/Android/Sdk`).
+Detalle en `docs/03-arquitectura.md` › Entorno de desarrollo. Si no hay un SDK o un JDK compatible, dilo
+explícitamente: **no afirmes que algo compila si no se compiló**. Sin Android Studio no hay `@Preview`; para ver
+una pantalla se usan los tests de captura (Roborazzi) y se mira el PNG.
 
 ## Guardrails (no negociables; detalle y razones en docs/06-guardrails.md)
 
@@ -67,9 +72,10 @@ se compiló**.
    notificaciones al día. La tienda nunca aparece en los flujos de calma ni en notificaciones.
 4. **Datos reales:** ningún gráfico ni número inventado en release. `DemoData` solo en `app/src/debug/`. Sin
    datos → estado vacío. Toda regla de cálculo de `docs/05` tiene un test.
-5. **Privacidad local:** los datos emocionales no salen del celular sin ADR + consentimiento. Sin SDKs de
-   analítica ni publicidad. `allowBackup="false"`. El diario se cifra. Nunca registrar datos personales en
-   logs.
+5. **Privacidad local:** los datos emocionales no salen del celular sin ADR + consentimiento. A la nube solo va
+   la cuenta (correo, nombre y foto opcional, ADR-0004), y se puede borrar desde la app y desde la web. Las
+   funciones de calma nunca piden iniciar sesión. Sin SDKs de analítica ni publicidad. `allowBackup="false"`.
+   El diario se cifra. Nunca registrar datos personales en logs.
 6. **Permisos:** solo los de la tabla de `docs/06-guardrails.md`; se agregan a la tabla antes que al manifest y
    se piden en contexto.
 7. **Técnica:** sin secretos en el repo; `applicationId` fijo; los enums guardados no se renombran; migraciones

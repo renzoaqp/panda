@@ -71,6 +71,7 @@
 
     <!-- Ajustes -->
     <string name="settings_title">Ajustes</string>
+    <string name="settings_account">Mi cuenta</string>
     <string name="settings_profile">Editar perfil</string>
     <string name="settings_notifications">Notificaciones</string>
     <string name="settings_rest_schedule">Horario de descanso</string>

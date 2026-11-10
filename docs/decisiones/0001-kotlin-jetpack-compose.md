@@ -1,6 +1,6 @@
 # ADR-0001: App nativa en Kotlin con Jetpack Compose
 
-- **Estado:** Aceptada (se revisa si se decide hacer también la versión de iPhone, decisión pendiente #1)
+- **Estado:** Aceptada. Confirmado el 2026-11-09: **solo Android**, no habrá versión de iPhone.
 - **Fecha:** 2026-11-09
 
 ## Contexto

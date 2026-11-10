@@ -8,11 +8,11 @@ final se conecta al peluche por Bluetooth.
 
 ## Empezar
 
-1. Instala [Android Studio](https://developer.android.com/studio). Trae el SDK de Android y el JDK que usa Gradle.
-2. Abre esta carpeta con *File → Open* y espera a que termine el *Gradle Sync*.
-3. Conecta un celular Android con "Depuración USB" activada y presiona ▶ (*Run 'app'*).
+No hace falta Android Studio: basta VS Code y la terminal. Se necesitan el JDK 21 y el Android SDK
+(command-line tools). El paso a paso está en
+[docs/03-arquitectura.md › Entorno de desarrollo](docs/03-arquitectura.md#entorno-de-desarrollo).
 
-Desde la terminal (con `JAVA_HOME` apuntando al JDK de Android Studio):
+Con `JAVA_HOME` (JDK 21) y `ANDROID_HOME` configurados, y un celular conectado con "Depuración USB":
 
 ```bash
 ./gradlew assembleDebug        # compila

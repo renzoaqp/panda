@@ -1,15 +1,17 @@
 # ADR-0002: Datos guardados en el celular (local primero)
 
-- **Estado:** Aceptada
+- **Estado:** Aceptada. Modificada por [ADR-0004](0004-cuentas-de-usuario.md): habrá cuentas, pero los datos
+  emocionales siguen en el celular.
 - **Fecha:** 2026-11-09
 
 ## Contexto
 Panbu guarda información emocional sensible: estados de ánimo, un diario, horas de sueño y uso del celular. La
 guía del cliente pide proteger esa información, recoger solo lo necesario y que la persona controle qué se
-guarda. Todavía no está decidido si habrá cuentas de usuario.
+guarda.
 
 ## Decisión
-- Todo se guarda en el celular: Room (`panbu.db`) y DataStore. No hay servidor ni cuentas por ahora.
+- Los datos emocionales se guardan en el celular: Room (`panbu.db`) y DataStore. Lo único que va a la nube es la
+  cuenta (correo, nombre y foto opcional), según el ADR-0004.
 - `android:allowBackup="false"`: los datos no se suben al backup de Google. En Android 12+ la transferencia
   directa de un celular a otro (por cable o Wi-Fi directo) sigue siendo posible, y se acepta porque es local y
   la inicia la persona.
@@ -20,8 +22,8 @@ guarda. Todavía no está decidido si habrá cuentas de usuario.
 - Máxima privacidad y una política de privacidad simple; no hay costos de servidor.
 - Si la persona cambia de celular sin usar la transferencia directa, pierde su historial salvo que lo haya
   exportado. Se mitiga con la opción de exportar.
-- Si en el futuro se agregan cuentas o sincronización, se necesita un ADR nuevo, consentimiento explícito y
-  cifrado de extremo a extremo para el diario.
+- Las cuentas ya están decididas (ADR-0004). Sincronizar o respaldar los datos emocionales en la nube requiere
+  otro ADR, consentimiento explícito y cifrado de extremo a extremo.
 
 ## Alternativas consideradas
 - **Firebase (Auth + Firestore):** facilita la sincronización, pero saca datos emocionales del celular y agrega

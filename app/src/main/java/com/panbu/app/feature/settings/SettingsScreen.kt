@@ -18,8 +18,9 @@ import com.panbu.app.ui.components.ScreenTitle
 import com.panbu.app.ui.theme.PanbuSpacing
 import com.panbu.app.ui.theme.PanbuTheme
 
-/** Opciones de la guía (sección 8). "Cerrar sesión" depende de la decisión pendiente #4. */
+/** Opciones de la guía (sección 8). "Mi cuenta" incluye cerrar sesión y borrar la cuenta (ADR-0004). */
 private val settingsItems = listOf(
+    R.string.settings_account,
     R.string.settings_profile,
     R.string.settings_notifications,
     R.string.settings_rest_schedule,

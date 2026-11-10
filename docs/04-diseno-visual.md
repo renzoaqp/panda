@@ -98,8 +98,13 @@ estadísticas, metas, panda, ajustes, volver, agregar y bolsa. Se reemplazarán 
 
 ## Ilustraciones necesarias
 
-Las imágenes del mockup parecen generadas por IA. Para la app se necesitan archivos propios, con fondo
-transparente (PNG/WebP @3x o vector):
+**No hay ilustrador: las ilustraciones las creamos nosotros** (decisión del 2026-11-09). Se hacen en vector
+(SVG → VectorDrawable en `res/drawable/`), con un estilo propio y simple: formas redondas, colores de la paleta,
+mejillas rosadas y corazón lavanda. Se toma como referencia el aspecto del peluche del mockup, sin copiar esas
+imágenes (parecen generadas por IA). Antes de convertirlas, se revisan renderizadas como PNG.
+
+**La tienda es la excepción:** ahí se muestran fotos reales del peluche, porque una ilustración no debe
+representar un producto que se vende (guardrail 7, sin engaños).
 
 | Ilustración | Dónde |
 |---|---|

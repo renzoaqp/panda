@@ -32,13 +32,17 @@ Estas reglas valen para todo el que trabaje en Panbu, sea persona o IA. Si una t
 ## C. Privacidad
 
 11. **Local primero:** los datos emocionales (ánimo, diario, sesiones, sueño, uso del celular) se quedan en el
-    celular. Enviar cualquier dato fuera del celular requiere un ADR **y** el consentimiento explícito de la
-    persona.
-12. **Sin SDKs de terceros que vean datos personales:** nada de analítica, publicidad ni "growth". Un reporte de
-    errores solo con ADR y sin datos personales.
+    celular. Lo único que va a la nube es la **cuenta** (correo, nombre y foto opcional), según el
+    [ADR-0004](decisiones/0004-cuentas-de-usuario.md). Enviar cualquier otro dato fuera del celular requiere un
+    ADR **y** el consentimiento explícito de la persona.
+12. **Sin SDKs de terceros que vean datos personales:** nada de analítica, publicidad ni "growth". La única
+    excepción es el proveedor de cuentas (ADR-0004), que solo ve los datos de la cuenta. Un reporte de errores
+    solo con ADR y sin datos personales.
 13. **Diario cifrado** (AES-GCM con clave en Android Keystore) y **backup en la nube desactivado**
     (`android:allowBackup="false"`) hasta tener una exportación cifrada.
-14. **Control de la persona:** desde Ajustes se puede ver qué se guarda, exportar los datos y borrarlo todo.
+14. **Control de la persona:** desde Ajustes se puede ver qué se guarda, exportar los datos y borrarlo todo. La
+    cuenta se puede borrar desde la app y desde una página web, y eso borra todo lo que hay en el servidor. La
+    cuenta es opcional para las funciones de calma: nunca se pide iniciar sesión para respirar o calmarse.
 15. **Los logs no llevan datos personales:** nunca registrar el texto del diario, los estados de ánimo, las horas
     de sueño ni el uso del celular.
 16. **Permisos mínimos,** pedidos en el momento de uso y con una pantalla previa que explica para qué. Cada
@@ -67,7 +71,7 @@ Estas reglas valen para todo el que trabaje en Panbu, sea persona o IA. Si una t
 | `USE_BIOMETRIC` | Bloquear el diario con huella | 1 | No se pide (normal) |
 | `FOREGROUND_SERVICE`, `FOREGROUND_SERVICE_MEDIA_PLAYBACK` | Sonidos con la pantalla apagada | 1 | No se pide (normal) |
 | `PACKAGE_USAGE_STATS` | Tiempo de pantalla nocturno | 2 | Pantalla explicativa → Ajustes del sistema. Opcional |
-| `INTERNET` | Solo si la tienda carga imágenes o precios remotos | 3 | Evitarlo si es posible |
+| `INTERNET` | Cuentas de usuario (ADR-0004) y, si hace falta, la tienda | 1 | No se pide (normal) |
 | `BLUETOOTH_SCAN` (`neverForLocation`), `BLUETOOTH_CONNECT` | Conectar el peluche (Android 12+) | 5 | Al emparejar |
 
 `SCHEDULE_EXACT_ALARM` / `USE_EXACT_ALARM` **no** se usan: un recordatorio con unos minutos de diferencia está
@@ -81,6 +85,8 @@ bien.
 - [ ] Los permisos del manifest coinciden con la tabla de arriba
 - [ ] `allowBackup="false"` y el diario está cifrado
 - [ ] Exportar y borrar datos funcionan
+- [ ] Borrar la cuenta funciona desde la app y desde la página web, y borra los datos del servidor
+- [ ] En la nube solo están el correo, el nombre y la foto opcional (sin datos emocionales)
 - [ ] Los logs de release no tienen datos personales (revisar con `adb logcat`)
 - [ ] La política de privacidad publicada coincide con lo que hace la app
 - [ ] La sección "Seguridad de los datos" de Play Console coincide con la política
