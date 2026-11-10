@@ -1,4 +1,4 @@
-<#
+﻿<#
   Prepara un PC con Windows para compilar Panbu SIN Android Studio.
 
   Instala:
@@ -63,9 +63,15 @@ Write-Host "ANDROID_HOME = $sdk"
 
 # --- 3. Paquetes del SDK -----------------------------------------------------
 Write-Host '== Instalando paquetes del SDK =='
-$packages = @('platform-tools', 'platforms;android-36', 'build-tools;35.0.0', 'extras;google;usb_driver')
+$packages = @('platform-tools', 'platforms;android-36', 'build-tools;35.0.0')
 ('y' + [Environment]::NewLine) * 20 | & $sdkManager "--sdk_root=$sdk" @packages
 if ($LASTEXITCODE -ne 0) { throw 'sdkmanager falló; revisa el mensaje de arriba.' }
+
+# Driver USB de Google (solo lo necesitan los celulares Pixel). Opcional: si falla, el script sigue.
+('y' + [Environment]::NewLine) * 5 | & $sdkManager "--sdk_root=$sdk" 'extras;google;usb_driver'
+if ($LASTEXITCODE -ne 0) {
+    Write-Host 'Aviso: no se pudo instalar el driver USB de Google. Si tu celular no es Pixel, no hace falta.'
+}
 
 # --- 4. adb en el PATH -------------------------------------------------------
 $platformTools = Join-Path $sdk 'platform-tools'
